@@ -21,7 +21,7 @@ CATEGORIES = {
     "34821": "Warntage",
 }
 
-BASE_URL = "https://www.leverkusen.de/stadt-erleben/veranstaltungskalender/"
+BASE_URL = "https://www.leverkusen.de/stadt-erleben/veranstaltungskalender/index.php"
 TZ = ZoneInfo("Europe/Berlin")
 
 
