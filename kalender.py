@@ -1,15 +1,18 @@
 import html
+import json
 import re
 import time
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
-from datetime import date, datetime, timedelta, timezone
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import date, datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 
 BASE_URL = "https://www.leverkusen.de/stadt-erleben/veranstaltungskalender/"
 OUTPUT_FILE = "veranstaltungen.ics"
-USER_AGENT = "Mozilla/5.0 (compatible; LeverkusenKalender/3.0)"
+LOCAL_TZ = ZoneInfo("Europe/Berlin")
+UA = "Mozilla/5.0 (compatible; LeverkusenKalender/5.0)"
 
 CATEGORIES = [
     ("42023", "Familie & Kinder"),
@@ -29,12 +32,12 @@ CATEGORIES = [
 def get(url, timeout=15, tries=2):
     last = None
 
-    for _ in range(tries):
+    for attempt in range(tries):
         try:
             req = urllib.request.Request(
                 url,
                 headers={
-                    "User-Agent": USER_AGENT,
+                    "User-Agent": UA,
                     "Connection": "close",
                 },
             )
@@ -43,13 +46,22 @@ def get(url, timeout=15, tries=2):
                 req,
                 timeout=timeout,
             ) as r:
-                raw = r.read()
-                enc = r.headers.get_content_charset() or "utf-8"
-                return raw.decode(enc, errors="replace")
+
+                enc = (
+                    r.headers.get_content_charset()
+                    or "utf-8"
+                )
+
+                return r.read().decode(
+                    enc,
+                    errors="replace",
+                )
 
         except Exception as e:
             last = e
-            time.sleep(1)
+
+            if attempt + 1 < tries:
+                time.sleep(1)
 
     raise last
 
@@ -68,11 +80,16 @@ def rss_url(category_id):
         ("action", "submit"),
     ]
 
-    return BASE_URL + "?" + urllib.parse.urlencode(params)
+    return (
+        BASE_URL
+        + "?"
+        + urllib.parse.urlencode(params)
+    )
 
 
 def parse_rss(text, category):
     root = ET.fromstring(text)
+
     out = []
 
     for item in root.iter():
@@ -84,19 +101,22 @@ def parse_rss(text, category):
 
         for child in item:
             name = child.tag.split("}")[-1]
+
             vals[name] = html.unescape(
-                "".join(child.itertext()).strip()
+                "".join(
+                    child.itertext()
+                ).strip()
             )
 
-        title = vals.get("title", "")
-        link = vals.get("link", "")
+        if (
+            vals.get("title")
+            and vals.get("link")
+        ):
 
-        if title and link:
             out.append(
                 {
-                    "title": title,
-                    "link": link,
-                    "guid": vals.get("guid") or link,
+                    "title": vals["title"],
+                    "link": vals["link"],
                     "description": vals.get(
                         "description",
                         "",
@@ -108,368 +128,327 @@ def parse_rss(text, category):
     return out
 
 
-def norm_url(url):
-    url = html.unescape(
-        urllib.parse.unquote(
-            url or ""
-        )
-    ).strip()
-
-    p = urllib.parse.urlsplit(url)
-
-    path = p.path.rstrip("/") or "/"
-
-    return urllib.parse.urlunsplit(
-        (
-            p.scheme.lower(),
-            p.netloc.lower(),
-            path,
-            p.query,
-            "",
-        )
+def jsonld_objects(page):
+    pattern = (
+        r'<script[^>]+type=["\']'
+        r'application/ld\+json["\']'
+        r'[^>]*>(.*?)</script>'
     )
 
+    out = []
 
-def ical_candidates(page):
-    page = html.unescape(page)
-
-    links = re.findall(
-        r'href\s*=\s*["\']([^"\']+)["\']',
+    for raw in re.findall(
+        pattern,
         page,
-        flags=re.I,
-    )
+        re.I | re.S,
+    ):
 
-    out = []
+        raw = html.unescape(
+            raw
+        ).strip()
 
-    for link in links:
-
-        if (
-            "iCalFromParameters" not in link
-            and "iCalFrom" not in link
-        ):
-            continue
-
-        full = urllib.parse.urljoin(
-            BASE_URL,
-            link,
-        )
-
-        if full not in out:
-            out.append(full)
-
-    return out
-
-
-def candidate_url(ical):
-    try:
-        query = urllib.parse.parse_qs(
-            urllib.parse.urlsplit(
-                ical
-            ).query
-        )
-
-        values = query.get(
-            "url",
-            [],
-        )
-
-        if values:
-            return norm_url(
-                values[0]
-            )
-
-    except Exception:
-        pass
-
-    return ""
-
-
-def find_ical(event):
-
-    params = [
-        (
-            "sp:fulltext[0]",
-            event["title"],
-        ),
-        (
-            "sp:dateFrom[0]",
-            date.today().isoformat(),
-        ),
-        (
-            "sp:dateTo[0]",
+        raw = re.sub(
+            r"^\s*<!--|-->\s*$",
             "",
-        ),
-        (
-            "sp:out",
-            "html",
-        ),
-        (
-            "sp:cmp",
-            "eventSearch-1-0-searchResult",
-        ),
-        (
-            "action",
-            "submit",
-        ),
-    ]
+            raw,
+        ).strip()
 
-    search = (
-        BASE_URL
-        + "?"
-        + urllib.parse.urlencode(params)
-    )
+        try:
+            obj = json.loads(raw)
 
-    try:
+            if isinstance(
+                obj,
+                list,
+            ):
+                out.extend(obj)
+            else:
+                out.append(obj)
 
-        page = get(
-            search,
-            timeout=15,
-            tries=2,
-        )
-
-        links = ical_candidates(
-            page
-        )
-
-        wanted = norm_url(
-            event["link"]
-        )
-
-        # Exakte Veranstaltungs-URL
-        # hat Vorrang.
-        for link in links:
-
-            if candidate_url(link) == wanted:
-                return link
-
-        # Nur wenn genau ein Treffer
-        # existiert, verwenden wir ihn
-        # ersatzweise.
-        if len(links) == 1:
-            return links[0]
-
-    except Exception as e:
-
-        print(
-            "Suche:",
-            event["title"],
-            e,
-        )
-
-    return None
-
-
-def unfold(text):
-    lines = (
-        text
-        .replace("\r\n", "\n")
-        .replace("\r", "\n")
-        .split("\n")
-    )
-
-    out = []
-
-    for line in lines:
-
-        if (
-            line.startswith((" ", "\t"))
-            and out
-        ):
-            out[-1] += line[1:]
-        else:
-            out.append(line)
+        except Exception:
+            pass
 
     return out
 
 
-def parse_ics(text):
-    event = {}
-    inside = False
+def walk(obj):
 
-    for line in unfold(text):
+    if isinstance(
+        obj,
+        dict,
+    ):
 
-        if line == "BEGIN:VEVENT":
-            inside = True
-            event = {}
-            continue
+        yield obj
 
-        if line == "END:VEVENT":
-            return event
+        for value in obj.values():
+            yield from walk(value)
 
-        if not inside or ":" not in line:
-            continue
+    elif isinstance(
+        obj,
+        list,
+    ):
 
-        left, value = line.split(
-            ":",
-            1,
-        )
-
-        name = left.split(
-            ";",
-            1,
-        )[0].upper()
-
-        event[name] = html.unescape(
-            value
-        )
-
-    return event
+        for value in obj:
+            yield from walk(value)
 
 
-def parse_value(value):
+def parse_dt(value):
 
-    value = (
-        value or ""
+    if not value:
+        return None, False
+
+    value = str(
+        value
     ).strip()
 
-    # Ganztägig
     if re.fullmatch(
-        r"\d{8}",
+        r"\d{4}-\d{2}-\d{2}",
         value,
     ):
 
         return (
             datetime.strptime(
                 value,
-                "%Y%m%d",
+                "%Y-%m-%d",
             ).date(),
             True,
         )
 
-    # UTC
-    if value.endswith("Z"):
-
-        return (
-            datetime.strptime(
-                value,
-                "%Y%m%dT%H%M%SZ",
-            ).replace(
-                tzinfo=timezone.utc
-            ),
-            False,
-        )
-
-    # Lokale Zeit
-    if (
-        len(value) >= 15
-        and value[8] == "T"
-    ):
-
-        return (
-            datetime.strptime(
-                value[:15],
-                "%Y%m%dT%H%M%S",
-            ),
-            False,
-        )
-
-    return (
-        None,
-        False,
-    )
-
-
-def clean_ics(value):
-
-    value = html.unescape(
-        value or ""
-    )
-
-    return (
-        value
-        .replace("\\n", "\n")
-        .replace("\\N", "\n")
-        .replace("\\,", ",")
-        .replace("\\;", ";")
-        .replace("\\\\", "\\")
-    )
-
-
-def fetch_event(event):
-
-    ical = find_ical(
-        event
-    )
-
-    if not ical:
-
-        return (
-            None,
-            "kein passender iCal-Link",
-        )
-
     try:
 
-        data = get(
-            ical,
-            timeout=15,
-            tries=2,
+        return (
+            datetime.fromisoformat(
+                value.replace(
+                    "Z",
+                    "+00:00",
+                )
+            ),
+            False,
         )
 
-        source = parse_ics(
-            data
+    except Exception:
+        pass
+
+    match = re.search(
+        r"(20\d{2}-\d{2}-\d{2})"
+        r"(?:[T ](\d{2}):(\d{2}))?",
+        value,
+    )
+
+    if not match:
+        return None, False
+
+    if match.group(2):
+
+        return (
+            datetime.strptime(
+                (
+                    f"{match.group(1)} "
+                    f"{match.group(2)}:"
+                    f"{match.group(3)}"
+                ),
+                "%Y-%m-%d %H:%M",
+            ),
+            False,
         )
 
-        if "DTSTART" not in source:
+    return (
+        datetime.strptime(
+            match.group(1),
+            "%Y-%m-%d",
+        ).date(),
+        True,
+    )
 
-            return (
-                None,
-                "iCal ohne DTSTART",
+
+def event_from_page(
+    item,
+    page,
+):
+
+    data = None
+
+    for root in jsonld_objects(
+        page
+    ):
+
+        for obj in walk(root):
+
+            typ = obj.get(
+                "@type",
+                "",
             )
 
-        start, all_day = parse_value(
-            source["DTSTART"]
+            if isinstance(
+                typ,
+                list,
+            ):
+
+                types = [
+                    str(x).lower()
+                    for x in typ
+                ]
+
+            else:
+
+                types = [
+                    str(typ).lower()
+                ]
+
+            if (
+                "event" in types
+                or "eventseries" in types
+            ):
+
+                data = obj
+                break
+
+        if data:
+            break
+
+    start = None
+    end = None
+    all_day = False
+    location = ""
+
+    name = item["title"]
+    description = item["description"]
+
+    if data:
+
+        start, all_day = parse_dt(
+            data.get(
+                "startDate"
+            )
         )
 
-        if start is None:
+        end, _ = parse_dt(
+            data.get(
+                "endDate"
+            )
+        )
 
-            return (
-                None,
-                "ungültiger DTSTART",
+        name = (
+            data.get("name")
+            or name
+        )
+
+        description = (
+            data.get("description")
+            or description
+        )
+
+        loc = data.get(
+            "location"
+        )
+
+        if isinstance(
+            loc,
+            dict,
+        ):
+
+            location = (
+                loc.get(
+                    "name",
+                    "",
+                )
+                or ""
             )
 
-        if "DTEND" in source:
+        elif isinstance(
+            loc,
+            str,
+        ):
 
-            end, _ = parse_value(
-                source["DTEND"]
+            location = loc
+
+    # Fallback für terminbezogene URLs
+    if start is None:
+
+        match = re.search(
+            r"/(20\d{2})-"
+            r"(\d{2})-"
+            r"(\d{2})"
+            r"(?:-(\d{2})-(\d{2}))?/?$",
+            item["link"],
+        )
+
+        if match:
+
+            if match.group(4):
+
+                start = datetime(
+                    int(match.group(1)),
+                    int(match.group(2)),
+                    int(match.group(3)),
+                    int(match.group(4)),
+                    int(match.group(5)),
+                )
+
+                all_day = False
+
+            else:
+
+                start = date(
+                    int(match.group(1)),
+                    int(match.group(2)),
+                    int(match.group(3)),
+                )
+
+                all_day = True
+
+    if start is None:
+
+        raise ValueError(
+            "kein Startdatum gefunden"
+        )
+
+    if end is None:
+
+        if all_day:
+
+            end = (
+                start
+                + timedelta(days=1)
             )
 
         else:
 
             end = start
 
+    return {
+        "uid": item["link"],
+        "start": start,
+        "end": end,
+        "all_day": all_day,
+        "summary": html.unescape(
+            str(name)
+        ),
+        "description": html.unescape(
+            str(description or "")
+        ),
+        "location": html.unescape(
+            str(location)
+        ),
+        "url": item["link"],
+        "category": item["category"],
+    }
+
+
+def fetch(item):
+
+    try:
+
+        page = get(
+            item["link"],
+            timeout=15,
+            tries=2,
+        )
+
         return (
-            {
-                "uid": event["link"],
-                "start": start,
-                "end": end,
-                "all_day": all_day,
-                "summary": clean_ics(
-                    source.get(
-                        "SUMMARY",
-                        event["title"],
-                    )
-                ),
-                "description": clean_ics(
-                    source.get(
-                        "DESCRIPTION",
-                        event["description"],
-                    )
-                ),
-                "location": clean_ics(
-                    source.get(
-                        "LOCATION",
-                        "",
-                    )
-                ),
-                "url": clean_ics(
-                    source.get(
-                        "URL",
-                        event["link"],
-                    )
-                ) or event["link"],
-                "category": event["category"],
-            },
+            event_from_page(
+                item,
+                page,
+            ),
             None,
         )
 
@@ -483,18 +462,59 @@ def fetch_event(event):
 
 def esc(value):
 
-    value = html.unescape(
-        str(value or "")
+    return (
+        html.unescape(
+            str(value or "")
+        )
+        .replace(
+            "\\",
+            "\\\\",
+        )
+        .replace(
+            ";",
+            "\\;",
+        )
+        .replace(
+            ",",
+            "\\,",
+        )
+        .replace(
+            "\r",
+            "",
+        )
+        .replace(
+            "\n",
+            "\\n",
+        )
     )
 
-    return (
-        value
-        .replace("\\", "\\\\")
-        .replace(";", "\\;")
-        .replace(",", "\\,")
-        .replace("\r", "")
-        .replace("\n", "\\n")
-    )
+
+def sort_key(event):
+
+    value = event["start"]
+
+    if isinstance(
+        value,
+        datetime,
+    ):
+
+        if value.tzinfo is None:
+
+            value = value.replace(
+                tzinfo=LOCAL_TZ
+            )
+
+    else:
+
+        value = datetime.combine(
+            value,
+            datetime.min.time(),
+            tzinfo=LOCAL_TZ,
+        )
+
+    return value.astimezone(
+        timezone.utc
+    ).isoformat()
 
 
 def make_ics(events):
@@ -515,55 +535,52 @@ def make_ics(events):
         "X-WR-TIMEZONE:Europe/Berlin",
     ]
 
-    events = sorted(
+    for event in sorted(
         events,
-        key=lambda x: (
-            x["start"],
-            x["summary"].lower(),
-        ),
-    )
-
-    for e in events:
+        key=sort_key,
+    ):
 
         lines += [
             "BEGIN:VEVENT",
-            "UID:" + esc(e["uid"]),
-            "DTSTAMP:" + stamp,
+            "UID:"
+            + esc(
+                event["uid"]
+            ),
+            "DTSTAMP:"
+            + stamp,
         ]
 
-        if e["all_day"]:
+        if event["all_day"]:
 
             lines.append(
                 "DTSTART;VALUE=DATE:"
-                + e["start"].strftime(
+                + event["start"].strftime(
                     "%Y%m%d"
                 )
             )
 
             lines.append(
                 "DTEND;VALUE=DATE:"
-                + e["end"].strftime(
+                + event["end"].strftime(
                     "%Y%m%d"
                 )
             )
 
         else:
 
-            start = e["start"]
-            end = e["end"]
+            start = event["start"]
+            end = event["end"]
 
             if start.tzinfo is None:
+
                 start = start.replace(
-                    tzinfo=timezone(
-                        timedelta(hours=2)
-                    )
+                    tzinfo=LOCAL_TZ
                 )
 
             if end.tzinfo is None:
+
                 end = end.replace(
-                    tzinfo=timezone(
-                        timedelta(hours=2)
-                    )
+                    tzinfo=LOCAL_TZ
                 )
 
             lines.append(
@@ -586,19 +603,24 @@ def make_ics(events):
 
         lines.append(
             "SUMMARY:"
-            + esc(e["summary"])
+            + esc(
+                event["summary"]
+            )
         )
 
-        description = e["description"]
+        description = (
+            event["description"]
+        )
 
         if description:
+
             description += "\n\n"
 
         description += (
             "Kategorie: "
-            + e["category"]
+            + event["category"]
             + "\n\n"
-            + e["url"]
+            + event["url"]
         )
 
         lines.append(
@@ -606,26 +628,26 @@ def make_ics(events):
             + esc(description)
         )
 
-        if e["location"]:
+        if event["location"]:
 
             lines.append(
                 "LOCATION:"
-                + esc(e["location"])
+                + esc(
+                    event["location"]
+                )
             )
 
-        lines.append(
+        lines += [
             "URL:"
-            + esc(e["url"])
-        )
-
-        lines.append(
+            + esc(
+                event["url"]
+            ),
             "CATEGORIES:"
-            + esc(e["category"])
-        )
-
-        lines.append(
-            "END:VEVENT"
-        )
+            + esc(
+                event["category"]
+            ),
+            "END:VEVENT",
+        ]
 
     lines.append(
         "END:VCALENDAR"
@@ -639,11 +661,14 @@ def make_ics(events):
 
 def main():
 
-    events = []
+    rss_events = []
     seen = set()
 
-    # RSS-Feeds laden
-    for category_id, category in CATEGORIES:
+    # Nur 11 RSS-Abfragen.
+    for (
+        category_id,
+        category,
+    ) in CATEGORIES:
 
         print(
             "Kategorie:",
@@ -669,6 +694,19 @@ def main():
                 "Veranstaltungen",
             )
 
+            for item in items:
+
+                if item["link"] in seen:
+                    continue
+
+                seen.add(
+                    item["link"]
+                )
+
+                rss_events.append(
+                    item
+                )
+
         except Exception as e:
 
             print(
@@ -676,40 +714,25 @@ def main():
                 e,
             )
 
-            continue
-
-        for item in items:
-
-            if item["link"] in seen:
-                continue
-
-            seen.add(
-                item["link"]
-            )
-
-            events.append(
-                item
-            )
-
     print(
         "Eindeutige RSS-Veranstaltungen:",
-        len(events),
+        len(rss_events),
     )
 
     results = []
     failed = 0
 
-    # Nur 3 parallele Anfragen.
+    # Nur 4 parallele Veranstaltungsseiten.
     with ThreadPoolExecutor(
-        max_workers=3
+        max_workers=4
     ) as pool:
 
         jobs = {
             pool.submit(
-                fetch_event,
-                event,
-            ): event
-            for event in events
+                fetch,
+                item,
+            ): item
+            for item in rss_events
         }
 
         for i, job in enumerate(
@@ -735,31 +758,28 @@ def main():
                     "FEHLER",
                     i,
                     "/",
-                    len(events),
+                    len(rss_events),
                     jobs[job]["title"],
                     "-",
                     error,
                 )
 
-    unique = {}
-
-    for event in results:
-
-        unique[
-            (
-                event["uid"],
-                event["start"],
-            )
-        ] = event
+    unique = {
+        (
+            event["uid"],
+            event["start"],
+        ): event
+        for event in results
+    }
 
     with open(
         OUTPUT_FILE,
         "w",
         encoding="utf-8",
         newline="",
-    ) as f:
+    ) as file:
 
-        f.write(
+        file.write(
             make_ics(
                 list(
                     unique.values()
