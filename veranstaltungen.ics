@@ -6,873 +6,773 @@ METHOD:PUBLISH
 X-WR-CALNAME:Leverkusen Veranstaltungen
 X-WR-TIMEZONE:Europe/Berlin
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/offenes-bastelangebot-in-der-mutreiferei-boka-boka-drachen-basteln/
-DTSTAMP:20260905T192903Z
-DTSTART;VALUE=DATE:20260905
-DTEND;VALUE=DATE:20260908
-SUMMARY:Offenes Bastelangebot in der MutReiferei. Boka Boka Drachen basteln.
-DESCRIPTION:\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/offenes-bastelangebot-in-der-mutreiferei-boka-boka-drachen-basteln/
-LOCATION:NaturGut Ophoven. Standort Stauffenbergstraße.
-URL:https://lust-auf-leverkusen.de/veranstaltung/offenes-bastelangebot-in-der-mutreiferei-boka-boka-drachen-basteln/
+UID:https://lust-auf-leverkusen.de/veranstaltung/chempark-tour/2026-09-05-14-15/
+DTSTAMP:20260905T215624Z
+DTSTART:20260905T121500Z
+DTEND:20260905T121500Z
+SUMMARY:Chempark Tour
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/05/Chempark-©-Neubauer_8-640x480.jpg"/></div><div>Die kostenlose CHEMPARK-Tour bietet Besucher*innen die Möglichkeit\, einen Blick hinter die Kulissen des CHEMPARK Leverkusen zu werfen. Während der rund einstündigen Busfahrt durch den Standort erhalten…</div>\n\nKategorie: Führungen & Touren\n\nhttps://lust-auf-leverkusen.de/veranstaltung/chempark-tour/2026-09-05-14-15/
+URL:https://lust-auf-leverkusen.de/veranstaltung/chempark-tour/2026-09-05-14-15/
+CATEGORIES:Führungen & Touren
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/levlive-kirmes-und-markt-in-wiesdorf/
-DTSTAMP:20260905T192903Z
-DTSTART;VALUE=DATE:20260905
-DTEND;VALUE=DATE:20260908
-SUMMARY:LevLive. Kirmes und Markt in Wiesdorf.
-DESCRIPTION:\n\nKategorie: Märkte & Messen\n\nhttps://lust-auf-leverkusen.de/veranstaltung/levlive-kirmes-und-markt-in-wiesdorf/
-LOCATION:Fußgängerzone Wiesdorf
-URL:https://lust-auf-leverkusen.de/veranstaltung/levlive-kirmes-und-markt-in-wiesdorf/
+UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-leverkusen/2026-09-05-15-30/
+DTSTAMP:20260905T215624Z
+DTSTART:20260905T133000Z
+DTEND:20260905T133000Z
+SUMMARY:Bayer 04 Leverkusen vs. 1. FC Union Berlin
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/07/20260808_JS2_0461-640x480.jpg"/></div><div>Spitzensport im Herzen der Stadt ‒ \nIn der BayArena empfängt die Werkself die Clubs der ersten Fußballbundesliga und Teams in internationalen Wettbewerben.\nInfo\nÄnderungen des Spielplans vorbehalten\, die…</div>\n\nKategorie: Spitzensport\n\nhttps://lust-auf-leverkusen.de/veranstaltung/bayer-04-leverkusen/2026-09-05-15-30/
+URL:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-leverkusen/2026-09-05-15-30/
+CATEGORIES:Spitzensport
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/papier-schaetze-buecher-und-antik-troedel-markt/
-DTSTAMP:20260905T192903Z
-DTSTART;VALUE=DATE:20260905
-DTEND;VALUE=DATE:20260908
-SUMMARY:Papier &amp\; Schätze. Bücher- und Antik-Trödel-Markt.
-DESCRIPTION:\n\nKategorie: Märkte & Messen\n\nhttps://lust-auf-leverkusen.de/veranstaltung/papier-schaetze-buecher-und-antik-troedel-markt/
-LOCATION:Fußgängerzone Wiesdorf
-URL:https://lust-auf-leverkusen.de/veranstaltung/papier-schaetze-buecher-und-antik-troedel-markt/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/papier-schaetze-buecher-und-antik-troedel-markt-2/
-DTSTAMP:20260905T192903Z
-DTSTART;VALUE=DATE:20260905
-DTEND;VALUE=DATE:20260908
-SUMMARY:Papier &amp\; Schätze. Bücher- und Antik-Trödel-Markt.
-DESCRIPTION:\n\nKategorie: Märkte & Messen\n\nhttps://lust-auf-leverkusen.de/veranstaltung/papier-schaetze-buecher-und-antik-troedel-markt/
-LOCATION:Fußgängerzone Wiesdorf
-URL:https://lust-auf-leverkusen.de/veranstaltung/papier-schaetze-buecher-und-antik-troedel-markt/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/die-zwei-paepste/
-DTSTAMP:20260905T192903Z
-DTSTART:20260905T170000Z
-DTEND:20260905T170000Z
-SUMMARY:Die zwei Päpste. Benefizveranstaltung.
-DESCRIPTION:\n\nKategorie: Lesungen & Literatur\n\nhttps://lust-auf-leverkusen.de/veranstaltung/die-zwei-paepste/
-LOCATION:Erholungshaus
-URL:https://lust-auf-leverkusen.de/veranstaltung/die-zwei-paepste/
+UID:https://lust-auf-leverkusen.de/veranstaltung/bunkertour-opladen-2/2026-09-05-16-30/
+DTSTAMP:20260905T215624Z
+DTSTART:20260905T143000Z
+DTEND:20260905T143000Z
+SUMMARY:Bunkertour Opladen
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/04/bunker-opl-3-1-496x480.jpg"/></div><div>Steinerne Zeugen des 2. Weltkriegs ‒ \nAuch in Opladen brachte die Zeit des Nationalsozialismus starke Veränderungen. Insbesondere einige Bunker hinterlassen bis heute deutliche Spuren. Ab Ende 1940 baute…</div>\n\nKategorie: Führungen & Touren\n\nhttps://lust-auf-leverkusen.de/veranstaltung/bunkertour-opladen-2/2026-09-05-16-30/
+URL:https://lust-auf-leverkusen.de/veranstaltung/bunkertour-opladen-2/2026-09-05-16-30/
+CATEGORIES:Führungen & Touren
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/geheimnisvoller-wald-lebensraum-des-siebenschlaefers/2026-09-05-20-00/
-DTSTAMP:20260905T192903Z
+DTSTAMP:20260905T215624Z
 DTSTART:20260905T180000Z
-DTEND:20260905T200000Z
+DTEND:20260905T180000Z
 SUMMARY:Nachtwanderung. Lebensraum des Siebenschläfers.
-DESCRIPTION:\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/geheimnisvoller-wald-lebensraum-des-siebenschlaefers/2026-09-05-20-00/
-LOCATION:Opladen
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/04/Siebenschlaefer-drei-Junge-mit-Eichel-m-640x480.jpg"/></div><div>Für Eltern mit Kindern (Alter 6 – 10 Jahre)\nGemeinsam will man herausfinden\, was im Wald alles passiert! Wie kann ein Siebenschläfer in der Nacht sehen? Was hat der Specht mit der Wohnung eines Siebenschläfers…</div>\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/geheimnisvoller-wald-lebensraum-des-siebenschlaefers/2026-09-05-20-00/
 URL:https://lust-auf-leverkusen.de/veranstaltung/geheimnisvoller-wald-lebensraum-des-siebenschlaefers/2026-09-05-20-00/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/geheimnisvoller-wald-lebensraum-des-siebenschlaefers/2026-09-12-20-00/
-DTSTAMP:20260905T192903Z
-DTSTART:20260905T180000Z
-DTEND:20260905T200000Z
-SUMMARY:Nachtwanderung. Lebensraum des Siebenschläfers.
-DESCRIPTION:\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/geheimnisvoller-wald-lebensraum-des-siebenschlaefers/2026-09-05-20-00/
-LOCATION:Opladen
-URL:https://lust-auf-leverkusen.de/veranstaltung/geheimnisvoller-wald-lebensraum-des-siebenschlaefers/2026-09-05-20-00/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/familientag-im-sensenhammer/
-DTSTAMP:20260905T192903Z
-DTSTART:20260906T090000Z
-DTEND:20260906T090000Z
-SUMMARY:Familientag im Sensenhammer
-DESCRIPTION:\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/familientag-im-sensenhammer/
-LOCATION:Industriemuseum Freudenthaler Sensenhammer
-URL:https://lust-auf-leverkusen.de/veranstaltung/familientag-im-sensenhammer/
+CATEGORIES:Familie & Kinder
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/fahrtag-der-dampfbahn/2026-09-06-11-00/
-DTSTAMP:20260905T192903Z
+DTSTAMP:20260905T215624Z
 DTSTART:20260906T090000Z
-DTEND:20260906T150000Z
+DTEND:20260906T090000Z
 SUMMARY:Fahrtag der Dampfbahn
-DESCRIPTION:\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/fahrtag-der-dampfbahn/2026-09-06-11-00/
-LOCATION:Stadtpark
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2022/03/i266MBSSdVwu_0erf2cAWX7HFZsbQFmGOapZLenOOvMeJxFPc-640x480.jpg"/></div><div>ZURÜCKBLEIBEN AN DER BAHNSTEIGKANTE ‒ \nTöff\, töff… In der Sommersaison von April bis Oktober verkehrt die Dampfbahn regelmäßig am ersten Sonntag im Monat auf einer vereinseigenen Anlage am Rande des Stadtparks…</div>\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/fahrtag-der-dampfbahn/2026-09-06-11-00/
 URL:https://lust-auf-leverkusen.de/veranstaltung/fahrtag-der-dampfbahn/2026-09-06-11-00/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/150-jahre-bielertkirche-jubilaeumsfest/
-DTSTAMP:20260905T192903Z
-DTSTART:20260906T090000Z
-DTEND:20260906T130000Z
-SUMMARY:150 Jahre Bielertkirche. Jubiläumsfest.
-DESCRIPTION:\n\nKategorie: Feste & Brauchtum\n\nhttps://lust-auf-leverkusen.de/veranstaltung/150-jahre-bielertkirche-jubilaeumsfest/
-LOCATION:Bielertkirche
-URL:https://lust-auf-leverkusen.de/veranstaltung/150-jahre-bielertkirche-jubilaeumsfest/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/zonta-club-flohmarkt-leverkusen/
-DTSTAMP:20260905T192903Z
-DTSTART:20260906T090000Z
-DTEND:20260906T160000Z
-SUMMARY:Zonta Club Flohmarkt Leverkusen
-DESCRIPTION:\n\nKategorie: Märkte & Messen\n\nhttps://lust-auf-leverkusen.de/veranstaltung/zonta-club-flohmarkt-leverkusen/
-LOCATION:help Beratungsstelle für Krebsbetroffene
-URL:https://lust-auf-leverkusen.de/veranstaltung/zonta-club-flohmarkt-leverkusen/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/umweltboerse/
-DTSTAMP:20260905T192903Z
-DTSTART:20260906T110000Z
-DTEND:20260906T160000Z
-SUMMARY:Umweltbörse
-DESCRIPTION:\n\nKategorie: Märkte & Messen\n\nhttps://lust-auf-leverkusen.de/veranstaltung/umweltboerse/
-LOCATION:Fußgängerzone Wiesdorf
-URL:https://lust-auf-leverkusen.de/veranstaltung/umweltboerse/
+CATEGORIES:Familie & Kinder
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/kindertheater-papiermond-open-air/2026-09-06-15-00/
-DTSTAMP:20260905T192903Z
+DTSTAMP:20260905T215624Z
 DTSTART:20260906T130000Z
-DTEND:20260906T134500Z
+DTEND:20260906T130000Z
 SUMMARY:Kindertheater Papiermond. Open Air.
-DESCRIPTION:\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/kindertheater-papiermond-open-air/2026-09-06-15-00/
-LOCATION:NaturGut Ophoven. Standort Stauffenbergstraße.
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/05/Kasper-u-Maus-Presse-10-640x480.jpg"/></div><div>Kasperle und Maus Fridoline besuchen zum letzten Mal in diesem Jahr das NaturGut Ophoven. Die kleinen und großen Zuschauer dürfen sich noch einmal auf ein lustiges\, freches und spannendes Abenteuer freuen…</div>\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/kindertheater-papiermond-open-air/2026-09-06-15-00/
 URL:https://lust-auf-leverkusen.de/veranstaltung/kindertheater-papiermond-open-air/2026-09-06-15-00/
+CATEGORIES:Familie & Kinder
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/jobmesse-kompakt/
-DTSTAMP:20260905T192903Z
-DTSTART:20260908T080000Z
-DTEND:20260908T140000Z
-SUMMARY:Jobmesse Kompakt
-DESCRIPTION:\n\nKategorie: Märkte & Messen\n\nhttps://lust-auf-leverkusen.de/veranstaltung/jobmesse-kompakt/
-LOCATION:Forum Leverkusen
-URL:https://lust-auf-leverkusen.de/veranstaltung/jobmesse-kompakt/
+UID:https://lust-auf-leverkusen.de/veranstaltung/tsv-bayer-04-leverkusen/2026-09-06-16-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20260906T140000Z
+DTEND:20260906T140000Z
+SUMMARY:TSV Bayer 04 Leverkusen vs. SG 09 Kirchhof
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/07/NEU_Elfen2627_Teamfoto_Kopie-640x480.jpg"/></div><div>Handball Bundesliga Frauen live in der Ostermann-Arena. ‒ \nHeimspiele der Werkselfen: Die Handballerinnen des TSV Bayer 04 kämpfen in der 2. Handball-Bundesliga um Punkte. Hier gibt es alle Termine…</div>\n\nKategorie: Spitzensport\n\nhttps://lust-auf-leverkusen.de/veranstaltung/tsv-bayer-04-leverkusen/2026-09-06-16-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/tsv-bayer-04-leverkusen/2026-09-06-16-00/
+CATEGORIES:Spitzensport
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/mittwochsclub-treff-fuer-seniorinnen-und-senioren/2026-09-09-14-30/
-DTSTAMP:20260905T192903Z
+DTSTAMP:20260905T215624Z
 DTSTART:20260909T123000Z
-DTEND:20260909T143000Z
+DTEND:20260909T123000Z
 SUMMARY:Mittwochsclub. Treff für Seniorinnen und Senioren.
-DESCRIPTION:\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/mittwochsclub-treff-fuer-seniorinnen-und-senioren/2026-09-09-14-30/
-LOCATION:Petruskirche
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/07/signal-2026-07-16-07-23-37-948-8-640x480.jpg"/></div><div>Der Mittwochsclub bietet Gelegenheit zu Begegnung\, Gesprächen\, gemeinsamem Singen und wechselnden Themen. Die Treffen finden außerhalb der Sommerferien regelmäßig am ersten und dritten Mittwoch des Monats…</div>\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/mittwochsclub-treff-fuer-seniorinnen-und-senioren/2026-09-09-14-30/
 URL:https://lust-auf-leverkusen.de/veranstaltung/mittwochsclub-treff-fuer-seniorinnen-und-senioren/2026-09-09-14-30/
+CATEGORIES:Familie & Kinder
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/mittwochsclub-treff-fuer-seniorinnen-und-senioren/2026-09-23-14-30/
-DTSTAMP:20260905T192903Z
-DTSTART:20260909T123000Z
-DTEND:20260909T143000Z
-SUMMARY:Mittwochsclub. Treff für Seniorinnen und Senioren.
-DESCRIPTION:\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/mittwochsclub-treff-fuer-seniorinnen-und-senioren/2026-09-09-14-30/
-LOCATION:Petruskirche
-URL:https://lust-auf-leverkusen.de/veranstaltung/mittwochsclub-treff-fuer-seniorinnen-und-senioren/2026-09-09-14-30/
+UID:https://lust-auf-leverkusen.de/veranstaltung/time-out-silent-reading-und-mehr-2/2026-09-09-18-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20260909T160000Z
+DTEND:20260909T160000Z
+SUMMARY:Time-out – Silent Reading und mehr
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2024/09/Silent_Reading_Party_breit-640x480.jpg"/></div><div>Stille gemeinsame Auszeit in der Stadtbibliothek ‒ \nIm vollen Alltag kommt zwischen Aufgaben und Erledigungen eine Sache oft zu kurz: ungestörte Zeit für sich selbst.\nInspiriert von der Idee des „Silent…</div>\n\nKategorie: Tipps\n\nhttps://lust-auf-leverkusen.de/veranstaltung/time-out-silent-reading-und-mehr-2/2026-09-09-18-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/time-out-silent-reading-und-mehr-2/2026-09-09-18-00/
+CATEGORIES:Tipps
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/mittwochsclub-treff-fuer-seniorinnen-und-senioren/2026-10-21-14-30/
-DTSTAMP:20260905T192903Z
-DTSTART:20260909T123000Z
-DTEND:20260909T143000Z
-SUMMARY:Mittwochsclub. Treff für Seniorinnen und Senioren.
-DESCRIPTION:\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/mittwochsclub-treff-fuer-seniorinnen-und-senioren/2026-09-09-14-30/
-LOCATION:Petruskirche
-URL:https://lust-auf-leverkusen.de/veranstaltung/mittwochsclub-treff-fuer-seniorinnen-und-senioren/2026-09-09-14-30/
+UID:https://www.leverkusen.de/veranstaltungskalender/veranstaltungen/hauptkalender/bundesweiter-warntag
+DTSTAMP:20260905T215624Z
+DTSTART:20260910T090000Z
+DTEND:20260910T100000Z
+SUMMARY:Bundesweiter Warntag
+DESCRIPTION:Bundesweiter Warntag\n\nKategorie: Warntage\n\nhttps://www.leverkusen.de/veranstaltungskalender/veranstaltungen/hauptkalender/bundesweiter-warntag
+URL:https://www.leverkusen.de/veranstaltungskalender/veranstaltungen/hauptkalender/bundesweiter-warntag
+CATEGORIES:Warntage
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel-2026-09-10-16-00/
-DTSTAMP:20260905T192903Z
-DTSTART:20260910T140000Z
+UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-09-10-17-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20260910T150000Z
 DTEND:20260910T150000Z
-SUMMARY:Lesen verleiht Flügel
-DESCRIPTION:\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel-2026-09-10-16-00/
-LOCATION:Stadtbibliothek Leverkusen
-URL:https://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel-2026-09-10-16-00/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel/2026-10-08-16-00/
-DTSTAMP:20260905T192903Z
-DTSTART:20260910T140000Z
-DTEND:20260910T150000Z
-SUMMARY:Lesen verleiht Flügel
-DESCRIPTION:\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel-2026-09-10-16-00/
-LOCATION:Stadtbibliothek Leverkusen
-URL:https://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel-2026-09-10-16-00/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel/2026-10-15-16-00/
-DTSTAMP:20260905T192903Z
-DTSTART:20260910T140000Z
-DTEND:20260910T150000Z
-SUMMARY:Lesen verleiht Flügel
-DESCRIPTION:\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel-2026-09-10-16-00/
-LOCATION:Stadtbibliothek Leverkusen
-URL:https://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel-2026-09-10-16-00/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-09-24-17-00/
-DTSTAMP:20260905T192903Z
-DTSTART:20260910T150000Z
-DTEND:20260910T200000Z
 SUMMARY:Afterwork-Party am Flugplatz
-DESCRIPTION:\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-09-10-17-00/
-LOCATION:Fliegerhütte
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2025/04/Party-Disco-Tanz-Symbol-640x480.jpg"/></div><div>Die neue Leverkusener Afterwork-Party ‒ \nDie neue Afterwork-Party in der Fliegerhütte am Flugplatz Leverkusen bietet eine besondere Atmosphäre. Ab Mitte August heißt es jeden zweiten Donnerstag von…</div>\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-09-10-17-00/
 URL:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-09-10-17-00/
+CATEGORIES:Partys & Nachtleben
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-10-08-17-00/
-DTSTAMP:20260905T192903Z
-DTSTART:20260910T150000Z
-DTEND:20260910T200000Z
-SUMMARY:Afterwork-Party am Flugplatz
-DESCRIPTION:\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-09-10-17-00/
-LOCATION:Fliegerhütte
-URL:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-09-10-17-00/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-10-22-17-00/
-DTSTAMP:20260905T192903Z
-DTSTART:20260910T150000Z
-DTEND:20260910T200000Z
-SUMMARY:Afterwork-Party am Flugplatz
-DESCRIPTION:\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-09-10-17-00/
-LOCATION:Fliegerhütte
-URL:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-09-10-17-00/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-11-05-17-00/
-DTSTAMP:20260905T192903Z
-DTSTART:20260910T150000Z
-DTEND:20260910T200000Z
-SUMMARY:Afterwork-Party am Flugplatz
-DESCRIPTION:\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-09-10-17-00/
-LOCATION:Fliegerhütte
-URL:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-09-10-17-00/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-12-03-17-00/
-DTSTAMP:20260905T192903Z
-DTSTART:20260910T150000Z
-DTEND:20260910T200000Z
-SUMMARY:Afterwork-Party am Flugplatz
-DESCRIPTION:\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-09-10-17-00/
-LOCATION:Fliegerhütte
-URL:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-09-10-17-00/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-12-17-17-00/
-DTSTAMP:20260905T192903Z
-DTSTART:20260910T150000Z
-DTEND:20260910T200000Z
-SUMMARY:Afterwork-Party am Flugplatz
-DESCRIPTION:\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-09-10-17-00/
-LOCATION:Fliegerhütte
-URL:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-09-10-17-00/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-12-31-17-00/
-DTSTAMP:20260905T192903Z
-DTSTART:20260910T150000Z
-DTEND:20260910T200000Z
-SUMMARY:Afterwork-Party am Flugplatz
-DESCRIPTION:\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-09-10-17-00/
-LOCATION:Fliegerhütte
-URL:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-09-10-17-00/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2027-01-14-17-00/
-DTSTAMP:20260905T192903Z
-DTSTART:20260910T150000Z
-DTEND:20260910T200000Z
-SUMMARY:Afterwork-Party am Flugplatz
-DESCRIPTION:\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-09-10-17-00/
-LOCATION:Fliegerhütte
-URL:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-09-10-17-00/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/stage-session-die-offene-buehne/
-DTSTAMP:20260905T192903Z
-DTSTART:20260911T180000Z
-DTEND:20260911T180000Z
-SUMMARY:Stage Session: Die offene Bühne
-DESCRIPTION:\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/stage-session-die-offene-buehne/
-LOCATION:Notenschlüssel
-URL:https://lust-auf-leverkusen.de/veranstaltung/stage-session-die-offene-buehne/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/edelrather-kirmes/
-DTSTAMP:20260905T192903Z
-DTSTART;VALUE=DATE:20260912
-DTEND;VALUE=DATE:20260915
-SUMMARY:Edelrather Kirmes
-DESCRIPTION:\n\nKategorie: Feste & Brauchtum\n\nhttps://lust-auf-leverkusen.de/veranstaltung/edelrather-kirmes/
-LOCATION:Edelrather Kirmesplatz
-URL:https://lust-auf-leverkusen.de/veranstaltung/edelrather-kirmes/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/feuerwehrfest-loeschzug-rheindorf/
-DTSTAMP:20260905T192903Z
-DTSTART;VALUE=DATE:20260912
-DTEND;VALUE=DATE:20260915
-SUMMARY:Feuerwehrfest Löschzug Rheindorf
-DESCRIPTION:\n\nKategorie: Feste & Brauchtum\n\nhttps://lust-auf-leverkusen.de/veranstaltung/feuerwehrfest-loeschzug-rheindorf/
-LOCATION:Freiwillige Feuerwehr Leverkusen - Löschzug 16 Rheindorf
-URL:https://lust-auf-leverkusen.de/veranstaltung/feuerwehrfest-loeschzug-rheindorf/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/kastanienfest-in-pattscheid/
-DTSTAMP:20260905T192903Z
-DTSTART;VALUE=DATE:20260912
-DTEND;VALUE=DATE:20260913
-SUMMARY:Kastanienfest in Pattscheid
-DESCRIPTION:\n\nKategorie: Feste & Brauchtum\n\nhttps://lust-auf-leverkusen.de/veranstaltung/kastanienfest-in-pattscheid/
-LOCATION:Bergisch Neukirchen
-URL:https://lust-auf-leverkusen.de/veranstaltung/kastanienfest-in-pattscheid/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/sommerfest-karlstrasse/
-DTSTAMP:20260905T192903Z
-DTSTART:20260912T120000Z
-DTEND:20260912T180000Z
-SUMMARY:Straßenfest Karlstraße
-DESCRIPTION:\n\nKategorie: Feste & Brauchtum\n\nhttps://lust-auf-leverkusen.de/veranstaltung/sommerfest-karlstrasse/
-LOCATION:Künstlerbunker Karlstraße
-URL:https://lust-auf-leverkusen.de/veranstaltung/sommerfest-karlstrasse/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/spelunke-elektrokneipe-kaw-25-50/
-DTSTAMP:20260905T192903Z
-DTSTART:20260912T170000Z
-DTEND:20260912T170000Z
-SUMMARY:Spelunke. Elektrokneipe. KAW 25/50.
-DESCRIPTION:\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/spelunke-elektrokneipe-kaw-25-50/
-LOCATION:Kulturausbesserungswerk KAW
-URL:https://lust-auf-leverkusen.de/veranstaltung/spelunke-elektrokneipe-kaw-25-50/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/golden-beats-ue40-party-2/
-DTSTAMP:20260905T192903Z
+UID:https://lust-auf-leverkusen.de/veranstaltung/geheimnisvoller-wald-lebensraum-des-siebenschlaefers/2026-09-12-20-00/
+DTSTAMP:20260905T215624Z
 DTSTART:20260912T180000Z
 DTEND:20260912T180000Z
-SUMMARY:Golden Beats. Ü40 Party.
-DESCRIPTION:\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/golden-beats-ue40-party-2/
-LOCATION:Scala Club
-URL:https://lust-auf-leverkusen.de/veranstaltung/golden-beats-ue40-party-2/
+SUMMARY:Nachtwanderung. Lebensraum des Siebenschläfers.
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/04/Siebenschlaefer-drei-Junge-mit-Eichel-m-640x480.jpg"/></div><div>Für Eltern mit Kindern (Alter 6 – 10 Jahre)\nGemeinsam will man herausfinden\, was im Wald alles passiert! Wie kann ein Siebenschläfer in der Nacht sehen? Was hat der Specht mit der Wohnung eines Siebenschläfers…</div>\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/geheimnisvoller-wald-lebensraum-des-siebenschlaefers/2026-09-12-20-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/geheimnisvoller-wald-lebensraum-des-siebenschlaefers/2026-09-12-20-00/
+CATEGORIES:Familie & Kinder
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/trash-party-meets-pride-am-rhein/
-DTSTAMP:20260905T192903Z
-DTSTART:20260912T190000Z
-DTEND:20260912T190000Z
-SUMMARY:Trash Party meets Pride am Rhein
-DESCRIPTION:\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/trash-party-meets-pride-am-rhein/
-LOCATION:Shadow Leverkusen
-URL:https://lust-auf-leverkusen.de/veranstaltung/trash-party-meets-pride-am-rhein/
+UID:https://lust-auf-leverkusen.de/veranstaltung/historische-fuehrung-schloss-morsbroich-2/2026-09-13-15-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20260913T130000Z
+DTEND:20260913T130000Z
+SUMMARY:Historische Führung. Schloss Morsbroich.
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2024/07/Museum-Morsbroich-Aquarell-c-Stadtarchiv-640x480.jpg"/></div><div>Die historische Führung vermittelt einen Überblick über die Geschichte des Schlosses und führt anschließend durch ausgewählte Räumlichkeiten. Dabei wird das frühere Leben im Schloss anschaulich erläutert…</div>\n\nKategorie: Führungen & Touren\n\nhttps://lust-auf-leverkusen.de/veranstaltung/historische-fuehrung-schloss-morsbroich-2/2026-09-13-15-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/historische-fuehrung-schloss-morsbroich-2/2026-09-13-15-00/
+CATEGORIES:Führungen & Touren
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/geschichtsfest-leverkusen/
-DTSTAMP:20260905T192903Z
-DTSTART:20260913T073000Z
-DTEND:20260913T183000Z
-SUMMARY:23. Geschichtsfest Leverkusen 2026
-DESCRIPTION:\n\nKategorie: Feste & Brauchtum\n\nhttps://lust-auf-leverkusen.de/veranstaltung/geschichtsfest-leverkusen/
-LOCATION:Villa Römer
-URL:https://lust-auf-leverkusen.de/veranstaltung/geschichtsfest-leverkusen/
+UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-frauen/2026-09-14-18-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20260914T160000Z
+DTEND:20260914T160000Z
+SUMMARY:Bayer 04 Frauen vs. Bayern München
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/07/20260808_NB_TS_FB04FEY_30703-640x480.jpg"/></div><div>Frauenfußball auf höchstem Niveau ‒ \nDie Bayer 04-Frauen tragen ihre Heimspiele im Ulrich-Haberland-Stadion aus und begeistern mit attraktivem Fußball.\nInfo\nÄnderungen des Spielplans vorbehalten\, die Termine…</div>\n\nKategorie: Spitzensport\n\nhttps://lust-auf-leverkusen.de/veranstaltung/bayer-04-frauen/2026-09-14-18-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-frauen/2026-09-14-18-00/
+CATEGORIES:Spitzensport
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/das-grosse-hoffest-kaw-25-50/
-DTSTAMP:20260905T192903Z
-DTSTART:20260913T100000Z
-DTEND:20260913T100000Z
-SUMMARY:Das Große Hoffest. KAW 25/50.
-DESCRIPTION:\n\nKategorie: Feste & Brauchtum\n\nhttps://lust-auf-leverkusen.de/veranstaltung/das-grosse-hoffest-kaw-25-50/
-LOCATION:Kulturausbesserungswerk KAW
-URL:https://lust-auf-leverkusen.de/veranstaltung/das-grosse-hoffest-kaw-25-50/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/zeig-dein-gesicht-male-dich-selbst/
-DTSTAMP:20260905T192903Z
-DTSTART;VALUE=DATE:20260915
-DTEND;VALUE=DATE:20260920
-SUMMARY:Zeig DEIN Gesicht. Male DICH selbst.
-DESCRIPTION:\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/zeig-dein-gesicht-male-dich-selbst/
-LOCATION:Städtische Kita Pregelstraße
-URL:https://lust-auf-leverkusen.de/veranstaltung/zeig-dein-gesicht-male-dich-selbst/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/lara-hoert-zu-2/
-DTSTAMP:20260905T192903Z
-DTSTART:20260915T140000Z
-DTEND:20260915T150000Z
-SUMMARY:Lara hört zu! Woche der Kinderrechte.
-DESCRIPTION:\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/lara-hoert-zu-2/
-LOCATION:Stadtbibliothek Leverkusen
-URL:https://lust-auf-leverkusen.de/veranstaltung/lara-hoert-zu-2/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/trinkbar-kaw-25-50/
-DTSTAMP:20260905T192903Z
-DTSTART:20260916T100000Z
-DTEND:20260916T100000Z
-SUMMARY:TrinkBAR. KAW 25/50.
-DESCRIPTION:\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/trinkbar-kaw-25-50/
-LOCATION:Kulturausbesserungswerk KAW
-URL:https://lust-auf-leverkusen.de/veranstaltung/trinkbar-kaw-25-50/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/gefuehlsuhr-basteln-woche-der-kinderrechte/
-DTSTAMP:20260905T192903Z
-DTSTART:20260916T133000Z
-DTEND:20260916T153000Z
-SUMMARY:Gefühlsuhr basteln. Woche der Kinderrechte.
-DESCRIPTION:\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/gefuehlsuhr-basteln-woche-der-kinderrechte/
-LOCATION:Stadtbibliothek Leverkusen
-URL:https://lust-auf-leverkusen.de/veranstaltung/gefuehlsuhr-basteln-woche-der-kinderrechte/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/culture-club/2026-10-21-19-00/
-DTSTAMP:20260905T192903Z
+UID:https://lust-auf-leverkusen.de/veranstaltung/culture-club/2026-09-16-19-00/
+DTSTAMP:20260905T215624Z
 DTSTART:20260916T170000Z
-DTEND:20260916T210000Z
+DTEND:20260916T170000Z
 SUMMARY:Culture Club
-DESCRIPTION:\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/culture-club/2026-09-16-19-00/
-LOCATION:Shadow Leverkusen
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2024/04/Disco-Kugel-Party-640x480.jpg"/></div><div>Feiern am Mittwoch ‒ \nIn der Regel jeden 3. Mittwoch im Monat findet im Shadow der „Culture Club“ statt. Mit Rock\, Pop\, Wave\, Indie\, Alternative sowie 80er- oder 90er-Kultklassikern. Der Mindestverzehr…</div>\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/culture-club/2026-09-16-19-00/
 URL:https://lust-auf-leverkusen.de/veranstaltung/culture-club/2026-09-16-19-00/
+CATEGORIES:Partys & Nachtleben
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/thematisches-familienfruehstueck-woche-der-kinderrechte/
-DTSTAMP:20260905T192903Z
-DTSTART:20260917T073000Z
-DTEND:20260917T090000Z
-SUMMARY:Thematisches Familienfrühstück. Woche der Kinderrechte.
-DESCRIPTION:\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/thematisches-familienfruehstueck-woche-der-kinderrechte/
-LOCATION:Quartierstreff Wiesdorf
-URL:https://lust-auf-leverkusen.de/veranstaltung/thematisches-familienfruehstueck-woche-der-kinderrechte/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel-10/
-DTSTAMP:20260905T192903Z
-DTSTART:20260917T140000Z
-DTEND:20260917T150000Z
-SUMMARY:Lesen verleiht Flügel. Woche der Kinderrechte.
-DESCRIPTION:\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel-10/
-LOCATION:Stadtbibliothek Leverkusen
-URL:https://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel-10/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/juergen-wiebicke-liest-zuversicht-eine-kleine-philosophie-fuer-verrueckte-zeiten/
-DTSTAMP:20260905T192903Z
-DTSTART:20260917T173000Z
-DTEND:20260917T173000Z
-SUMMARY:Jürgen Wiebicke liest. Zuversicht – eine kleine Philosophie für verrückte Zeiten.
-DESCRIPTION:\n\nKategorie: Lesungen & Literatur\n\nhttps://lust-auf-leverkusen.de/veranstaltung/juergen-wiebicke-liest-zuversicht-eine-kleine-philosophie-fuer-verrueckte-zeiten/
-LOCATION:Christuskirche
-URL:https://lust-auf-leverkusen.de/veranstaltung/juergen-wiebicke-liest-zuversicht-eine-kleine-philosophie-fuer-verrueckte-zeiten/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/spielefest-alkenrath-stadtteilfest-fuer-die-ganze-familie/
-DTSTAMP:20260905T192903Z
-DTSTART:20260918T130000Z
-DTEND:20260918T160000Z
-SUMMARY:Spielefest Alkenrath. Stadtteilfest für die ganze Familie.
-DESCRIPTION:\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/spielefest-alkenrath-stadtteilfest-fuer-die-ganze-familie/
-LOCATION:GGS Erich-Klausener-Schule
-URL:https://lust-auf-leverkusen.de/veranstaltung/spielefest-alkenrath-stadtteilfest-fuer-die-ganze-familie/
+UID:https://lust-auf-leverkusen.de/veranstaltung/cafe-gewollt/2026-09-18-16-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20260918T140000Z
+DTEND:20260918T140000Z
+SUMMARY:Café Gewollt
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2024/11/Bild-Haekelworkshop.jpg"/></div><div>Offener Handarbeitstreff ‒ \nStricken\, Häkeln\, Sticken\, Makramee\, Knüpfen… – die Möglichkeiten der kreativen Wolleverarbeitung sind vielfältig. In gemütlicher Atmosphäre können Wolle-Fans Gleichgesinnte…</div>\n\nKategorie: Tipps\n\nhttps://lust-auf-leverkusen.de/veranstaltung/cafe-gewollt/2026-09-18-16-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/cafe-gewollt/2026-09-18-16-00/
+CATEGORIES:Tipps
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/open-air-oktoberfest/2026-09-18-17-00/
-DTSTAMP:20260905T192903Z
+DTSTAMP:20260905T215624Z
 DTSTART:20260918T150000Z
 DTEND:20260918T150000Z
 SUMMARY:Open Air Oktoberfest
-DESCRIPTION:\n\nKategorie: Feste & Brauchtum\n\nhttps://lust-auf-leverkusen.de/veranstaltung/open-air-oktoberfest/2026-09-18-17-00/
-LOCATION:Bar Schalander / Herkenrath Hof
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2024/09/oktoberfest-640x480.jpg"/></div><div>O´zapft is in Schlebusch ‒ \nDie Küche bietet typische bayerische Spezialitäten. Es gibt frisch gezapftes Münchner Hofbräu und einen DJ\, der Wiesn-Hits auflegt.\nInfo\nEintritt frei. Tischreservierung empfohlen…</div>\n\nKategorie: Feste & Brauchtum\n\nhttps://lust-auf-leverkusen.de/veranstaltung/open-air-oktoberfest/2026-09-18-17-00/
 URL:https://lust-auf-leverkusen.de/veranstaltung/open-air-oktoberfest/2026-09-18-17-00/
+CATEGORIES:Feste & Brauchtum
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/open-air-oktoberfest/2026-09-19-17-00/
-DTSTAMP:20260905T192903Z
-DTSTART:20260918T150000Z
-DTEND:20260918T150000Z
+DTSTAMP:20260905T215624Z
+DTSTART:20260919T150000Z
+DTEND:20260919T150000Z
 SUMMARY:Open Air Oktoberfest
-DESCRIPTION:\n\nKategorie: Feste & Brauchtum\n\nhttps://lust-auf-leverkusen.de/veranstaltung/open-air-oktoberfest/2026-09-18-17-00/
-LOCATION:Bar Schalander / Herkenrath Hof
-URL:https://lust-auf-leverkusen.de/veranstaltung/open-air-oktoberfest/2026-09-18-17-00/
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2024/09/oktoberfest-640x480.jpg"/></div><div>O´zapft is in Schlebusch ‒ \nDie Küche bietet typische bayerische Spezialitäten. Es gibt frisch gezapftes Münchner Hofbräu und einen DJ\, der Wiesn-Hits auflegt.\nInfo\nEintritt frei. Tischreservierung empfohlen…</div>\n\nKategorie: Feste & Brauchtum\n\nhttps://lust-auf-leverkusen.de/veranstaltung/open-air-oktoberfest/2026-09-19-17-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/open-air-oktoberfest/2026-09-19-17-00/
+CATEGORIES:Feste & Brauchtum
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/4-schlebuscher-vorlesenacht/
-DTSTAMP:20260905T192903Z
-DTSTART:20260918T153000Z
-DTEND:20260918T183000Z
-SUMMARY:4. Schlebuscher Vorlesenacht. Woche der Kinderrechte.
-DESCRIPTION:\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/4-schlebuscher-vorlesenacht/
-LOCATION:Friedenskirche
-URL:https://lust-auf-leverkusen.de/veranstaltung/4-schlebuscher-vorlesenacht/
+UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-volleys/2026-09-19-19-30/
+DTSTAMP:20260905T215624Z
+DTSTART:20260919T173000Z
+DTEND:20260919T173000Z
+SUMMARY:Bayer Volleys vs. VfL Oythe
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/07/2026-02-01_Bayer-Volleys_DSHS-SnowTrex-Koeln_mowy_Z09_3085-640x480.jpg"/></div><div>Volleyball live in der Ostermann-Arena: Die Bayer Volleys stehen für mitreißende Ballwechsel und spannende Heimspiele.\nÄnderungen des Spielplans vorbehalten. Hier geht’s zu den aktuellen Terminen: https://www.bayer-volleyball-bundesliga.de</div>\n\nKategorie: Spitzensport\n\nhttps://lust-auf-leverkusen.de/veranstaltung/bayer-volleys/2026-09-19-19-30/
+URL:https://lust-auf-leverkusen.de/veranstaltung/bayer-volleys/2026-09-19-19-30/
+CATEGORIES:Spitzensport
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/fairer-handel-in-der-fairtrade-stadt-leverkusen/
-DTSTAMP:20260905T192903Z
-DTSTART:20260919T083000Z
-DTEND:20260919T123000Z
-SUMMARY:Fairer Handel in der FairTrade-Stadt Leverkusen
-DESCRIPTION:\n\nKategorie: Märkte & Messen\n\nhttps://lust-auf-leverkusen.de/veranstaltung/fairer-handel-in-der-fairtrade-stadt-leverkusen/
-LOCATION:Funkenplätzchen
-URL:https://lust-auf-leverkusen.de/veranstaltung/fairer-handel-in-der-fairtrade-stadt-leverkusen/
+UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-leverkusen/2026-09-20-15-30/
+DTSTAMP:20260905T215624Z
+DTSTART:20260920T133000Z
+DTEND:20260920T133000Z
+SUMMARY:Bayer 04 Leverkusen vs. RB Leipzig
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/07/20260808_JS2_0461-640x480.jpg"/></div><div>Spitzensport im Herzen der Stadt ‒ \nIn der BayArena empfängt die Werkself die Clubs der ersten Fußballbundesliga und Teams in internationalen Wettbewerben.\nInfo\nÄnderungen des Spielplans vorbehalten\, die…</div>\n\nKategorie: Spitzensport\n\nhttps://lust-auf-leverkusen.de/veranstaltung/bayer-04-leverkusen/2026-09-20-15-30/
+URL:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-leverkusen/2026-09-20-15-30/
+CATEGORIES:Spitzensport
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/leverkusener-literaturcafe-3/
-DTSTAMP:20260905T192903Z
-DTSTART:20260919T120000Z
-DTEND:20260919T140000Z
-SUMMARY:Leverkusener Literaturcafé
-DESCRIPTION:\n\nKategorie: Lesungen & Literatur\n\nhttps://lust-auf-leverkusen.de/veranstaltung/leverkusener-literaturcafe-3/
-LOCATION:Stadtbibliothek Leverkusen
-URL:https://lust-auf-leverkusen.de/veranstaltung/leverkusener-literaturcafe-3/
+UID:https://lust-auf-leverkusen.de/veranstaltung/mittwochsclub-treff-fuer-seniorinnen-und-senioren/2026-09-23-14-30/
+DTSTAMP:20260905T215624Z
+DTSTART:20260923T123000Z
+DTEND:20260923T123000Z
+SUMMARY:Mittwochsclub. Treff für Seniorinnen und Senioren.
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/07/signal-2026-07-16-07-23-37-948-8-640x480.jpg"/></div><div>Der Mittwochsclub bietet Gelegenheit zu Begegnung\, Gesprächen\, gemeinsamem Singen und wechselnden Themen. Die Treffen finden außerhalb der Sommerferien regelmäßig am ersten und dritten Mittwoch des Monats…</div>\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/mittwochsclub-treff-fuer-seniorinnen-und-senioren/2026-09-23-14-30/
+URL:https://lust-auf-leverkusen.de/veranstaltung/mittwochsclub-treff-fuer-seniorinnen-und-senioren/2026-09-23-14-30/
+CATEGORIES:Familie & Kinder
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/leverkusener-literaturcafe-4/
-DTSTAMP:20260905T192903Z
-DTSTART:20260919T120000Z
-DTEND:20260919T140000Z
-SUMMARY:Leverkusener Literaturcafé
-DESCRIPTION:\n\nKategorie: Lesungen & Literatur\n\nhttps://lust-auf-leverkusen.de/veranstaltung/leverkusener-literaturcafe-3/
-LOCATION:Stadtbibliothek Leverkusen
-URL:https://lust-auf-leverkusen.de/veranstaltung/leverkusener-literaturcafe-3/
+UID:https://lust-auf-leverkusen.de/veranstaltung/historische-fuehrung-schloss-morsbroich-2/2026-09-23-15-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20260923T130000Z
+DTEND:20260923T130000Z
+SUMMARY:Historische Führung. Schloss Morsbroich.
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2024/07/Museum-Morsbroich-Aquarell-c-Stadtarchiv-640x480.jpg"/></div><div>Die historische Führung vermittelt einen Überblick über die Geschichte des Schlosses und führt anschließend durch ausgewählte Räumlichkeiten. Dabei wird das frühere Leben im Schloss anschaulich erläutert…</div>\n\nKategorie: Führungen & Touren\n\nhttps://lust-auf-leverkusen.de/veranstaltung/historische-fuehrung-schloss-morsbroich-2/2026-09-23-15-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/historische-fuehrung-schloss-morsbroich-2/2026-09-23-15-00/
+CATEGORIES:Führungen & Touren
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/leverkusener-literaturcafe-5/
-DTSTAMP:20260905T192903Z
-DTSTART:20260919T120000Z
-DTEND:20260919T140000Z
-SUMMARY:Leverkusener Literaturcafé
-DESCRIPTION:\n\nKategorie: Lesungen & Literatur\n\nhttps://lust-auf-leverkusen.de/veranstaltung/leverkusener-literaturcafe-3/
-LOCATION:Stadtbibliothek Leverkusen
-URL:https://lust-auf-leverkusen.de/veranstaltung/leverkusener-literaturcafe-3/
+UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-09-24-17-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20260924T150000Z
+DTEND:20260924T150000Z
+SUMMARY:Afterwork-Party am Flugplatz
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2025/04/Party-Disco-Tanz-Symbol-640x480.jpg"/></div><div>Die neue Leverkusener Afterwork-Party ‒ \nDie neue Afterwork-Party in der Fliegerhütte am Flugplatz Leverkusen bietet eine besondere Atmosphäre. Ab Mitte August heißt es jeden zweiten Donnerstag von…</div>\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-09-24-17-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-09-24-17-00/
+CATEGORIES:Partys & Nachtleben
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/independance-kaw-25-50/
-DTSTAMP:20260905T192903Z
-DTSTART:20260919T200000Z
-DTEND:20260919T200000Z
-SUMMARY:IndepenDance. KAW 25/50.
-DESCRIPTION:\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/independance-kaw-25-50/
-LOCATION:Kulturausbesserungswerk KAW
-URL:https://lust-auf-leverkusen.de/veranstaltung/independance-kaw-25-50/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/weltkindertag-im-neuland-park/
-DTSTAMP:20260905T192903Z
-DTSTART:20260920T100000Z
-DTEND:20260920T150000Z
-SUMMARY:Weltkindertag im Neuland-Park
-DESCRIPTION:\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/weltkindertag-im-neuland-park/
-LOCATION:Neuland-Park
-URL:https://lust-auf-leverkusen.de/veranstaltung/weltkindertag-im-neuland-park/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/minigolf-spielen-fuer-kinder-kostenlos-am-weltkindertag/
-DTSTAMP:20260905T192903Z
-DTSTART:20260920T100000Z
-DTEND:20260920T170000Z
-SUMMARY:Minigolf spielen – für Kinder kostenlos am Weltkindertag
-DESCRIPTION:\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/minigolf-spielen-fuer-kinder-kostenlos-am-weltkindertag/
-LOCATION:Minigolf im Neuland-Park
-URL:https://lust-auf-leverkusen.de/veranstaltung/minigolf-spielen-fuer-kinder-kostenlos-am-weltkindertag/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/drei-gaenge-musik-literatur-essen/
-DTSTAMP:20260905T192903Z
-DTSTART:20260924T163000Z
-DTEND:20260924T194500Z
-SUMMARY:Drei Gänge. Musik\, Literatur\, Essen.
-DESCRIPTION:\n\nKategorie: Lesungen & Literatur\n\nhttps://lust-auf-leverkusen.de/veranstaltung/drei-gaenge-musik-literatur-essen/
-LOCATION:Begegnungsstätte Einfach Da
-URL:https://lust-auf-leverkusen.de/veranstaltung/drei-gaenge-musik-literatur-essen/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/mutti-rockt-hitdorf/
-DTSTAMP:20260905T192903Z
-DTSTART:20260925T180000Z
-DTEND:20260925T210000Z
-SUMMARY:Mutti rockt Hitdorf
-DESCRIPTION:\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/mutti-rockt-hitdorf/
-LOCATION:Stadthalle Hitdorf
-URL:https://lust-auf-leverkusen.de/veranstaltung/mutti-rockt-hitdorf/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/oktoberfest-am-kettnersbusch/
-DTSTAMP:20260905T192903Z
-DTSTART:20260926T120000Z
-DTEND:20260926T120000Z
-SUMMARY:Oktoberfest am Kettnersbusch
-DESCRIPTION:\n\nKategorie: Feste & Brauchtum\n\nhttps://lust-auf-leverkusen.de/veranstaltung/oktoberfest-am-kettnersbusch/
-LOCATION:Am Kettnersbusch
-URL:https://lust-auf-leverkusen.de/veranstaltung/oktoberfest-am-kettnersbusch/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/oktoberfest-gallodini/
-DTSTAMP:20260905T192903Z
-DTSTART:20260926T160000Z
-DTEND:20260926T160000Z
-SUMMARY:Oktoberfest. Gallodini.
-DESCRIPTION:\n\nKategorie: Feste & Brauchtum\n\nhttps://lust-auf-leverkusen.de/veranstaltung/oktoberfest-gallodini/
-LOCATION:Restaurant Gallodini
-URL:https://lust-auf-leverkusen.de/veranstaltung/oktoberfest-gallodini/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/internationale-schlagerparty/
-DTSTAMP:20260905T192903Z
-DTSTART:20260926T180000Z
-DTEND:20260926T180000Z
-SUMMARY:Internationale Schlagerparty
-DESCRIPTION:\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/internationale-schlagerparty/
-LOCATION:Fliegerhütte
-URL:https://lust-auf-leverkusen.de/veranstaltung/internationale-schlagerparty/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/mama-geht-tanzen-x-knallblech-2/
-DTSTAMP:20260905T192903Z
-DTSTART:20260926T180000Z
-DTEND:20260926T210000Z
-SUMMARY:Mama geht tanzen x Knallblech
-DESCRIPTION:\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/mama-geht-tanzen-x-knallblech-2/
-LOCATION:Erholungshaus
-URL:https://lust-auf-leverkusen.de/veranstaltung/mama-geht-tanzen-x-knallblech-2/
-END:VEVENT
-BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/mamagehttanzen/
-DTSTAMP:20260905T192903Z
-DTSTART:20260926T180000Z
-DTEND:20260926T210000Z
-SUMMARY:Mama geht tanzen x Knallblech
-DESCRIPTION:\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/mama-geht-tanzen-x-knallblech-2/
-LOCATION:Erholungshaus
-URL:https://lust-auf-leverkusen.de/veranstaltung/mama-geht-tanzen-x-knallblech-2/
+UID:https://lust-auf-leverkusen.de/veranstaltung/bunkertour-opladen-2/2026-09-26-16-30/
+DTSTAMP:20260905T215624Z
+DTSTART:20260926T143000Z
+DTEND:20260926T143000Z
+SUMMARY:Bunkertour Opladen
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/04/bunker-opl-3-1-496x480.jpg"/></div><div>Steinerne Zeugen des 2. Weltkriegs ‒ \nAuch in Opladen brachte die Zeit des Nationalsozialismus starke Veränderungen. Insbesondere einige Bunker hinterlassen bis heute deutliche Spuren. Ab Ende 1940 baute…</div>\n\nKategorie: Führungen & Touren\n\nhttps://lust-auf-leverkusen.de/veranstaltung/bunkertour-opladen-2/2026-09-26-16-30/
+URL:https://lust-auf-leverkusen.de/veranstaltung/bunkertour-opladen-2/2026-09-26-16-30/
+CATEGORIES:Führungen & Touren
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/schattentanz-dj-dalecooper/2026-09-26-21-00/
-DTSTAMP:20260905T192903Z
+DTSTAMP:20260905T215624Z
 DTSTART:20260926T190000Z
 DTEND:20260926T190000Z
 SUMMARY:Schattentanz. DJ Dalecooper.
-DESCRIPTION:\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/schattentanz-dj-dalecooper/2026-09-26-21-00/
-LOCATION:Shadow Leverkusen
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2025/02/katharina-kalender-21-640x480.jpg"/></div><div>Eine Szene-Nacht für alle\, die dunkle Musik lieben – damals wie heute. Auf dem Programm stehen Gothic Rock\, NDH\, Futurepop\, Dark Electro\, EBM\, Industrial sowie Synthpop\, Wave\, Postpunk und Classics Pop…</div>\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/schattentanz-dj-dalecooper/2026-09-26-21-00/
 URL:https://lust-auf-leverkusen.de/veranstaltung/schattentanz-dj-dalecooper/2026-09-26-21-00/
+CATEGORIES:Partys & Nachtleben
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/schattentanz-dj-dalecooper/2026-10-24-21-00/
-DTSTAMP:20260905T192903Z
-DTSTART:20260926T190000Z
-DTEND:20260926T190000Z
-SUMMARY:Schattentanz. DJ Dalecooper.
-DESCRIPTION:\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/schattentanz-dj-dalecooper/2026-09-26-21-00/
-LOCATION:Shadow Leverkusen
-URL:https://lust-auf-leverkusen.de/veranstaltung/schattentanz-dj-dalecooper/2026-09-26-21-00/
+UID:https://lust-auf-leverkusen.de/veranstaltung/buechermaeuse/2026-10-01-09-30/
+DTSTAMP:20260905T215624Z
+DTSTART:20261001T073000Z
+DTEND:20261001T073000Z
+SUMMARY:Büchermäuse
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2024/09/Buechermaeuse_breit-640x480.jpg"/></div><div>Elterntreff und literarische Krabbelgruppe ‒ \nWir entdecken gemeinsam die Welt der Bücher\, Lieder und Reime\, tauschen uns aus und fördern ganz nebenbei die frühkindliche Sprachentwicklung!\nINFO\n\nAlter…</div>\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/buechermaeuse/2026-10-01-09-30/
+URL:https://lust-auf-leverkusen.de/veranstaltung/buechermaeuse/2026-10-01-09-30/
+CATEGORIES:Familie & Kinder
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/schattentanz-dj-dalecooper/2026-11-28-21-00/
-DTSTAMP:20260905T192903Z
-DTSTART:20260926T190000Z
-DTEND:20260926T190000Z
-SUMMARY:Schattentanz. DJ Dalecooper.
-DESCRIPTION:\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/schattentanz-dj-dalecooper/2026-09-26-21-00/
-LOCATION:Shadow Leverkusen
-URL:https://lust-auf-leverkusen.de/veranstaltung/schattentanz-dj-dalecooper/2026-09-26-21-00/
+UID:https://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel/2026-10-01-16-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261001T140000Z
+DTEND:20261001T140000Z
+SUMMARY:Lesen verleiht Flügel
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2024/08/lvf-logo-neu-e1724165922973-640x407.jpg"/></div><div>Vorlesen für Kinder ab 5 Jahren ‒ \nJeden Donnerstag um 16 Uhr lesen Vorlesepat*innen der Stadtbibliothek Geschichten für Kinder ab 5 Jahren vor.\nINFO\n\nAnmeldung: nicht erforderlich\n\nKosten: kostenfrei…</div>\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel/2026-10-01-16-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel/2026-10-01-16-00/
+CATEGORIES:Familie & Kinder
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/oktoberfest-im-gallodini-familientag/
-DTSTAMP:20260905T192903Z
-DTSTART:20260927T100000Z
-DTEND:20260927T130000Z
-SUMMARY:Oktoberfest im Gallodini. Familientag.
-DESCRIPTION:\n\nKategorie: Feste & Brauchtum\n\nhttps://lust-auf-leverkusen.de/veranstaltung/oktoberfest-im-gallodini-familientag/
-LOCATION:Restaurant Gallodini
-URL:https://lust-auf-leverkusen.de/veranstaltung/oktoberfest-im-gallodini-familientag/
+UID:https://lust-auf-leverkusen.de/veranstaltung/naehcafe/2026-10-02-15-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261002T130000Z
+DTEND:20261002T130000Z
+SUMMARY:Nadel & Faden. Nähcafé
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2024/08/sewing-gc32d5f2fc_1280-e1724151906671-640x480.jpg"/></div><div>Nähtreff im Kreativraum für Jugendliche und Erwachsene ‒ \nTreff für alle\, die ein Projekt und ein bisschen Näherfahrung mitbringen. Nette Gespräche\, Kleinkram und guten Rat gibt es in der Runde!\nBereitgestellt…</div>\n\nKategorie: Tipps\n\nhttps://lust-auf-leverkusen.de/veranstaltung/naehcafe/2026-10-02-15-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/naehcafe/2026-10-02-15-00/
+CATEGORIES:Tipps
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/maedchenklamotte-flohmarkt/
-DTSTAMP:20260905T192903Z
-DTSTART:20261003T090000Z
-DTEND:20261003T140000Z
-SUMMARY:Mädchenklamotte Flohmarkt
-DESCRIPTION:\n\nKategorie: Märkte & Messen\n\nhttps://lust-auf-leverkusen.de/veranstaltung/maedchenklamotte-flohmarkt/
-LOCATION:Rathaus-Galerie
-URL:https://lust-auf-leverkusen.de/veranstaltung/maedchenklamotte-flohmarkt/
+UID:https://lust-auf-leverkusen.de/veranstaltung/feuer-frei/2026-10-02-21-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261002T190000Z
+DTEND:20261002T190000Z
+SUMMARY:Feuer Frei
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/08/Unbenannt-17.-Juli-2026-um-09.55.38-5-640x480.jpg"/></div><div>Die schwärzeste Rockparty im Shadow ‒ \n„Feuer Frei“ ist eine Rockparty mit einer Mischung aus Neuer Deutscher Härte\, Industrial Rock und dunklem Metal. Harte Gitarren\, tiefe Stimmen und treibende Rhythmen…</div>\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/feuer-frei/2026-10-02-21-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/feuer-frei/2026-10-02-21-00/
+CATEGORIES:Partys & Nachtleben
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/adler-modellspielzeugmarkt/
-DTSTAMP:20260905T192903Z
+UID:https://lust-auf-leverkusen.de/veranstaltung/wings-leverkusen/2026-10-03-18-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261003T160000Z
+DTEND:20261003T160000Z
+SUMMARY:WINGS Leverkusen vs. ChemCats Chemnitz
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2014/09/Wings-2025-640x450.jpg"/></div><div>Frauenbasketball live ‒ \nDie WINGS Leverkusen gehen in der 2. Basketball-Bundesliga auf Korbjagd und sorgen für packenden Basketball und mitreißende Atmosphäre.\nInfo\nDie nagelneue Sporthalle in der Bahnstadt…</div>\n\nKategorie: Spitzensport\n\nhttps://lust-auf-leverkusen.de/veranstaltung/wings-leverkusen/2026-10-03-18-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/wings-leverkusen/2026-10-03-18-00/
+CATEGORIES:Spitzensport
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-frauen/2026-10-04/
+DTSTAMP:20260905T215624Z
+DTSTART;VALUE=DATE:20261004
+DTEND;VALUE=DATE:20261005
+SUMMARY:Bayer 04 Frauen vs. SV Werder Bremen
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/07/20260808_NB_TS_FB04FEY_30703-640x480.jpg"/></div><div>Frauenfußball auf höchstem Niveau ‒ \nDie Bayer 04-Frauen tragen ihre Heimspiele im Ulrich-Haberland-Stadion aus und begeistern mit attraktivem Fußball.\nInfo\nÄnderungen des Spielplans vorbehalten\, die Termine…</div>\n\nKategorie: Spitzensport\n\nhttps://lust-auf-leverkusen.de/veranstaltung/bayer-04-frauen/2026-10-04/
+URL:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-frauen/2026-10-04/
+CATEGORIES:Spitzensport
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/fahrtag-der-dampfbahn/2026-10-04-11-00/
+DTSTAMP:20260905T215624Z
 DTSTART:20261004T090000Z
-DTEND:20261004T130000Z
-SUMMARY:Adler Modellspielzeugmarkt
-DESCRIPTION:\n\nKategorie: Märkte & Messen\n\nhttps://lust-auf-leverkusen.de/veranstaltung/adler-modellspielzeugmarkt/
-LOCATION:Forum Leverkusen
-URL:https://lust-auf-leverkusen.de/veranstaltung/adler-modellspielzeugmarkt/
+DTEND:20261004T090000Z
+SUMMARY:Fahrtag der Dampfbahn
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2022/03/i266MBSSdVwu_0erf2cAWX7HFZsbQFmGOapZLenOOvMeJxFPc-640x480.jpg"/></div><div>ZURÜCKBLEIBEN AN DER BAHNSTEIGKANTE ‒ \nTöff\, töff… In der Sommersaison von April bis Oktober verkehrt die Dampfbahn regelmäßig am ersten Sonntag im Monat auf einer vereinseigenen Anlage am Rande des Stadtparks…</div>\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/fahrtag-der-dampfbahn/2026-10-04-11-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/fahrtag-der-dampfbahn/2026-10-04-11-00/
+CATEGORIES:Familie & Kinder
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/kinderrechtewoche-umgang-mit-stress-im-familienalltag-2026-10-09-12-30/
-DTSTAMP:20260905T192903Z
-DTSTART:20261009T103000Z
-DTEND:20261009T120000Z
-SUMMARY:Umgang mit Stress im Familienalltag
-DESCRIPTION:\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/kinderrechtewoche-umgang-mit-stress-im-familienalltag-2026-10-09-12-30/
-LOCATION:Psychologische Familienberatungsstelle Stadt Leverkusen
-URL:https://lust-auf-leverkusen.de/veranstaltung/kinderrechtewoche-umgang-mit-stress-im-familienalltag-2026-10-09-12-30/
+UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-giants/2026-10-04-16-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261004T140000Z
+DTEND:20261004T140000Z
+SUMMARY:Bayer Giants vs. CATL Basketball Löwen
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/04/060226_ST21_GIANTSxGiessen_crNilsAlthoff-130-e1783676178131-640x480.jpg"/></div><div>Die Bayer Giants in der OstermannArena. Live dabei sein. In der Barmer 2. Basketball Bundesliga ProB!\nÄnderungen des Spielplans vorbehalten. Hier geht’s zu den aktuellen Terminen: https://www.giants-leverkusen.de/game-time/spielplan-ergebnisse</div>\n\nKategorie: Spitzensport\n\nhttps://lust-auf-leverkusen.de/veranstaltung/bayer-giants/2026-10-04-16-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/bayer-giants/2026-10-04-16-00/
+CATEGORIES:Spitzensport
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/kindertroedelmarkt-lindenhof/
-DTSTAMP:20260905T192903Z
-DTSTART:20261011T090000Z
-DTEND:20261011T140000Z
-SUMMARY:Kindertrödelmarkt. Lindenhof.
-DESCRIPTION:\n\nKategorie: Märkte & Messen\n\nhttps://lust-auf-leverkusen.de/veranstaltung/kindertroedelmarkt-lindenhof/
-LOCATION:Jugendhaus Lindenhof
-URL:https://lust-auf-leverkusen.de/veranstaltung/kindertroedelmarkt-lindenhof/
+UID:https://lust-auf-leverkusen.de/veranstaltung/mittwochsclub-treff-fuer-seniorinnen-und-senioren/2026-10-07-14-30/
+DTSTAMP:20260905T215624Z
+DTSTART:20261007T123000Z
+DTEND:20261007T123000Z
+SUMMARY:Mittwochsclub. Treff für Seniorinnen und Senioren.
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/07/signal-2026-07-16-07-23-37-948-8-640x480.jpg"/></div><div>Der Mittwochsclub bietet Gelegenheit zu Begegnung\, Gesprächen\, gemeinsamem Singen und wechselnden Themen. Die Treffen finden außerhalb der Sommerferien regelmäßig am ersten und dritten Mittwoch des Monats…</div>\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/mittwochsclub-treff-fuer-seniorinnen-und-senioren/2026-10-07-14-30/
+URL:https://lust-auf-leverkusen.de/veranstaltung/mittwochsclub-treff-fuer-seniorinnen-und-senioren/2026-10-07-14-30/
+CATEGORIES:Familie & Kinder
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/jochen-malmsheimer-uwe-roessler/
-DTSTAMP:20260905T192903Z
-DTSTART:20261015T180000Z
-DTEND:20261015T180000Z
-SUMMARY:Jochen Malmsheimer &amp\; Uwe Rössler
-DESCRIPTION:\n\nKategorie: Lesungen & Literatur\n\nhttps://lust-auf-leverkusen.de/veranstaltung/jochen-malmsheimer-uwe-roessler/
-LOCATION:Scala Club
-URL:https://lust-auf-leverkusen.de/veranstaltung/jochen-malmsheimer-uwe-roessler/
+UID:https://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel/2026-10-08-16-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261008T140000Z
+DTEND:20261008T140000Z
+SUMMARY:Lesen verleiht Flügel
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2024/08/lvf-logo-neu-e1724165922973-640x407.jpg"/></div><div>Vorlesen für Kinder ab 5 Jahren ‒ \nJeden Donnerstag um 16 Uhr lesen Vorlesepat*innen der Stadtbibliothek Geschichten für Kinder ab 5 Jahren vor.\nINFO\n\nAnmeldung: nicht erforderlich\n\nKosten: kostenfrei…</div>\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel/2026-10-08-16-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel/2026-10-08-16-00/
+CATEGORIES:Familie & Kinder
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/glow-hochzeitsmesse-im-gartensaal-schloss-morsbroich/
-DTSTAMP:20260905T192903Z
-DTSTART:20261017T090000Z
+UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-10-08-17-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261008T150000Z
+DTEND:20261008T150000Z
+SUMMARY:Afterwork-Party am Flugplatz
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2025/04/Party-Disco-Tanz-Symbol-640x480.jpg"/></div><div>Die neue Leverkusener Afterwork-Party ‒ \nDie neue Afterwork-Party in der Fliegerhütte am Flugplatz Leverkusen bietet eine besondere Atmosphäre. Ab Mitte August heißt es jeden zweiten Donnerstag von…</div>\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-10-08-17-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-10-08-17-00/
+CATEGORIES:Partys & Nachtleben
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/kolonien-rund-um-wiesdorf/2026-10-10-16-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261010T140000Z
+DTEND:20261010T140000Z
+SUMMARY:Kolonien rund um Wiesdorf
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2025/04/Kolonien-Koloniemuseum-640x480.jpg"/></div><div>Vom Dorf zur City. Kolonien und Stadtentwicklung in Wiesdorf. ‒ \nAls die Farbenfabriken aus Elberfeld an den Rhein zogen\, existierte Leverkusen noch nicht. Wiesdorf war ein Dorf am Rhein\, und dort\, wo…</div>\n\nKategorie: Führungen & Touren\n\nhttps://lust-auf-leverkusen.de/veranstaltung/kolonien-rund-um-wiesdorf/2026-10-10-16-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/kolonien-rund-um-wiesdorf/2026-10-10-16-00/
+CATEGORIES:Führungen & Touren
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/historische-fuehrung-schloss-morsbroich-2/2026-10-11-15-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261011T130000Z
+DTEND:20261011T130000Z
+SUMMARY:Historische Führung. Schloss Morsbroich.
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2024/07/Museum-Morsbroich-Aquarell-c-Stadtarchiv-640x480.jpg"/></div><div>Die historische Führung vermittelt einen Überblick über die Geschichte des Schlosses und führt anschließend durch ausgewählte Räumlichkeiten. Dabei wird das frühere Leben im Schloss anschaulich erläutert…</div>\n\nKategorie: Führungen & Touren\n\nhttps://lust-auf-leverkusen.de/veranstaltung/historische-fuehrung-schloss-morsbroich-2/2026-10-11-15-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/historische-fuehrung-schloss-morsbroich-2/2026-10-11-15-00/
+CATEGORIES:Führungen & Touren
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-giants/2026-10-14-19-30/
+DTSTAMP:20260905T215624Z
+DTSTART:20261014T173000Z
+DTEND:20261014T173000Z
+SUMMARY:Bayer Giants vs. Ahorn Camp Baskets
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/04/060226_ST21_GIANTSxGiessen_crNilsAlthoff-130-e1783676178131-640x480.jpg"/></div><div>Die Bayer Giants in der OstermannArena. Live dabei sein. In der Barmer 2. Basketball Bundesliga ProB!\nÄnderungen des Spielplans vorbehalten. Hier geht’s zu den aktuellen Terminen: https://www.giants-leverkusen.de/game-time/spielplan-ergebnisse</div>\n\nKategorie: Spitzensport\n\nhttps://lust-auf-leverkusen.de/veranstaltung/bayer-giants/2026-10-14-19-30/
+URL:https://lust-auf-leverkusen.de/veranstaltung/bayer-giants/2026-10-14-19-30/
+CATEGORIES:Spitzensport
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel/2026-10-15-16-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261015T140000Z
+DTEND:20261015T140000Z
+SUMMARY:Lesen verleiht Flügel
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2024/08/lvf-logo-neu-e1724165922973-640x407.jpg"/></div><div>Vorlesen für Kinder ab 5 Jahren ‒ \nJeden Donnerstag um 16 Uhr lesen Vorlesepat*innen der Stadtbibliothek Geschichten für Kinder ab 5 Jahren vor.\nINFO\n\nAnmeldung: nicht erforderlich\n\nKosten: kostenfrei…</div>\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel/2026-10-15-16-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel/2026-10-15-16-00/
+CATEGORIES:Familie & Kinder
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/cafe-gewollt/2026-10-16-16-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261016T140000Z
+DTEND:20261016T140000Z
+SUMMARY:Café Gewollt
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2024/11/Bild-Haekelworkshop.jpg"/></div><div>Offener Handarbeitstreff ‒ \nStricken\, Häkeln\, Sticken\, Makramee\, Knüpfen… – die Möglichkeiten der kreativen Wolleverarbeitung sind vielfältig. In gemütlicher Atmosphäre können Wolle-Fans Gleichgesinnte…</div>\n\nKategorie: Tipps\n\nhttps://lust-auf-leverkusen.de/veranstaltung/cafe-gewollt/2026-10-16-16-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/cafe-gewollt/2026-10-16-16-00/
+CATEGORIES:Tipps
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-leverkusen/2026-10-17/
+DTSTAMP:20260905T215624Z
+DTSTART;VALUE=DATE:20261017
+DTEND;VALUE=DATE:20261018
+SUMMARY:Bayer 04 Leverkusen vs. SC Freiburg
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/07/20260808_JS2_0461-640x480.jpg"/></div><div>Spitzensport im Herzen der Stadt ‒ \nIn der BayArena empfängt die Werkself die Clubs der ersten Fußballbundesliga und Teams in internationalen Wettbewerben.\nInfo\nÄnderungen des Spielplans vorbehalten\, die…</div>\n\nKategorie: Spitzensport\n\nhttps://lust-auf-leverkusen.de/veranstaltung/bayer-04-leverkusen/2026-10-17/
+URL:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-leverkusen/2026-10-17/
+CATEGORIES:Spitzensport
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/tsv-bayer-04-leverkusen/2026-10-17-18-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261017T160000Z
 DTEND:20261017T160000Z
-SUMMARY:GLOW. Hochzeitsmesse im Schloss Morsbroich.
-DESCRIPTION:\n\nKategorie: Märkte & Messen\n\nhttps://lust-auf-leverkusen.de/veranstaltung/glow-hochzeitsmesse-im-gartensaal-schloss-morsbroich/
-LOCATION:Schloss Morsbroich
-URL:https://lust-auf-leverkusen.de/veranstaltung/glow-hochzeitsmesse-im-gartensaal-schloss-morsbroich/
+SUMMARY:TSV Bayer 04 Leverkusen vs. Füchse Berlin
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/07/NEU_Elfen2627_Teamfoto_Kopie-640x480.jpg"/></div><div>Handball Bundesliga Frauen live in der Ostermann-Arena. ‒ \nHeimspiele der Werkselfen: Die Handballerinnen des TSV Bayer 04 kämpfen in der 2. Handball-Bundesliga um Punkte. Hier gibt es alle Termine…</div>\n\nKategorie: Spitzensport\n\nhttps://lust-auf-leverkusen.de/veranstaltung/tsv-bayer-04-leverkusen/2026-10-17-18-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/tsv-bayer-04-leverkusen/2026-10-17-18-00/
+CATEGORIES:Spitzensport
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/benjamin-bluemchen-das-musical/
-DTSTAMP:20260905T192903Z
-DTSTART:20261018T120000Z
+UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-frauen/2026-10-18/
+DTSTAMP:20260905T215624Z
+DTSTART;VALUE=DATE:20261018
+DTEND;VALUE=DATE:20261019
+SUMMARY:Bayer 04 Frauen vs. Eintracht Frankfurt
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/07/20260808_NB_TS_FB04FEY_30703-640x480.jpg"/></div><div>Frauenfußball auf höchstem Niveau ‒ \nDie Bayer 04-Frauen tragen ihre Heimspiele im Ulrich-Haberland-Stadion aus und begeistern mit attraktivem Fußball.\nInfo\nÄnderungen des Spielplans vorbehalten\, die Termine…</div>\n\nKategorie: Spitzensport\n\nhttps://lust-auf-leverkusen.de/veranstaltung/bayer-04-frauen/2026-10-18/
+URL:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-frauen/2026-10-18/
+CATEGORIES:Spitzensport
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-volleys/2026-10-18-16-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261018T140000Z
 DTEND:20261018T140000Z
-SUMMARY:Benjamin Blümchen. Das Musical.
-DESCRIPTION:\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/benjamin-bluemchen-das-musical/
-LOCATION:Forum Leverkusen
-URL:https://lust-auf-leverkusen.de/veranstaltung/benjamin-bluemchen-das-musical/
+SUMMARY:Bayer Volleys vs. TV Planegg-Krailling
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/07/2026-02-01_Bayer-Volleys_DSHS-SnowTrex-Koeln_mowy_Z09_3085-640x480.jpg"/></div><div>Volleyball live in der Ostermann-Arena: Die Bayer Volleys stehen für mitreißende Ballwechsel und spannende Heimspiele.\nÄnderungen des Spielplans vorbehalten. Hier geht’s zu den aktuellen Terminen: https://www.bayer-volleyball-bundesliga.de</div>\n\nKategorie: Spitzensport\n\nhttps://lust-auf-leverkusen.de/veranstaltung/bayer-volleys/2026-10-18-16-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/bayer-volleys/2026-10-18-16-00/
+CATEGORIES:Spitzensport
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/mittwochsclub-treff-fuer-seniorinnen-und-senioren/2026-10-21-14-30/
+DTSTAMP:20260905T215624Z
+DTSTART:20261021T123000Z
+DTEND:20261021T123000Z
+SUMMARY:Mittwochsclub. Treff für Seniorinnen und Senioren.
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/07/signal-2026-07-16-07-23-37-948-8-640x480.jpg"/></div><div>Der Mittwochsclub bietet Gelegenheit zu Begegnung\, Gesprächen\, gemeinsamem Singen und wechselnden Themen. Die Treffen finden außerhalb der Sommerferien regelmäßig am ersten und dritten Mittwoch des Monats…</div>\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/mittwochsclub-treff-fuer-seniorinnen-und-senioren/2026-10-21-14-30/
+URL:https://lust-auf-leverkusen.de/veranstaltung/mittwochsclub-treff-fuer-seniorinnen-und-senioren/2026-10-21-14-30/
+CATEGORIES:Familie & Kinder
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/basteln-mit-gaby-und-anika/2026-10-21-16-00/
-DTSTAMP:20260905T192903Z
+DTSTAMP:20260905T215624Z
 DTSTART:20261021T140000Z
-DTEND:20261021T160000Z
+DTEND:20261021T140000Z
 SUMMARY:Basteln mit Gaby und Anika
-DESCRIPTION:\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/basteln-mit-gaby-und-anika/2026-10-21-16-00/
-LOCATION:Stadtbibliothek Leverkusen
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2024/09/basteln_breit-640x480.jpg"/></div><div>Bastelstunde für Kinder ab 5 Jahren und ihre Eltern ‒ \nUnsere Bastelexpertinnen haben sich wieder lustige Ideen überlegt und laden Kinder und Eltern zu einem Bastelnachmittag in die Stadtbibliothek ein…</div>\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/basteln-mit-gaby-und-anika/2026-10-21-16-00/
 URL:https://lust-auf-leverkusen.de/veranstaltung/basteln-mit-gaby-und-anika/2026-10-21-16-00/
+CATEGORIES:Familie & Kinder
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/80er-90er-party-mit-dj-totte/
-DTSTAMP:20260905T192903Z
-DTSTART:20261024T180000Z
+UID:https://lust-auf-leverkusen.de/veranstaltung/culture-club/2026-10-21-19-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261021T170000Z
+DTEND:20261021T170000Z
+SUMMARY:Culture Club
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2024/04/Disco-Kugel-Party-640x480.jpg"/></div><div>Feiern am Mittwoch ‒ \nIn der Regel jeden 3. Mittwoch im Monat findet im Shadow der „Culture Club“ statt. Mit Rock\, Pop\, Wave\, Indie\, Alternative sowie 80er- oder 90er-Kultklassikern. Der Mindestverzehr…</div>\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/culture-club/2026-10-21-19-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/culture-club/2026-10-21-19-00/
+CATEGORIES:Partys & Nachtleben
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-10-22-17-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261022T150000Z
+DTEND:20261022T150000Z
+SUMMARY:Afterwork-Party am Flugplatz
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2025/04/Party-Disco-Tanz-Symbol-640x480.jpg"/></div><div>Die neue Leverkusener Afterwork-Party ‒ \nDie neue Afterwork-Party in der Fliegerhütte am Flugplatz Leverkusen bietet eine besondere Atmosphäre. Ab Mitte August heißt es jeden zweiten Donnerstag von…</div>\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-10-22-17-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-10-22-17-00/
+CATEGORIES:Partys & Nachtleben
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/time-out-silent-reading-und-mehr-2/2026-10-23-18-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261023T160000Z
+DTEND:20261023T160000Z
+SUMMARY:Time-out – Silent Reading und mehr
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2024/09/Silent_Reading_Party_breit-640x480.jpg"/></div><div>Stille gemeinsame Auszeit in der Stadtbibliothek ‒ \nIm vollen Alltag kommt zwischen Aufgaben und Erledigungen eine Sache oft zu kurz: ungestörte Zeit für sich selbst.\nInspiriert von der Idee des „Silent…</div>\n\nKategorie: Tipps\n\nhttps://lust-auf-leverkusen.de/veranstaltung/time-out-silent-reading-und-mehr-2/2026-10-23-18-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/time-out-silent-reading-und-mehr-2/2026-10-23-18-00/
+CATEGORIES:Tipps
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/wings-leverkusen/2026-10-24-18-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261024T160000Z
+DTEND:20261024T160000Z
+SUMMARY:WINGS Leverkusen vs. Eimsbütteler Turnverband
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2014/09/Wings-2025-640x450.jpg"/></div><div>Frauenbasketball live ‒ \nDie WINGS Leverkusen gehen in der 2. Basketball-Bundesliga auf Korbjagd und sorgen für packenden Basketball und mitreißende Atmosphäre.\nInfo\nDie nagelneue Sporthalle in der Bahnstadt…</div>\n\nKategorie: Spitzensport\n\nhttps://lust-auf-leverkusen.de/veranstaltung/wings-leverkusen/2026-10-24-18-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/wings-leverkusen/2026-10-24-18-00/
+CATEGORIES:Spitzensport
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-giants/2026-10-24-18-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261024T160000Z
+DTEND:20261024T160000Z
+SUMMARY:Bayer Giants vs. FC Bayern Basketball II
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/04/060226_ST21_GIANTSxGiessen_crNilsAlthoff-130-e1783676178131-640x480.jpg"/></div><div>Die Bayer Giants in der OstermannArena. Live dabei sein. In der Barmer 2. Basketball Bundesliga ProB!\nÄnderungen des Spielplans vorbehalten. Hier geht’s zu den aktuellen Terminen: https://www.giants-leverkusen.de/game-time/spielplan-ergebnisse</div>\n\nKategorie: Spitzensport\n\nhttps://lust-auf-leverkusen.de/veranstaltung/bayer-giants/2026-10-24-18-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/bayer-giants/2026-10-24-18-00/
+CATEGORIES:Spitzensport
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/schattentanz-dj-dalecooper/2026-10-24-21-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261024T190000Z
 DTEND:20261024T190000Z
-SUMMARY:80er/90er Party mit DJ Totte
-DESCRIPTION:\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/80er-90er-party-mit-dj-totte/
-LOCATION:Fliegerhütte
-URL:https://lust-auf-leverkusen.de/veranstaltung/80er-90er-party-mit-dj-totte/
+SUMMARY:Schattentanz. DJ Dalecooper.
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2025/02/katharina-kalender-21-640x480.jpg"/></div><div>Eine Szene-Nacht für alle\, die dunkle Musik lieben – damals wie heute. Auf dem Programm stehen Gothic Rock\, NDH\, Futurepop\, Dark Electro\, EBM\, Industrial sowie Synthpop\, Wave\, Postpunk und Classics Pop…</div>\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/schattentanz-dj-dalecooper/2026-10-24-21-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/schattentanz-dj-dalecooper/2026-10-24-21-00/
+CATEGORIES:Partys & Nachtleben
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/1-hitdorfer-kostuem-und-kreativboerse/
-DTSTAMP:20260905T192903Z
-DTSTART:20261025T130000Z
-DTEND:20261025T170000Z
-SUMMARY:1. Hitdorfer Kostüm- und Kreativbörse.
-DESCRIPTION:\n\nKategorie: Märkte & Messen\n\nhttps://lust-auf-leverkusen.de/veranstaltung/1-hitdorfer-kostuem-und-kreativboerse/
-LOCATION:Stadthalle Hitdorf
-URL:https://lust-auf-leverkusen.de/veranstaltung/1-hitdorfer-kostuem-und-kreativboerse/
+UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-leverkusen/2026-10-31/
+DTSTAMP:20260905T215624Z
+DTSTART;VALUE=DATE:20261031
+DTEND;VALUE=DATE:20261101
+SUMMARY:Bayer 04 Leverkusen vs. VfB Stuttgart
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/07/20260808_JS2_0461-640x480.jpg"/></div><div>Spitzensport im Herzen der Stadt ‒ \nIn der BayArena empfängt die Werkself die Clubs der ersten Fußballbundesliga und Teams in internationalen Wettbewerben.\nInfo\nÄnderungen des Spielplans vorbehalten\, die…</div>\n\nKategorie: Spitzensport\n\nhttps://lust-auf-leverkusen.de/veranstaltung/bayer-04-leverkusen/2026-10-31/
+URL:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-leverkusen/2026-10-31/
+CATEGORIES:Spitzensport
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/pontos-eine-musikalische-und-kulturelle-bildungsreise-zum-schwarzen-meer/
-DTSTAMP:20260905T192903Z
-DTSTART:20261030T190000Z
-DTEND:20261030T190000Z
-SUMMARY:Pontos. Eine musikalische und kulturelle Bildungsreise zum Schwarzen Meer.
-DESCRIPTION:\n\nKategorie: Feste & Brauchtum\n\nhttps://lust-auf-leverkusen.de/veranstaltung/pontos-eine-musikalische-und-kulturelle-bildungsreise-zum-schwarzen-meer/
-LOCATION:Scala Club
-URL:https://lust-auf-leverkusen.de/veranstaltung/pontos-eine-musikalische-und-kulturelle-bildungsreise-zum-schwarzen-meer/
+UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-11-05-17-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261105T160000Z
+DTEND:20261105T160000Z
+SUMMARY:Afterwork-Party am Flugplatz
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2025/04/Party-Disco-Tanz-Symbol-640x480.jpg"/></div><div>Die neue Leverkusener Afterwork-Party ‒ \nDie neue Afterwork-Party in der Fliegerhütte am Flugplatz Leverkusen bietet eine besondere Atmosphäre. Ab Mitte August heißt es jeden zweiten Donnerstag von…</div>\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-11-05-17-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-11-05-17-00/
+CATEGORIES:Partys & Nachtleben
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/schlebuscher-martinsmarkt-mit-verkaufsoffenem-sonntag/
-DTSTAMP:20260905T192903Z
-DTSTART;VALUE=DATE:20261107
-DTEND;VALUE=DATE:20261110
-SUMMARY:Schlebuscher Martinsmarkt mit verkaufsoffenem Sonntag
-DESCRIPTION:\n\nKategorie: Märkte & Messen\n\nhttps://lust-auf-leverkusen.de/veranstaltung/schlebuscher-martinsmarkt-mit-verkaufsoffenem-sonntag/
-LOCATION:Fußgängerzone Schlebusch
-URL:https://lust-auf-leverkusen.de/veranstaltung/schlebuscher-martinsmarkt-mit-verkaufsoffenem-sonntag/
+UID:https://lust-auf-leverkusen.de/veranstaltung/naehcafe/2026-11-06-15-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261106T140000Z
+DTEND:20261106T140000Z
+SUMMARY:Nadel & Faden. Nähcafé
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2024/08/sewing-gc32d5f2fc_1280-e1724151906671-640x480.jpg"/></div><div>Nähtreff im Kreativraum für Jugendliche und Erwachsene ‒ \nTreff für alle\, die ein Projekt und ein bisschen Näherfahrung mitbringen. Nette Gespräche\, Kleinkram und guten Rat gibt es in der Runde!\nBereitgestellt…</div>\n\nKategorie: Tipps\n\nhttps://lust-auf-leverkusen.de/veranstaltung/naehcafe/2026-11-06-15-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/naehcafe/2026-11-06-15-00/
+CATEGORIES:Tipps
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/fest-der-solidaritaet-frauenwelten-2026-in-wiesdorf/
-DTSTAMP:20260905T192903Z
-DTSTART:20261115T170000Z
-DTEND:20261115T200000Z
-SUMMARY:Fest der Solidarität. FrauenWelten 2026 in Wiesdorf.
-DESCRIPTION:\n\nKategorie: Lesungen & Literatur\n\nhttps://lust-auf-leverkusen.de/veranstaltung/fest-der-solidaritaet-frauenwelten-2026-in-wiesdorf/
-LOCATION:Quartierstreff Wiesdorf
-URL:https://lust-auf-leverkusen.de/veranstaltung/fest-der-solidaritaet-frauenwelten-2026-in-wiesdorf/
+UID:https://lust-auf-leverkusen.de/veranstaltung/chempark-tour/2026-11-07-14-15/
+DTSTAMP:20260905T215624Z
+DTSTART:20261107T131500Z
+DTEND:20261107T131500Z
+SUMMARY:Chempark Tour
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/05/Chempark-©-Neubauer_8-640x480.jpg"/></div><div>Die kostenlose CHEMPARK-Tour bietet Besucher*innen die Möglichkeit\, einen Blick hinter die Kulissen des CHEMPARK Leverkusen zu werfen. Während der rund einstündigen Busfahrt durch den Standort erhalten…</div>\n\nKategorie: Führungen & Touren\n\nhttps://lust-auf-leverkusen.de/veranstaltung/chempark-tour/2026-11-07-14-15/
+URL:https://lust-auf-leverkusen.de/veranstaltung/chempark-tour/2026-11-07-14-15/
+CATEGORIES:Führungen & Touren
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party-fuer-frauen/
-DTSTAMP:20260905T192903Z
-DTSTART:20261119T170000Z
-DTEND:20261119T210000Z
-SUMMARY:Afterwork-Party für Frauen
-DESCRIPTION:\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/afterwork-party-fuer-frauen/
-LOCATION:Restaurant Haus am Park
-URL:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party-fuer-frauen/
+UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-giants/2026-11-07-18-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261107T170000Z
+DTEND:20261107T170000Z
+SUMMARY:Bayer Giants vs. Porsche BBA Ludwigsburg
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/04/060226_ST21_GIANTSxGiessen_crNilsAlthoff-130-e1783676178131-640x480.jpg"/></div><div>Die Bayer Giants in der OstermannArena. Live dabei sein. In der Barmer 2. Basketball Bundesliga ProB!\nÄnderungen des Spielplans vorbehalten. Hier geht’s zu den aktuellen Terminen: https://www.giants-leverkusen.de/game-time/spielplan-ergebnisse</div>\n\nKategorie: Spitzensport\n\nhttps://lust-auf-leverkusen.de/veranstaltung/bayer-giants/2026-11-07-18-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/bayer-giants/2026-11-07-18-00/
+CATEGORIES:Spitzensport
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/famlev-familienmesse-fuer-leverkusen/
-DTSTAMP:20260905T192903Z
-DTSTART:20261129T090000Z
-DTEND:20261129T150000Z
-SUMMARY:FamLEV. Familienmesse für Leverkusen.
-DESCRIPTION:\n\nKategorie: Märkte & Messen\n\nhttps://lust-auf-leverkusen.de/veranstaltung/famlev-familienmesse-fuer-leverkusen/
-LOCATION:Erholungshaus
-URL:https://lust-auf-leverkusen.de/veranstaltung/famlev-familienmesse-fuer-leverkusen/
+UID:https://lust-auf-leverkusen.de/veranstaltung/wings-leverkusen/2026-11-07-18-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261107T170000Z
+DTEND:20261107T170000Z
+SUMMARY:WINGS Leverkusen vs. TUS Lichterfelde Berlin
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2014/09/Wings-2025-640x450.jpg"/></div><div>Frauenbasketball live ‒ \nDie WINGS Leverkusen gehen in der 2. Basketball-Bundesliga auf Korbjagd und sorgen für packenden Basketball und mitreißende Atmosphäre.\nInfo\nDie nagelneue Sporthalle in der Bahnstadt…</div>\n\nKategorie: Spitzensport\n\nhttps://lust-auf-leverkusen.de/veranstaltung/wings-leverkusen/2026-11-07-18-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/wings-leverkusen/2026-11-07-18-00/
+CATEGORIES:Spitzensport
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/lih-silvesterparty/
-DTSTAMP:20260905T192903Z
-DTSTART:20261231T190000Z
-DTEND:20261231T190000Z
-SUMMARY:LiH Silvesterparty
-DESCRIPTION:\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/lih-silvesterparty/
-LOCATION:Stadthalle Hitdorf
-URL:https://lust-auf-leverkusen.de/veranstaltung/lih-silvesterparty/
+UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-frauen/2026-11-08/
+DTSTAMP:20260905T215624Z
+DTSTART;VALUE=DATE:20261108
+DTEND;VALUE=DATE:20261109
+SUMMARY:Bayer 04 Frauen vs. Hamburger SV
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/07/20260808_NB_TS_FB04FEY_30703-640x480.jpg"/></div><div>Frauenfußball auf höchstem Niveau ‒ \nDie Bayer 04-Frauen tragen ihre Heimspiele im Ulrich-Haberland-Stadion aus und begeistern mit attraktivem Fußball.\nInfo\nÄnderungen des Spielplans vorbehalten\, die Termine…</div>\n\nKategorie: Spitzensport\n\nhttps://lust-auf-leverkusen.de/veranstaltung/bayer-04-frauen/2026-11-08/
+URL:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-frauen/2026-11-08/
+CATEGORIES:Spitzensport
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/leverkusen-singt/
-DTSTAMP:20260905T192903Z
-DTSTART:20270129T181100Z
-DTEND:20270129T181100Z
-SUMMARY:Leverkusen singt 2027!
-DESCRIPTION:\n\nKategorie: Karneval\n\nhttps://lust-auf-leverkusen.de/veranstaltung/leverkusen-singt/
-LOCATION:Forum Leverkusen
-URL:https://lust-auf-leverkusen.de/veranstaltung/leverkusen-singt/
+UID:https://lust-auf-leverkusen.de/veranstaltung/tsv-bayer-04-leverkusen/2026-11-08-16-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261108T150000Z
+DTEND:20261108T150000Z
+SUMMARY:TSV Bayer 04 Leverkusen vs. VfL Waiblingen
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/07/NEU_Elfen2627_Teamfoto_Kopie-640x480.jpg"/></div><div>Handball Bundesliga Frauen live in der Ostermann-Arena. ‒ \nHeimspiele der Werkselfen: Die Handballerinnen des TSV Bayer 04 kämpfen in der 2. Handball-Bundesliga um Punkte. Hier gibt es alle Termine…</div>\n\nKategorie: Spitzensport\n\nhttps://lust-auf-leverkusen.de/veranstaltung/tsv-bayer-04-leverkusen/2026-11-08-16-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/tsv-bayer-04-leverkusen/2026-11-08-16-00/
+CATEGORIES:Spitzensport
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/karnevalszug-hitdorf/
-DTSTAMP:20260905T192903Z
-DTSTART:20270205T133300Z
-DTEND:20270205T163300Z
-SUMMARY:Karnevalszug Hitdorf 2027
-DESCRIPTION:\n\nKategorie: Karneval\n\nhttps://lust-auf-leverkusen.de/veranstaltung/karnevalszug-hitdorf/
-LOCATION:Hitdorf
-URL:https://lust-auf-leverkusen.de/veranstaltung/karnevalszug-hitdorf/
+UID:https://lust-auf-leverkusen.de/veranstaltung/historische-fuehrung-schloss-morsbroich-2/2026-11-15-15-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261115T140000Z
+DTEND:20261115T140000Z
+SUMMARY:Historische Führung. Schloss Morsbroich.
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2024/07/Museum-Morsbroich-Aquarell-c-Stadtarchiv-640x480.jpg"/></div><div>Die historische Führung vermittelt einen Überblick über die Geschichte des Schlosses und führt anschließend durch ausgewählte Räumlichkeiten. Dabei wird das frühere Leben im Schloss anschaulich erläutert…</div>\n\nKategorie: Führungen & Touren\n\nhttps://lust-auf-leverkusen.de/veranstaltung/historische-fuehrung-schloss-morsbroich-2/2026-11-15-15-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/historische-fuehrung-schloss-morsbroich-2/2026-11-15-15-00/
+CATEGORIES:Führungen & Touren
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/karnevalszug-opladen/
-DTSTAMP:20260905T192903Z
-DTSTART:20270208T131100Z
-DTEND:20270208T161100Z
-SUMMARY:Karnevalszug Opladen 2027
-DESCRIPTION:\n\nKategorie: Karneval\n\nhttps://lust-auf-leverkusen.de/veranstaltung/karnevalszug-opladen/
-LOCATION:Opladen
-URL:https://lust-auf-leverkusen.de/veranstaltung/karnevalszug-opladen/
+UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-11-19-17-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261119T160000Z
+DTEND:20261119T160000Z
+SUMMARY:Afterwork-Party am Flugplatz
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2025/04/Party-Disco-Tanz-Symbol-640x480.jpg"/></div><div>Die neue Leverkusener Afterwork-Party ‒ \nDie neue Afterwork-Party in der Fliegerhütte am Flugplatz Leverkusen bietet eine besondere Atmosphäre. Ab Mitte August heißt es jeden zweiten Donnerstag von…</div>\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-11-19-17-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-11-19-17-00/
+CATEGORIES:Partys & Nachtleben
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/cafe-gewollt/2026-11-20-16-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261120T150000Z
+DTEND:20261120T150000Z
+SUMMARY:Café Gewollt
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2024/11/Bild-Haekelworkshop.jpg"/></div><div>Offener Handarbeitstreff ‒ \nStricken\, Häkeln\, Sticken\, Makramee\, Knüpfen… – die Möglichkeiten der kreativen Wolleverarbeitung sind vielfältig. In gemütlicher Atmosphäre können Wolle-Fans Gleichgesinnte…</div>\n\nKategorie: Tipps\n\nhttps://lust-auf-leverkusen.de/veranstaltung/cafe-gewollt/2026-11-20-16-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/cafe-gewollt/2026-11-20-16-00/
+CATEGORIES:Tipps
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/tsv-bayer-04-leverkusen/2026-11-20-19-30/
+DTSTAMP:20260905T215624Z
+DTSTART:20261120T183000Z
+DTEND:20261120T183000Z
+SUMMARY:TSV Bayer 04 Leverkusen vs. Bergischer HC
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/07/NEU_Elfen2627_Teamfoto_Kopie-640x480.jpg"/></div><div>Handball Bundesliga Frauen live in der Ostermann-Arena. ‒ \nHeimspiele der Werkselfen: Die Handballerinnen des TSV Bayer 04 kämpfen in der 2. Handball-Bundesliga um Punkte. Hier gibt es alle Termine…</div>\n\nKategorie: Spitzensport\n\nhttps://lust-auf-leverkusen.de/veranstaltung/tsv-bayer-04-leverkusen/2026-11-20-19-30/
+URL:https://lust-auf-leverkusen.de/veranstaltung/tsv-bayer-04-leverkusen/2026-11-20-19-30/
+CATEGORIES:Spitzensport
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-leverkusen/2026-11-21/
+DTSTAMP:20260905T215624Z
+DTSTART;VALUE=DATE:20261121
+DTEND;VALUE=DATE:20261122
+SUMMARY:Bayer 04 Leverkusen vs. SC Paderborn 07
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/07/20260808_JS2_0461-640x480.jpg"/></div><div>Spitzensport im Herzen der Stadt ‒ \nIn der BayArena empfängt die Werkself die Clubs der ersten Fußballbundesliga und Teams in internationalen Wettbewerben.\nInfo\nÄnderungen des Spielplans vorbehalten\, die…</div>\n\nKategorie: Spitzensport\n\nhttps://lust-auf-leverkusen.de/veranstaltung/bayer-04-leverkusen/2026-11-21/
+URL:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-leverkusen/2026-11-21/
+CATEGORIES:Spitzensport
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-volleys/2026-11-21-19-30/
+DTSTAMP:20260905T215624Z
+DTSTART:20261121T183000Z
+DTEND:20261121T183000Z
+SUMMARY:Bayer Volleys vs. TV Waldgirmes
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/07/2026-02-01_Bayer-Volleys_DSHS-SnowTrex-Koeln_mowy_Z09_3085-640x480.jpg"/></div><div>Volleyball live in der Ostermann-Arena: Die Bayer Volleys stehen für mitreißende Ballwechsel und spannende Heimspiele.\nÄnderungen des Spielplans vorbehalten. Hier geht’s zu den aktuellen Terminen: https://www.bayer-volleyball-bundesliga.de</div>\n\nKategorie: Spitzensport\n\nhttps://lust-auf-leverkusen.de/veranstaltung/bayer-volleys/2026-11-21-19-30/
+URL:https://lust-auf-leverkusen.de/veranstaltung/bayer-volleys/2026-11-21-19-30/
+CATEGORIES:Spitzensport
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/schattentanz-dj-dalecooper/2026-11-28-21-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261128T200000Z
+DTEND:20261128T200000Z
+SUMMARY:Schattentanz. DJ Dalecooper.
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2025/02/katharina-kalender-21-640x480.jpg"/></div><div>Eine Szene-Nacht für alle\, die dunkle Musik lieben – damals wie heute. Auf dem Programm stehen Gothic Rock\, NDH\, Futurepop\, Dark Electro\, EBM\, Industrial sowie Synthpop\, Wave\, Postpunk und Classics Pop…</div>\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/schattentanz-dj-dalecooper/2026-11-28-21-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/schattentanz-dj-dalecooper/2026-11-28-21-00/
+CATEGORIES:Partys & Nachtleben
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-12-03-17-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261203T160000Z
+DTEND:20261203T160000Z
+SUMMARY:Afterwork-Party am Flugplatz
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2025/04/Party-Disco-Tanz-Symbol-640x480.jpg"/></div><div>Die neue Leverkusener Afterwork-Party ‒ \nDie neue Afterwork-Party in der Fliegerhütte am Flugplatz Leverkusen bietet eine besondere Atmosphäre. Ab Mitte August heißt es jeden zweiten Donnerstag von…</div>\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-12-03-17-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-12-03-17-00/
+CATEGORIES:Partys & Nachtleben
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/chempark-tour/2026-12-05-14-15/
+DTSTAMP:20260905T215624Z
+DTSTART:20261205T131500Z
+DTEND:20261205T131500Z
+SUMMARY:Chempark Tour
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2026/05/Chempark-©-Neubauer_8-640x480.jpg"/></div><div>Die kostenlose CHEMPARK-Tour bietet Besucher*innen die Möglichkeit\, einen Blick hinter die Kulissen des CHEMPARK Leverkusen zu werfen. Während der rund einstündigen Busfahrt durch den Standort erhalten…</div>\n\nKategorie: Führungen & Touren\n\nhttps://lust-auf-leverkusen.de/veranstaltung/chempark-tour/2026-12-05-14-15/
+URL:https://lust-auf-leverkusen.de/veranstaltung/chempark-tour/2026-12-05-14-15/
+CATEGORIES:Führungen & Touren
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/naehcafe/2026-12-11-15-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261211T140000Z
+DTEND:20261211T140000Z
+SUMMARY:Nadel & Faden. Nähcafé
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2024/08/sewing-gc32d5f2fc_1280-e1724151906671-640x480.jpg"/></div><div>Nähtreff im Kreativraum für Jugendliche und Erwachsene ‒ \nTreff für alle\, die ein Projekt und ein bisschen Näherfahrung mitbringen. Nette Gespräche\, Kleinkram und guten Rat gibt es in der Runde!\nBereitgestellt…</div>\n\nKategorie: Tipps\n\nhttps://lust-auf-leverkusen.de/veranstaltung/naehcafe/2026-12-11-15-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/naehcafe/2026-12-11-15-00/
+CATEGORIES:Tipps
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/time-out-silent-reading-und-mehr-2/2026-12-16-18-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261216T170000Z
+DTEND:20261216T170000Z
+SUMMARY:Time-out – Silent Reading und mehr
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2024/09/Silent_Reading_Party_breit-640x480.jpg"/></div><div>Stille gemeinsame Auszeit in der Stadtbibliothek ‒ \nIm vollen Alltag kommt zwischen Aufgaben und Erledigungen eine Sache oft zu kurz: ungestörte Zeit für sich selbst.\nInspiriert von der Idee des „Silent…</div>\n\nKategorie: Tipps\n\nhttps://lust-auf-leverkusen.de/veranstaltung/time-out-silent-reading-und-mehr-2/2026-12-16-18-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/time-out-silent-reading-und-mehr-2/2026-12-16-18-00/
+CATEGORIES:Tipps
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-12-17-17-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261217T160000Z
+DTEND:20261217T160000Z
+SUMMARY:Afterwork-Party am Flugplatz
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2025/04/Party-Disco-Tanz-Symbol-640x480.jpg"/></div><div>Die neue Leverkusener Afterwork-Party ‒ \nDie neue Afterwork-Party in der Fliegerhütte am Flugplatz Leverkusen bietet eine besondere Atmosphäre. Ab Mitte August heißt es jeden zweiten Donnerstag von…</div>\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-12-17-17-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-12-17-17-00/
+CATEGORIES:Partys & Nachtleben
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/cafe-gewollt/2026-12-18-16-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261218T150000Z
+DTEND:20261218T150000Z
+SUMMARY:Café Gewollt
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2024/11/Bild-Haekelworkshop.jpg"/></div><div>Offener Handarbeitstreff ‒ \nStricken\, Häkeln\, Sticken\, Makramee\, Knüpfen… – die Möglichkeiten der kreativen Wolleverarbeitung sind vielfältig. In gemütlicher Atmosphäre können Wolle-Fans Gleichgesinnte…</div>\n\nKategorie: Tipps\n\nhttps://lust-auf-leverkusen.de/veranstaltung/cafe-gewollt/2026-12-18-16-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/cafe-gewollt/2026-12-18-16-00/
+CATEGORIES:Tipps
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-12-31-17-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20261231T160000Z
+DTEND:20261231T160000Z
+SUMMARY:Afterwork-Party am Flugplatz
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2025/04/Party-Disco-Tanz-Symbol-640x480.jpg"/></div><div>Die neue Leverkusener Afterwork-Party ‒ \nDie neue Afterwork-Party in der Fliegerhütte am Flugplatz Leverkusen bietet eine besondere Atmosphäre. Ab Mitte August heißt es jeden zweiten Donnerstag von…</div>\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-12-31-17-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-12-31-17-00/
+CATEGORIES:Partys & Nachtleben
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2027-01-14-17-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20270114T160000Z
+DTEND:20270114T160000Z
+SUMMARY:Afterwork-Party am Flugplatz
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2025/04/Party-Disco-Tanz-Symbol-640x480.jpg"/></div><div>Die neue Leverkusener Afterwork-Party ‒ \nDie neue Afterwork-Party in der Fliegerhütte am Flugplatz Leverkusen bietet eine besondere Atmosphäre. Ab Mitte August heißt es jeden zweiten Donnerstag von…</div>\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2027-01-14-17-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2027-01-14-17-00/
+CATEGORIES:Partys & Nachtleben
+END:VEVENT
+BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2027-01-28-17-00/
+DTSTAMP:20260905T215624Z
+DTSTART:20270128T160000Z
+DTEND:20270128T160000Z
+SUMMARY:Afterwork-Party am Flugplatz
+DESCRIPTION:<div><img src="https://lust-auf-leverkusen.de/wp-content/uploads/2025/04/Party-Disco-Tanz-Symbol-640x480.jpg"/></div><div>Die neue Leverkusener Afterwork-Party ‒ \nDie neue Afterwork-Party in der Fliegerhütte am Flugplatz Leverkusen bietet eine besondere Atmosphäre. Ab Mitte August heißt es jeden zweiten Donnerstag von…</div>\n\nKategorie: Partys & Nachtleben\n\nhttps://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2027-01-28-17-00/
+URL:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2027-01-28-17-00/
+CATEGORIES:Partys & Nachtleben
 END:VEVENT
 END:VCALENDAR
