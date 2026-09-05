@@ -1,0 +1,18 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//CNobach23//Leverkusen Kalender//DE
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Leverkusen Veranstaltungen
+X-WR-TIMEZONE:Europe/Berlin
+BEGIN:VEVENT
+UID:https://www.leverkusen.de/veranstaltungskalender/veranstaltungen/hauptkalender/bundesweiter-warntag
+DTSTAMP:20260905T172742Z
+DTSTART:20260910T090000Z
+DTEND:20260910T100000Z
+SUMMARY:Bundesweiter Warntag
+DESCRIPTION:Bundesweiter Warntag\n\nKategorie: Warntage\n\nhttps://www.leverkusen.de/veranstaltungskalender/veranstaltungen/hauptkalender/bundesweiter-warntag
+LOCATION:
+URL:https://www.leverkusen.de/veranstaltungskalender/veranstaltungen/hauptkalender/bundesweiter-warntag
+END:VEVENT
+END:VCALENDAR
