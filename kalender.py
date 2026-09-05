@@ -1,17 +1,20 @@
 import html
+import json
 import re
 import time
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
-from datetime import date, datetime, timezone
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import date, datetime, timedelta, timezone
+from html.parser import HTMLParser
 
 
 BASE_URL = "https://www.leverkusen.de/stadt-erleben/veranstaltungskalender/"
 OUTPUT_FILE = "veranstaltungen.ics"
 TIMEZONE = "Europe/Berlin"
 
-USER_AGENT = "Mozilla/5.0 (compatible; LeverkusenKalender/1.0)"
+USER_AGENT = "Mozilla/5.0 (compatible; LeverkusenKalender/2.0)"
 
 
 CATEGORIES = [
@@ -29,210 +32,68 @@ CATEGORIES = [
 ]
 
 
-def http_get(url, attempts=3, delay=2):
-    """Lädt eine URL mit mehreren Versuchen."""
+def http_get(url, timeout=15, attempts=2):
     last_error = None
 
-    for attempt in range(1, attempts + 1):
+    for attempt in range(attempts):
         try:
             request = urllib.request.Request(
                 url,
                 headers={
                     "User-Agent": USER_AGENT,
                     "Accept": (
-                        "text/html,application/xhtml+xml,application/xml,"
-                        "text/xml,text/calendar,*/*;q=0.8"
+                        "text/html,application/xhtml+xml,"
+                        "application/xml,text/xml,*/*;q=0.8"
                     ),
+                    "Connection": "close",
                 },
             )
 
-            with urllib.request.urlopen(request, timeout=30) as response:
+            with urllib.request.urlopen(
+                request,
+                timeout=timeout,
+            ) as response:
+
                 data = response.read()
-                charset = response.headers.get_content_charset() or "utf-8"
-                return data.decode(charset, errors="replace")
+
+                charset = (
+                    response.headers.get_content_charset()
+                    or "utf-8"
+                )
+
+                return data.decode(
+                    charset,
+                    errors="replace",
+                )
 
         except Exception as exc:
+
             last_error = exc
 
-            if attempt < attempts:
-                time.sleep(delay)
+            if attempt + 1 < attempts:
+                time.sleep(1)
 
     raise last_error
 
 
 def build_rss_url(category_id):
-    """Erzeugt die RSS-URL für eine Leverkusen-Kategorie."""
-
-    today = date.today().isoformat()
 
     params = [
-        ("sp:categories[13495][0]", "-"),
-        ("sp:categories[13495][1]", "__last__"),
-        ("sp:categories[13459][0]", category_id),
-        ("sp:categories[13459][1]", "__last__"),
-        ("sp:dateFrom[0]", today),
-        ("sp:dateTo[0]", ""),
-        ("sp:fulltext[0]", ""),
-        ("sp:out", "rss"),
-        ("sp:cmp", "eventSearch-1-0-searchResult"),
-        ("action", "submit"),
-    ]
-
-    return BASE_URL + "?" + urllib.parse.urlencode(params)
-
-
-def parse_rss(xml_text, category_name):
-    """Liest Veranstaltungen aus dem RSS-Feed."""
-
-    root = ET.fromstring(xml_text)
-    events = []
-
-    for item in root.findall(".//item"):
-
-        def get_text(name):
-            node = item.find(name)
-
-            if node is None or node.text is None:
-                return ""
-
-            return html.unescape(node.text).strip()
-
-        title = get_text("title")
-        link = get_text("link")
-        guid = get_text("guid")
-        description = get_text("description")
-        pubdate = get_text("pubDate")
-
-        if not guid:
-            guid = link
-
-        if not title or not link:
-            continue
-
-        events.append(
-            {
-                "title": title,
-                "link": link,
-                "guid": guid,
-                "description": description,
-                "category": category_name,
-                "pubdate": pubdate,
-            }
-        )
-
-    return events
-
-
-def normalize_url(url):
-    """Normalisiert URLs für einen zuverlässigen Vergleich."""
-
-    url = html.unescape(urllib.parse.unquote(url or "")).strip()
-
-    parsed = urllib.parse.urlsplit(url)
-
-    path = parsed.path.rstrip("/")
-
-    if not path:
-        path = "/"
-
-    return urllib.parse.urlunsplit(
         (
-            parsed.scheme.lower(),
-            parsed.netloc.lower(),
-            path,
-            parsed.query,
-            parsed.fragment,
-        )
-    )
-
-
-def extract_ical_links(html_text):
-    """
-    Sucht nach offiziellen Leverkusener iCalFromParameters-Links.
-    """
-
-    text = html.unescape(html_text)
-
-    links = []
-
-    patterns = [
-        r'href\s*=\s*["\']([^"\']*iCalFromParameters[^"\']*)["\']',
-        r'href\s*=\s*["\']([^"\']*iCalendar[^"\']*)["\']',
-    ]
-
-    for pattern in patterns:
-
-        for match in re.finditer(
-            pattern,
-            text,
-            flags=re.IGNORECASE,
-        ):
-
-            href = match.group(1).strip()
-
-            href = html.unescape(href)
-
-            if href.startswith("/"):
-                href = urllib.parse.urljoin(
-                    BASE_URL,
-                    href,
-                )
-
-            elif href.startswith("?"):
-                href = BASE_URL + href
-
-            elif not href.startswith(
-                ("http://", "https://")
-            ):
-                href = urllib.parse.urljoin(
-                    BASE_URL,
-                    href,
-                )
-
-            if href not in links:
-                links.append(href)
-
-    return links
-
-
-def candidate_event_url(ical_link):
-    """
-    Holt aus dem offiziellen iCal-Link die eigentliche
-    Veranstaltungs-URL.
-    """
-
-    try:
-        parsed = urllib.parse.urlsplit(ical_link)
-
-        query = urllib.parse.parse_qs(
-            parsed.query
-        )
-
-        values = query.get("url", [])
-
-        if values:
-            return normalize_url(values[0])
-
-    except Exception:
-        pass
-
-    return ""
-
-
-def find_ical_link(event):
-    """
-    Findet den exakt zu diesem RSS-Eintrag gehörenden iCal-Link.
-
-    Wichtig:
-    Bei wiederkehrenden Veranstaltungen darf nicht nur der Titel
-    verglichen werden. Die Veranstaltungs-URL identifiziert die
-    konkrete Veranstaltung bzw. den konkreten Termin.
-    """
-
-    search_params = [
+            "sp:categories[13495][0]",
+            "-",
+        ),
         (
-            "sp:fulltext[0]",
-            event["title"],
+            "sp:categories[13495][1]",
+            "__last__",
+        ),
+        (
+            "sp:categories[13459][0]",
+            category_id,
+        ),
+        (
+            "sp:categories[13459][1]",
+            "__last__",
         ),
         (
             "sp:dateFrom[0]",
@@ -243,8 +104,12 @@ def find_ical_link(event):
             "",
         ),
         (
+            "sp:fulltext[0]",
+            "",
+        ),
+        (
             "sp:out",
-            "html",
+            "rss",
         ),
         (
             "sp:cmp",
@@ -256,741 +121,409 @@ def find_ical_link(event):
         ),
     ]
 
-    search_url = (
+    return (
         BASE_URL
         + "?"
-        + urllib.parse.urlencode(search_params)
+        + urllib.parse.urlencode(params)
     )
 
-    try:
-        page = http_get(
-            search_url,
-            attempts=3,
+
+def parse_rss(xml_text, category_name):
+
+    root = ET.fromstring(xml_text)
+
+    events = []
+
+    for item in root.findall(".//item"):
+
+        def get_value(tag):
+
+            node = item.find(tag)
+
+            if node is None or node.text is None:
+                return ""
+
+            return html.unescape(
+                node.text
+            ).strip()
+
+        title = get_value("title")
+        link = get_value("link")
+        guid = get_value("guid")
+        description = get_value("description")
+
+        if not title or not link:
+            continue
+
+        events.append(
+            {
+                "title": title,
+                "link": link,
+                "guid": guid or link,
+                "description": description,
+                "category": category_name,
+            }
         )
 
-        links = extract_ical_links(page)
+    return events
 
-        wanted = normalize_url(
-            event["link"]
+
+class TextParser(HTMLParser):
+
+    def __init__(self):
+        super().__init__()
+        self.parts = []
+
+    def handle_data(self, data):
+
+        text = " ".join(
+            data.split()
         )
 
-        # Wichtigster Fall:
-        # Die URL im iCal-Link muss exakt zur RSS-Veranstaltung
-        # passen.
-        for link in links:
+        if text:
+            self.parts.append(text)
 
-            if candidate_event_url(link) == wanted:
-                return link
+    def get_text(self):
 
-        # Falls nur ein Treffer vorhanden ist, können wir ihn
-        # ebenfalls verwenden.
-        if len(links) == 1:
-            return links[0]
-
-    except Exception as exc:
-
-        print(
-            f"  Suche fehlgeschlagen: {exc}"
+        return "\n".join(
+            self.parts
         )
 
-    # Zweiter Versuch:
-    # Direkt die Veranstaltungsseite aufrufen.
-    try:
 
-        page = http_get(
-            event["link"],
-            attempts=2,
+def html_to_text(html_text):
+
+    parser = TextParser()
+
+    parser.feed(html_text)
+
+    return parser.get_text()
+
+
+def get_jsonld_objects(html_text):
+
+    objects = []
+
+    pattern = (
+        r'<script[^>]+'
+        r'type=["\']application/ld\+json["\']'
+        r'[^>]*>(.*?)</script>'
+    )
+
+    matches = re.findall(
+        pattern,
+        html_text,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+
+    for raw in matches:
+
+        raw = html.unescape(
+            raw
+        ).strip()
+
+        raw = re.sub(
+            r"^\s*<!--",
+            "",
+            raw,
         )
 
-        links = extract_ical_links(page)
-
-        wanted = normalize_url(
-            event["link"]
+        raw = re.sub(
+            r"-->\s*$",
+            "",
+            raw,
         )
 
-        for link in links:
+        raw = raw.strip()
 
-            if candidate_event_url(link) == wanted:
-                return link
+        try:
 
-        if len(links) == 1:
-            return links[0]
-
-    except Exception as exc:
-
-        print(
-            f"  Veranstaltungsseite nicht erreichbar: {exc}"
-        )
-
-    return None
-
-
-def unfold_ics(text):
-    """Entfaltet gefaltete iCalendar-Zeilen."""
-
-    lines = (
-        text
-        .replace("\r\n", "\n")
-        .replace("\r", "\n")
-        .split("\n")
-    )
-
-    result = []
-
-    for line in lines:
-
-        if line.startswith((" ", "\t")) and result:
-            result[-1] += line[1:]
-
-        else:
-            result.append(line)
-
-    return result
-
-
-def unescape_ics(value):
-    """Entschärft iCalendar- und HTML-Escapes."""
-
-    value = html.unescape(value or "")
-
-    value = value.replace(
-        "\\n",
-        "\n",
-    )
-
-    value = value.replace(
-        "\\N",
-        "\n",
-    )
-
-    value = value.replace(
-        "\\,",
-        ",",
-    )
-
-    value = value.replace(
-        "\\;",
-        ";",
-    )
-
-    value = value.replace(
-        "\\\\",
-        "\\",
-    )
-
-    return value
-
-
-def parse_ics_property(line):
-    """Zerlegt eine iCalendar-Eigenschaft."""
-
-    if ":" not in line:
-        return None, {}, ""
-
-    left, value = line.split(
-        ":",
-        1,
-    )
-
-    parts = left.split(";")
-
-    name = parts[0].upper()
-
-    params = {}
-
-    for part in parts[1:]:
-
-        if "=" in part:
-
-            key, val = part.split(
-                "=",
-                1,
+            obj = json.loads(
+                raw
             )
 
-            params[key.upper()] = val.strip('"')
+            if isinstance(
+                obj,
+                list,
+            ):
+                objects.extend(
+                    obj
+                )
+            else:
+                objects.append(
+                    obj
+                )
 
-    return name, params, value
-
-
-def parse_ics(ics_text):
-    """Liest den ersten VEVENT aus einer iCalendar-Datei."""
-
-    lines = unfold_ics(ics_text)
-
-    event = {}
-
-    inside = False
-
-    for line in lines:
-
-        if line.strip() == "BEGIN:VEVENT":
-
-            inside = True
-            event = {}
-
+        except Exception:
             continue
 
-        if line.strip() == "END:VEVENT":
-
-            if event:
-                return event
-
-            inside = False
-
-            continue
-
-        if not inside:
-            continue
-
-        name, params, value = parse_ics_property(
-            line
-        )
-
-        if not name:
-            continue
-
-        value = unescape_ics(value)
-
-        event[name] = {
-            "value": value,
-            "params": params,
-        }
-
-    return event
+    return objects
 
 
-def parse_ical_datetime(prop):
-    """Wandelt einen iCalendar-Zeitwert in Python um."""
+def walk_json(obj):
 
-    value = prop["value"].strip()
+    if isinstance(
+        obj,
+        dict,
+    ):
 
-    params = prop.get(
-        "params",
-        {},
-    )
+        yield obj
 
-    value_type = params.get(
-        "VALUE",
-        "",
-    ).upper()
+        for value in obj.values():
 
-    # Ganztägiger Termin
-    if (
-        value_type == "DATE"
-        or re.fullmatch(r"\d{8}", value)
+            yield from walk_json(
+                value
+            )
+
+    elif isinstance(
+        obj,
+        list,
+    ):
+
+        for value in obj:
+
+            yield from walk_json(
+                value
+            )
+
+
+def parse_iso(value):
+
+    if not value:
+        return None, False
+
+    value = str(
+        value
+    ).strip()
+
+    if re.fullmatch(
+        r"\d{4}-\d{2}-\d{2}",
+        value,
     ):
 
         return (
             datetime.strptime(
-                value[:8],
-                "%Y%m%d",
+                value,
+                "%Y-%m-%d",
             ).date(),
             True,
         )
 
-    # UTC-Zeit
-    if value.endswith("Z"):
+    try:
+
+        normalized = value.replace(
+            "Z",
+            "+00:00",
+        )
+
+        dt = datetime.fromisoformat(
+            normalized
+        )
+
+        return (
+            dt,
+            False,
+        )
+
+    except Exception:
+        pass
+
+    match = re.search(
+        r"(\d{4}-\d{2}-\d{2})"
+        r"(?:[T ](\d{2}):(\d{2}))?",
+        value,
+    )
+
+    if not match:
+        return None, False
+
+    if match.group(2):
 
         dt = datetime.strptime(
-            value,
-            "%Y%m%dT%H%M%SZ",
+            (
+                f"{match.group(1)} "
+                f"{match.group(2)}:"
+                f"{match.group(3)}"
+            ),
+            "%Y-%m-%d %H:%M",
         )
 
-        dt = dt.replace(
-            tzinfo=timezone.utc
+        return (
+            dt,
+            False,
         )
 
-        return dt, False
-
-    # Lokale Zeit.
-    # Die Leverkusener Veranstaltungen verwenden Europe/Berlin.
-    dt = datetime.strptime(
-        value[:15],
-        "%Y%m%dT%H%M%S",
-    )
-
-    return dt, False
-
-
-def format_ics_datetime(
-    value,
-    all_day=False,
-):
-    """Formatiert Datum/Zeit für die Ausgabe."""
-
-    if all_day:
-
-        return value.strftime(
-            "%Y%m%d"
-        )
-
-    if value.tzinfo is None:
-
-        return value.strftime(
-            "%Y%m%dT%H%M%S"
-        )
-
-    return value.astimezone(
-        timezone.utc
-    ).strftime(
-        "%Y%m%dT%H%M%SZ"
+    return (
+        datetime.strptime(
+            match.group(1),
+            "%Y-%m-%d",
+        ).date(),
+        True,
     )
 
 
-def convert_event(
-    ical,
+def extract_event_data(
+    html_text,
     rss_event,
 ):
-    """Verbindet die iCal-Daten mit der RSS-Kategorie."""
 
-    if (
-        "DTSTART" not in ical
-        or "SUMMARY" not in ical
-    ):
-        return None
+    candidates = []
 
-    start, all_day = parse_ical_datetime(
-        ical["DTSTART"]
+    objects = get_jsonld_objects(
+        html_text
     )
 
-    if "DTEND" in ical:
+    for obj in objects:
 
-        end, end_all_day = parse_ical_datetime(
-            ical["DTEND"]
-        )
+        for data in walk_json(
+            obj
+        ):
 
-    else:
-
-        end = start
-        end_all_day = all_day
-
-    summary = (
-        unescape_ics(
-            ical.get(
-                "SUMMARY",
-                {},
-            ).get(
-                "value",
+            event_type = data.get(
+                "@type",
                 "",
-            )
-        )
-        or rss_event["title"]
-    )
-
-    description = unescape_ics(
-        ical.get(
-            "DESCRIPTION",
-            {},
-        ).get(
-            "value",
-            "",
-        )
-    )
-
-    location = unescape_ics(
-        ical.get(
-            "LOCATION",
-            {},
-        ).get(
-            "value",
-            "",
-        )
-    )
-
-    url = unescape_ics(
-        ical.get(
-            "URL",
-            {},
-        ).get(
-            "value",
-            "",
-        )
-    )
-
-    if not url:
-        url = rss_event["link"]
-
-    category_text = (
-        f"Kategorie: {rss_event['category']}"
-    )
-
-    if description:
-
-        description = (
-            f"{description}\n\n"
-            f"{category_text}\n\n"
-            f"{url}"
-        )
-
-    else:
-
-        description = (
-            f"{category_text}\n\n"
-            f"{url}"
-        )
-
-    return {
-        "uid": rss_event["link"],
-        "start": start,
-        "end": end,
-        "all_day": all_day,
-        "summary": summary,
-        "description": description,
-        "location": location,
-        "url": url,
-        "category": rss_event["category"],
-    }
-
-
-def ics_escape(value):
-    """Escaped Text für eine iCalendar-Datei."""
-
-    value = html.unescape(
-        value or ""
-    )
-
-    value = value.replace(
-        "\\",
-        "\\\\",
-    )
-
-    value = value.replace(
-        ";",
-        "\\;",
-    )
-
-    value = value.replace(
-        ",",
-        "\\,",
-    )
-
-    value = (
-        value
-        .replace("\r\n", "\n")
-        .replace("\r", "\n")
-    )
-
-    value = value.replace(
-        "\n",
-        "\\n",
-    )
-
-    return value
-
-
-def build_calendar(events):
-    """Erzeugt die komplette veranstaltungen.ics."""
-
-    now = datetime.now(
-        timezone.utc
-    ).strftime(
-        "%Y%m%dT%H%M%SZ"
-    )
-
-    lines = [
-        "BEGIN:VCALENDAR",
-        "VERSION:2.0",
-        "PRODID:-//CNobach23//Leverkusen Kalender//DE",
-        "CALSCALE:GREGORIAN",
-        "METHOD:PUBLISH",
-        "X-WR-CALNAME:Leverkusen Veranstaltungen",
-        "X-WR-TIMEZONE:Europe/Berlin",
-    ]
-
-    for event in sorted(
-        events,
-        key=lambda x: (
-            x["start"],
-            x["summary"].lower(),
-        ),
-    ):
-
-        lines.append(
-            "BEGIN:VEVENT"
-        )
-
-        lines.append(
-            f"UID:{ics_escape(event['uid'])}"
-        )
-
-        lines.append(
-            f"DTSTAMP:{now}"
-        )
-
-        if event["all_day"]:
-
-            lines.append(
-                "DTSTART;VALUE=DATE:"
-                + format_ics_datetime(
-                    event["start"],
-                    True,
-                )
             )
 
             if isinstance(
-                event["end"],
-                date,
+                event_type,
+                list,
             ):
 
-                # Ganz wichtig:
-                # DTEND ist in iCalendar bereits EXKLUSIV.
-                # Deshalb wird hier KEIN zusätzlicher Tag
-                # addiert.
-                lines.append(
-                    "DTEND;VALUE=DATE:"
-                    + format_ics_datetime(
-                        event["end"],
-                        True,
-                    )
-                )
-
-        else:
-
-            if (
-                isinstance(
-                    event["start"],
-                    datetime,
-                )
-                and event["start"].tzinfo is None
-            ):
-
-                lines.append(
-                    f"DTSTART;TZID={TIMEZONE}:"
-                    + format_ics_datetime(
-                        event["start"]
-                    )
-                )
+                types = event_type
 
             else:
 
-                lines.append(
-                    "DTSTART:"
-                    + format_ics_datetime(
-                        event["start"]
-                    )
-                )
+                types = [
+                    event_type
+                ]
+
+            normalized_types = [
+                str(x).lower()
+                for x in types
+            ]
 
             if (
-                isinstance(
-                    event["end"],
-                    datetime,
-                )
-                and event["end"].tzinfo is None
+                "event" in normalized_types
+                or "eventseries" in normalized_types
             ):
 
-                lines.append(
-                    f"DTEND;TZID={TIMEZONE}:"
-                    + format_ics_datetime(
-                        event["end"]
-                    )
+                candidates.append(
+                    data
                 )
 
-            else:
+    start = None
+    end = None
+    all_day = False
+    location = ""
 
-                lines.append(
-                    "DTEND:"
-                    + format_ics_datetime(
-                        event["end"]
-                    )
-                )
+    for data in candidates:
 
-        lines.append(
-            "SUMMARY:"
-            + ics_escape(
-                event["summary"]
-            )
-        )
-
-        lines.append(
-            "DESCRIPTION:"
-            + ics_escape(
-                event["description"]
-            )
-        )
-
-        if event["location"]:
-
-            lines.append(
-                "LOCATION:"
-                + ics_escape(
-                    event["location"]
+        start_value, start_day = (
+            parse_iso(
+                data.get(
+                    "startDate"
                 )
             )
+        )
 
-        if event["url"]:
-
-            lines.append(
-                "URL:"
-                + ics_escape(
-                    event["url"]
+        end_value, end_day = (
+            parse_iso(
+                data.get(
+                    "endDate"
                 )
             )
-
-        lines.append(
-            "CATEGORIES:"
-            + ics_escape(
-                event["category"]
-            )
         )
 
-        lines.append(
-            "END:VEVENT"
-        )
-
-    lines.append(
-        "END:VCALENDAR"
-    )
-
-    return (
-        "\r\n".join(lines)
-        + "\r\n"
-    )
-
-
-def main():
-
-    all_events = []
-
-    seen_rss = set()
-
-    for (
-        category_id,
-        category_name,
-    ) in CATEGORIES:
-
-        print()
-        print(
-            f"Kategorie: {category_name}"
-        )
-
-        rss_url = build_rss_url(
-            category_id
-        )
-
-        try:
-
-            rss = http_get(
-                rss_url,
-                attempts=3,
-            )
-
-            rss_events = parse_rss(
-                rss,
-                category_name,
-            )
-
-            print(
-                f"  RSS: {len(rss_events)} Veranstaltungen"
-            )
-
-        except Exception as exc:
-
-            print(
-                f"  FEHLER beim RSS-Abruf: {exc}"
-            )
-
+        if start_value is None:
             continue
 
-        for index, event in enumerate(
-            rss_events,
-            start=1,
-        ):
+        start = start_value
+        all_day = start_day
 
-            key = (
-                event["link"],
-                event["category"],
-            )
+        if end_value is not None:
+            end = end_value
 
-            if key in seen_rss:
-                continue
-
-            seen_rss.add(key)
-
-            print(
-                f"  [{index}/{len(rss_events)}] "
-                f"{event['title']}"
-            )
-
-            ical_link = find_ical_link(
-                event
-            )
-
-            if not ical_link:
-
-                print(
-                    "    -> kein passender iCal-Link gefunden"
-                )
-
-                continue
-
-            try:
-
-                ical_text = http_get(
-                    ical_link,
-                    attempts=3,
-                )
-
-                parsed = parse_ics(
-                    ical_text
-                )
-
-                converted = convert_event(
-                    parsed,
-                    event,
-                )
-
-                if converted:
-
-                    all_events.append(
-                        converted
-                    )
-
-                else:
-
-                    print(
-                        "    -> iCal enthält keinen vollständigen VEVENT"
-                    )
-
-            except Exception as exc:
-
-                print(
-                    "    -> iCal konnte nicht "
-                    f"gelesen werden: {exc}"
-                )
-
-    # Exakte Veranstaltungsinstanzen deduplizieren.
-    unique = {}
-
-    for event in all_events:
-
-        key = (
-            normalize_url(
-                event["uid"]
-            ),
-            event["start"],
+        location_data = data.get(
+            "location"
         )
 
-        unique[key] = event
+        if isinstance(
+            location_data,
+            dict,
+        ):
 
-    result = build_calendar(
-        list(unique.values())
-    )
+            location = str(
+                location_data.get(
+                    "name",
+                    "",
+                )
+            )
 
-    with open(
-        OUTPUT_FILE,
-        "w",
-        encoding="utf-8",
-        newline="",
-    ) as f:
+        elif isinstance(
+            location_data,
+            str,
+        ):
 
-        f.write(result)
+            location = location_data
 
-    print()
-    print(
-        f"Fertig: {len(unique)} Veranstaltungen "
-        f"in {OUTPUT_FILE}"
-    )
+        break
 
+    # Fallback: datetime/content-Angaben im HTML
+    if start is None:
 
-if __name__ == "__main__":
-    main()
+        values = re.findall(
+            r'(?:datetime|content)=["\']'
+            r'([^"\']*20\d{2}-\d{2}-\d{2}'
+            r'[^"\']*)["\']',
+            html_text,
+            flags=re.IGNORECASE,
+        )
+
+        parsed_values = []
+
+        for value in values:
+
+            parsed, is_day = parse_iso(
+                value
+            )
+
+            if parsed is not None:
+
+                parsed_values.append(
+                    (
+                        parsed,
+                        is_day,
+                    )
+                )
+
+        if parsed_values:
+
+            start = parsed_values[0][0]
+            all_day = parsed_values[0][1]
+
+            if len(parsed_values) > 1:
+
+                end = parsed_values[1][0]
+
+    # Letzter Fallback:
+    # Datum direkt aus der Veranstaltungs-URL
+    if start is None:
+
+        match = re.search(
+            r"/(20\d{2})-"
+            r"(\d{2})-"
+            r"(\d{2})"
+            r"(?:-(\d{2})-(\d{2}))?/?$",
+            rss_event["link"],
+        )
+
+        if match:
+
+            year = int(
+                match.group(1)
+            )
+
+            month = int(
+                match.group(2)
+            )
+
+            day =
