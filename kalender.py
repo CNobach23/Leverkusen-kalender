@@ -160,50 +160,152 @@ def get_location(event):
 
 
 def fetch_event(item, category):
-    try:
-        page = download(item["link"]).decode(
-            "utf-8",
-            errors="replace",
-        )
+    import time
 
-        event = extract_jsonld(page)
+    ical_url = item["link"].rstrip("/") + "/ical/"
 
-        if not event:
-            print(
-                "Kein JSON-LD-Event:",
-                item["link"],
+    for attempt in range(3):
+        try:
+            time.sleep(0.7)
+
+            data = download(ical_url)
+            text = data.decode(
+                "utf-8",
+                errors="replace"
             )
-            return None
 
-        start = event.get("startDate")
-        end = event.get("endDate") or start
+            # ICS-Zeilen entfalten
+            text = text.replace("\r\n ", "").replace("\n ", "")
 
-        if not start:
-            return None
+            values = {}
 
-        return {
-            "uid": item["guid"],
-            "title": event.get("name") or item["title"],
-            "description": (
-                event.get("description")
-                or item["description"]
-            ),
-            "url": item["link"],
-            "start": start,
-            "end": end,
-            "category": category,
-            "location": get_location(event),
-        }
+            for line in text.splitlines():
+                if ":" not in line:
+                    continue
 
-    except Exception as exc:
-        print(
-            "Fehler bei:",
-            item["link"],
-            exc,
-        )
-        return None
+                key, value = line.split(":", 1)
+                key = key.split(";", 1)[0].upper()
 
+                if key not in values:
+                    values[key] = value.strip()
 
+            start = values.get("DTSTART")
+            end = values.get("DTEND")
+
+            if not start:
+                print(
+                    "Keine DTSTART in ICS:",
+                    ical_url
+                )
+                return None
+
+            if not end:
+                end = start
+
+            def unescape(value):
+                return (
+                    value
+                    .replace("\\n", "\n")
+                    .replace("\\N", "\n")
+                    .replace("\\,", ",")
+                    .replace("\\;", ";")
+                    .replace("\\\\", "\\")
+                )
+
+            title = unescape(
+                values.get(
+                    "SUMMARY",
+                    item["title"]
+                )
+            )
+
+            description = unescape(
+                values.get(
+                    "DESCRIPTION",
+                    item["description"]
+                )
+            )
+
+            location = unescape(
+                values.get(
+                    "LOCATION",
+                    ""
+                )
+            )
+
+            url = values.get(
+                "URL",
+                item["link"]
+            )
+
+            # ICS-Datumswerte in ISO-ähnliche Werte
+            def convert_ics_date(value):
+                value = value.strip()
+
+                if len(value) == 8 and value.isdigit():
+                    return (
+                        value[0:4]
+                        + "-"
+                        + value[4:6]
+                        + "-"
+                        + value[6:8]
+                    )
+
+                if value.endswith("Z"):
+                    return (
+                        value[0:4]
+                        + "-"
+                        + value[4:6]
+                        + "-"
+                        + value[6:8]
+                        + "T"
+                        + value[9:11]
+                        + ":"
+                        + value[11:13]
+                        + ":"
+                        + value[13:15]
+                        + "+00:00"
+                    )
+
+                if len(value) >= 15 and value[8] == "T":
+                    return (
+                        value[0:4]
+                        + "-"
+                        + value[4:6]
+                        + "-"
+                        + value[6:8]
+                        + "T"
+                        + value[9:11]
+                        + ":"
+                        + value[11:13]
+                        + ":"
+                        + value[13:15]
+                    )
+
+                return value
+
+            return {
+                "uid": item["guid"],
+                "title": title,
+                "description": description,
+                "url": url,
+                "start": convert_ics_date(start),
+                "end": convert_ics_date(end),
+                "category": category,
+                "location": location,
+            }
+
+        except Exception as exc:
+            print(
+                "ICS-Fehler:",
+                ical_url,
+                exc
+            )
+
+            if attempt < 2:
+                time.sleep(3)
+            else:
+                return None
 def parse_datetime(value):
     value = str(value).strip()
 
