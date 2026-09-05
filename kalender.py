@@ -7,7 +7,6 @@ import urllib.request
 import xml.etree.ElementTree as ET
 from zoneinfo import ZoneInfo
 
-
 CATEGORIES = {
     "42023": "Familie & Kinder",
     "42081": "Feste & Brauchtum",
@@ -49,8 +48,9 @@ def rss_url(category_id):
 def download(url):
     request = urllib.request.Request(
         url,
-        headers={"User-Agent": "Mozilla/5.0"}
+        headers={"User-Agent": "Mozilla/5.0"},
     )
+
     with urllib.request.urlopen(request, timeout=30) as response:
         return response.read()
 
@@ -63,6 +63,7 @@ def text_of(element, name):
     for child in element:
         if local_name(child.tag) == name:
             return "".join(child.itertext()).strip()
+
     return ""
 
 
@@ -80,12 +81,14 @@ def parse_rss(data):
         description = text_of(item, "description")
 
         if title and link:
-            events.append({
-                "title": html.unescape(title),
-                "link": link,
-                "guid": guid,
-                "description": html.unescape(description),
-            })
+            events.append(
+                {
+                    "title": html.unescape(title),
+                    "link": link,
+                    "guid": guid,
+                    "description": html.unescape(description),
+                }
+            )
 
     return events
 
@@ -103,30 +106,73 @@ def extract_jsonld(page):
         except Exception:
             continue
 
-        objects = data if isinstance(data, list) else [data]
+        objects = []
 
-        if isinstance(data, dict) and "@graph" in data:
-            objects = data["@graph"]
+        if isinstance(data, list):
+            objects = data
+
+        elif isinstance(data, dict):
+            if "@graph" in data and isinstance(data["@graph"], list):
+                objects = data["@graph"]
+            else:
+                objects = [data]
 
         for obj in objects:
             if not isinstance(obj, dict):
                 continue
 
-            if obj.get("@type") == "Event" or (
-                isinstance(obj.get("@type"), list)
-                and "Event" in obj.get("@type")
+            obj_type = obj.get("@type")
+
+            if obj_type == "Event" or (
+                isinstance(obj_type, list) and "Event" in obj_type
             ):
                 return obj
 
     return None
 
 
+def get_location(event):
+    location = event.get("location")
+
+    if isinstance(location, list):
+        location = location[0] if location else None
+
+    if isinstance(location, dict):
+        name = location.get("name", "")
+        address = location.get("address", "")
+
+        if isinstance(address, dict):
+            address = ", ".join(
+                str(address.get(x, ""))
+                for x in [
+                    "streetAddress",
+                    "postalCode",
+                    "addressLocality",
+                ]
+                if address.get(x)
+            )
+
+        return ", ".join(
+            x for x in [name, address] if x
+        )
+
+    return str(location or "")
+
+
 def fetch_event(item, category):
     try:
-        page = download(item["link"]).decode("utf-8", errors="replace")
+        page = download(item["link"]).decode(
+            "utf-8",
+            errors="replace",
+        )
+
         event = extract_jsonld(page)
 
         if not event:
+            print(
+                "Kein JSON-LD-Event:",
+                item["link"],
+            )
             return None
 
         start = event.get("startDate")
@@ -138,7 +184,10 @@ def fetch_event(item, category):
         return {
             "uid": item["guid"],
             "title": event.get("name") or item["title"],
-            "description": event.get("description") or item["description"],
+            "description": (
+                event.get("description")
+                or item["description"]
+            ),
             "url": item["link"],
             "start": start,
             "end": end,
@@ -147,30 +196,25 @@ def fetch_event(item, category):
         }
 
     except Exception as exc:
-        print("Fehler bei:", item["link"], exc)
+        print(
+            "Fehler bei:",
+            item["link"],
+            exc,
+        )
         return None
 
 
-def get_location(event):
-    location = event.get("location")
-
-    if isinstance(location, dict):
-        name = location.get("name", "")
-        address = location.get("address", "")
-
-        if isinstance(address, dict):
-            address = ", ".join(
-                str(address.get(x, ""))
-                for x in ["streetAddress", "postalCode", "addressLocality"]
-                if address.get(x)
-            )
-
-        return ", ".join(x for x in [name, address] if x)
-
-    return str(location or "")
-
-
 def parse_datetime(value):
+    value = str(value).strip()
+
+    if len(value) == 10 and re.fullmatch(
+        r"\d{4}-\d{2}-\d{2}",
+        value,
+    ):
+        return dt.datetime.fromisoformat(value).replace(
+            tzinfo=TZ
+        )
+
     value = value.replace("Z", "+00:00")
 
     try:
@@ -210,17 +254,184 @@ def make_ics(events):
     ]
 
     for event in events:
-        start = parse_datetime(event["start"])
-        end = parse_datetime(event["end"])
+        start_raw = str(event["start"]).strip()
+        end_raw = str(event["end"]).strip()
 
-        lines.extend([
-            "BEGIN:VEVENT",
-            "UID:" + ics_escape(event["uid"]),
-            "DTSTAMP:" + stamp,
-            "DTSTART:" + start.strftime("%Y%m%dT%H%M%SZ"),
-            "DTEND:" + end.strftime("%Y%m%dT%H%M%SZ"),
-            "SUMMARY:" + ics_escape(event["title"]),
-            "DESCRIPTION:" + ics_escape(
-                event["description"] + "\n\nKategorie: " + event["category"]
-            ),
-            "LOCATION:"
+        all_day = (
+            len(start_raw) == 10
+            and re.fullmatch(
+                r"\d{4}-\d{2}-\d{2}",
+                start_raw,
+            )
+        )
+
+        if all_day:
+            start_date = dt.date.fromisoformat(
+                start_raw
+            )
+
+            if (
+                len(end_raw) == 10
+                and re.fullmatch(
+                    r"\d{4}-\d{2}-\d{2}",
+                    end_raw,
+                )
+            ):
+                end_date = (
+                    dt.date.fromisoformat(end_raw)
+                    + dt.timedelta(days=1)
+                )
+            else:
+                end_date = (
+                    start_date
+                    + dt.timedelta(days=1)
+                )
+
+            lines.extend(
+                [
+                    "BEGIN:VEVENT",
+                    "UID:" + ics_escape(event["uid"]),
+                    "DTSTAMP:" + stamp,
+                    "DTSTART;VALUE=DATE:"
+                    + start_date.strftime("%Y%m%d"),
+                    "DTEND;VALUE=DATE:"
+                    + end_date.strftime("%Y%m%d"),
+                    "SUMMARY:"
+                    + ics_escape(event["title"]),
+                    "DESCRIPTION:"
+                    + ics_escape(
+                        event["description"]
+                        + "\n\nKategorie: "
+                        + event["category"]
+                        + "\n\n"
+                        + event["url"]
+                    ),
+                    "LOCATION:"
+                    + ics_escape(event["location"]),
+                    "URL:"
+                    + ics_escape(event["url"]),
+                    "END:VEVENT",
+                ]
+            )
+
+            continue
+
+        start = parse_datetime(start_raw)
+        end = parse_datetime(end_raw)
+
+        lines.extend(
+            [
+                "BEGIN:VEVENT",
+                "UID:" + ics_escape(event["uid"]),
+                "DTSTAMP:" + stamp,
+                "DTSTART:"
+                + start.strftime("%Y%m%dT%H%M%SZ"),
+                "DTEND:"
+                + end.strftime("%Y%m%dT%H%M%SZ"),
+                "SUMMARY:"
+                + ics_escape(event["title"]),
+                "DESCRIPTION:"
+                + ics_escape(
+                    event["description"]
+                    + "\n\nKategorie: "
+                    + event["category"]
+                    + "\n\n"
+                    + event["url"]
+                ),
+                "LOCATION:"
+                + ics_escape(event["location"]),
+                "URL:"
+                + ics_escape(event["url"]),
+                "END:VEVENT",
+            ]
+        )
+
+    lines.append("END:VCALENDAR")
+
+    return "\r\n".join(lines) + "\r\n"
+
+
+def main():
+    all_events = []
+    successful_feeds = 0
+
+    for category_id, category_name in CATEGORIES.items():
+        url = rss_url(category_id)
+
+        print("Lade:", category_name)
+
+        try:
+            data = download(url)
+            items = parse_rss(data)
+
+            successful_feeds += 1
+
+            print(
+                "  RSS-Termine:",
+                len(items),
+            )
+
+            for item in items:
+                event = fetch_event(
+                    item,
+                    category_name,
+                )
+
+                if event:
+                    all_events.append(event)
+
+        except Exception as exc:
+            print(
+                "RSS-Fehler:",
+                category_name,
+                exc,
+            )
+
+    unique = {}
+
+    for event in all_events:
+        key = (
+            event["uid"],
+            event["start"],
+        )
+
+        unique[key] = event
+
+    events = list(unique.values())
+
+    events.sort(
+        key=lambda x: x["start"]
+    )
+
+    if successful_feeds == 0:
+        raise RuntimeError(
+            "Kein Leverkusen-RSS-Feed konnte geladen werden."
+        )
+
+    if not events:
+        raise RuntimeError(
+            "Die Feeds wurden geladen, "
+            "aber es wurden keine Termine gefunden."
+        )
+
+    with open(
+        "veranstaltungen.ics",
+        "w",
+        encoding="utf-8",
+        newline="",
+    ) as f:
+        f.write(make_ics(events))
+
+    print(
+        "Fertig:",
+        len(events),
+        "Termine",
+    )
+
+    print(
+        "Datei: veranstaltungen.ics"
+    )
+
+
+if __name__ == "__main__":
+    main()
