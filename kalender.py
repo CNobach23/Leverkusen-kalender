@@ -1,9 +1,8 @@
 import html
-import json
 import re
 import time
-import urllib.parse
 import urllib.request
+import urllib.parse
 import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date, datetime, timedelta, timezone
@@ -12,7 +11,7 @@ from zoneinfo import ZoneInfo
 BASE_URL = "https://www.leverkusen.de/stadt-erleben/veranstaltungskalender/"
 OUTPUT_FILE = "veranstaltungen.ics"
 LOCAL_TZ = ZoneInfo("Europe/Berlin")
-UA = "Mozilla/5.0 (compatible; LeverkusenKalender/5.0)"
+UA = "Mozilla/5.0 (compatible; LeverkusenKalender/6.0)"
 
 CATEGORIES = [
     ("42023", "Familie & Kinder"),
@@ -57,8 +56,8 @@ def get(url, timeout=15, tries=2):
                     errors="replace",
                 )
 
-        except Exception as e:
-            last = e
+        except Exception as exc:
+            last = exc
 
             if attempt + 1 < tries:
                 time.sleep(1)
@@ -100,6 +99,7 @@ def parse_rss(text, category):
         vals = {}
 
         for child in item:
+
             name = child.tag.split("}")[-1]
 
             vals[name] = html.unescape(
@@ -128,67 +128,159 @@ def parse_rss(text, category):
     return out
 
 
-def jsonld_objects(page):
-    pattern = (
-        r'<script[^>]+type=["\']'
-        r'application/ld\+json["\']'
-        r'[^>]*>(.*?)</script>'
+def unfold_ics(text):
+    lines = (
+        text
+        .replace("\r\n", "\n")
+        .replace("\r", "\n")
+        .split("\n")
     )
 
     out = []
 
-    for raw in re.findall(
-        pattern,
-        page,
-        re.I | re.S,
-    ):
+    for line in lines:
 
-        raw = html.unescape(
-            raw
-        ).strip()
+        if (
+            line.startswith((" ", "\t"))
+            and out
+        ):
 
-        raw = re.sub(
-            r"^\s*<!--|-->\s*$",
-            "",
-            raw,
-        ).strip()
+            out[-1] += line[1:]
 
-        try:
-            obj = json.loads(raw)
+        else:
 
-            if isinstance(
-                obj,
-                list,
-            ):
-                out.extend(obj)
-            else:
-                out.append(obj)
-
-        except Exception:
-            pass
+            out.append(line)
 
     return out
 
 
-def walk(obj):
+def parse_ics(text):
+    event = {}
+    inside = False
 
-    if isinstance(
-        obj,
-        dict,
+    for line in unfold_ics(text):
+
+        if line == "BEGIN:VEVENT":
+
+            inside = True
+            event = {}
+
+            continue
+
+        if line == "END:VEVENT":
+
+            return event
+
+        if (
+            not inside
+            or ":" not in line
+        ):
+
+            continue
+
+        left, value = line.split(
+            ":",
+            1,
+        )
+
+        name = left.split(
+            ";",
+            1,
+        )[0].upper()
+
+        event[name] = html.unescape(
+            value
+        )
+
+    return event
+
+
+def find_ical_on_page(page):
+
+    page = html.unescape(page)
+
+    links = re.findall(
+        r'href\s*=\s*["\']([^"\']+)["\']',
+        page,
+        re.I,
+    )
+
+    for link in links:
+
+        if (
+            "iCalFromParameters"
+            in link
+            or "iCalendar"
+            in link
+        ):
+
+            return urllib.parse.urljoin(
+                BASE_URL,
+                link,
+            )
+
+    match = re.search(
+        r'(https?://[^"\'\s<>]*'
+        r'iCalFromParameters'
+        r'[^"\'\s<>]*)',
+        page,
+        re.I,
+    )
+
+    if match:
+
+        return html.unescape(
+            match.group(1)
+        )
+
+    return None
+
+
+def parse_ical_value(
+    prop,
+    value,
+):
+
+    value = (
+        value or ""
+    ).strip()
+
+    if (
+        prop
+        and "VALUE=DATE"
+        in prop.upper()
+    ) or re.fullmatch(
+        r"\d{8}",
+        value,
     ):
 
-        yield obj
+        return (
+            datetime.strptime(
+                value[:8],
+                "%Y%m%d",
+            ).date(),
+            True,
+        )
 
-        for value in obj.values():
-            yield from walk(value)
+    if value.endswith("Z"):
 
-    elif isinstance(
-        obj,
-        list,
-    ):
+        return (
+            datetime.strptime(
+                value,
+                "%Y%m%dT%H%M%SZ",
+            ).replace(
+                tzinfo=timezone.utc
+            ),
+            False,
+        )
 
-        for value in obj:
-            yield from walk(value)
+    return (
+        datetime.strptime(
+            value[:15],
+            "%Y%m%dT%H%M%S",
+        ),
+        False,
+    )
 
 
 def parse_dt(value):
@@ -260,548 +352,144 @@ def parse_dt(value):
     )
 
 
-def event_from_page(
-    item,
-    page,
-):
+def parse_jsonld(page):
 
-    data = None
-
-    for root in jsonld_objects(
-        page
-    ):
-
-        for obj in walk(root):
-
-            typ = obj.get(
-                "@type",
-                "",
-            )
-
-            if isinstance(
-                typ,
-                list,
-            ):
-
-                types = [
-                    str(x).lower()
-                    for x in typ
-                ]
-
-            else:
-
-                types = [
-                    str(typ).lower()
-                ]
-
-            if (
-                "event" in types
-                or "eventseries" in types
-            ):
-
-                data = obj
-                break
-
-        if data:
-            break
-
-    start = None
-    end = None
-    all_day = False
-    location = ""
-
-    name = item["title"]
-    description = item["description"]
-
-    if data:
-
-        start, all_day = parse_dt(
-            data.get(
-                "startDate"
-            )
-        )
-
-        end, _ = parse_dt(
-            data.get(
-                "endDate"
-            )
-        )
-
-        name = (
-            data.get("name")
-            or name
-        )
-
-        description = (
-            data.get("description")
-            or description
-        )
-
-        loc = data.get(
-            "location"
-        )
-
-        if isinstance(
-            loc,
-            dict,
-        ):
-
-            location = (
-                loc.get(
-                    "name",
-                    "",
-                )
-                or ""
-            )
-
-        elif isinstance(
-            loc,
-            str,
-        ):
-
-            location = loc
-
-    # Fallback für terminbezogene URLs
-    if start is None:
-
-        match = re.search(
-            r"/(20\d{2})-"
-            r"(\d{2})-"
-            r"(\d{2})"
-            r"(?:-(\d{2})-(\d{2}))?/?$",
-            item["link"],
-        )
-
-        if match:
-
-            if match.group(4):
-
-                start = datetime(
-                    int(match.group(1)),
-                    int(match.group(2)),
-                    int(match.group(3)),
-                    int(match.group(4)),
-                    int(match.group(5)),
-                )
-
-                all_day = False
-
-            else:
-
-                start = date(
-                    int(match.group(1)),
-                    int(match.group(2)),
-                    int(match.group(3)),
-                )
-
-                all_day = True
-
-    if start is None:
-
-        raise ValueError(
-            "kein Startdatum gefunden"
-        )
-
-    if end is None:
-
-        if all_day:
-
-            end = (
-                start
-                + timedelta(days=1)
-            )
-
-        else:
-
-            end = start
-
-    return {
-        "uid": item["link"],
-        "start": start,
-        "end": end,
-        "all_day": all_day,
-        "summary": html.unescape(
-            str(name)
-        ),
-        "description": html.unescape(
-            str(description or "")
-        ),
-        "location": html.unescape(
-            str(location)
-        ),
-        "url": item["link"],
-        "category": item["category"],
-    }
-
-
-def fetch(item):
-
-    try:
-
-        page = get(
-            item["link"],
-            timeout=15,
-            tries=2,
-        )
-
-        return (
-            event_from_page(
-                item,
-                page,
-            ),
-            None,
-        )
-
-    except Exception as e:
-
-        return (
-            None,
-            str(e),
-        )
-
-
-def esc(value):
-
-    return (
-        html.unescape(
-            str(value or "")
-        )
-        .replace(
-            "\\",
-            "\\\\",
-        )
-        .replace(
-            ";",
-            "\\;",
-        )
-        .replace(
-            ",",
-            "\\,",
-        )
-        .replace(
-            "\r",
-            "",
-        )
-        .replace(
-            "\n",
-            "\\n",
-        )
+    matches = re.findall(
+        r'<script[^>]+type=["\']'
+        r'application/ld\+json["\']'
+        r'[^>]*>(.*?)</script>',
+        page,
+        re.I | re.S,
     )
 
-
-def sort_key(event):
-
-    value = event["start"]
-
-    if isinstance(
-        value,
-        datetime,
-    ):
-
-        if value.tzinfo is None:
-
-            value = value.replace(
-                tzinfo=LOCAL_TZ
-            )
-
-    else:
-
-        value = datetime.combine(
-            value,
-            datetime.min.time(),
-            tzinfo=LOCAL_TZ,
-        )
-
-    return value.astimezone(
-        timezone.utc
-    ).isoformat()
-
-
-def make_ics(events):
-
-    stamp = datetime.now(
-        timezone.utc
-    ).strftime(
-        "%Y%m%dT%H%M%SZ"
-    )
-
-    lines = [
-        "BEGIN:VCALENDAR",
-        "VERSION:2.0",
-        "PRODID:-//CNobach23//Leverkusen Kalender//DE",
-        "CALSCALE:GREGORIAN",
-        "METHOD:PUBLISH",
-        "X-WR-CALNAME:Leverkusen Veranstaltungen",
-        "X-WR-TIMEZONE:Europe/Berlin",
-    ]
-
-    for event in sorted(
-        events,
-        key=sort_key,
-    ):
-
-        lines += [
-            "BEGIN:VEVENT",
-            "UID:"
-            + esc(
-                event["uid"]
-            ),
-            "DTSTAMP:"
-            + stamp,
-        ]
-
-        if event["all_day"]:
-
-            lines.append(
-                "DTSTART;VALUE=DATE:"
-                + event["start"].strftime(
-                    "%Y%m%d"
-                )
-            )
-
-            lines.append(
-                "DTEND;VALUE=DATE:"
-                + event["end"].strftime(
-                    "%Y%m%d"
-                )
-            )
-
-        else:
-
-            start = event["start"]
-            end = event["end"]
-
-            if start.tzinfo is None:
-
-                start = start.replace(
-                    tzinfo=LOCAL_TZ
-                )
-
-            if end.tzinfo is None:
-
-                end = end.replace(
-                    tzinfo=LOCAL_TZ
-                )
-
-            lines.append(
-                "DTSTART:"
-                + start.astimezone(
-                    timezone.utc
-                ).strftime(
-                    "%Y%m%dT%H%M%SZ"
-                )
-            )
-
-            lines.append(
-                "DTEND:"
-                + end.astimezone(
-                    timezone.utc
-                ).strftime(
-                    "%Y%m%dT%H%M%SZ"
-                )
-            )
-
-        lines.append(
-            "SUMMARY:"
-            + esc(
-                event["summary"]
-            )
-        )
-
-        description = (
-            event["description"]
-        )
-
-        if description:
-
-            description += "\n\n"
-
-        description += (
-            "Kategorie: "
-            + event["category"]
-            + "\n\n"
-            + event["url"]
-        )
-
-        lines.append(
-            "DESCRIPTION:"
-            + esc(description)
-        )
-
-        if event["location"]:
-
-            lines.append(
-                "LOCATION:"
-                + esc(
-                    event["location"]
-                )
-            )
-
-        lines += [
-            "URL:"
-            + esc(
-                event["url"]
-            ),
-            "CATEGORIES:"
-            + esc(
-                event["category"]
-            ),
-            "END:VEVENT",
-        ]
-
-    lines.append(
-        "END:VCALENDAR"
-    )
-
-    return (
-        "\r\n".join(lines)
-        + "\r\n"
-    )
-
-
-def main():
-
-    rss_events = []
-    seen = set()
-
-    # Nur 11 RSS-Abfragen.
-    for (
-        category_id,
-        category,
-    ) in CATEGORIES:
-
-        print(
-            "Kategorie:",
-            category,
-        )
+    for raw in matches:
 
         try:
 
-            items = parse_rss(
-                get(
-                    rss_url(
-                        category_id
-                    ),
-                    timeout=15,
-                    tries=3,
-                ),
-                category,
+            import json
+
+            obj = json.loads(
+                html.unescape(
+                    raw
+                ).strip()
             )
 
-            print(
-                "  RSS:",
-                len(items),
-                "Veranstaltungen",
+        except Exception:
+
+            continue
+
+        stack = (
+            obj
+            if isinstance(
+                obj,
+                list,
             )
-
-            for item in items:
-
-                if item["link"] in seen:
-                    continue
-
-                seen.add(
-                    item["link"]
-                )
-
-                rss_events.append(
-                    item
-                )
-
-        except Exception as e:
-
-            print(
-                "  RSS FEHLER:",
-                e,
-            )
-
-    print(
-        "Eindeutige RSS-Veranstaltungen:",
-        len(rss_events),
-    )
-
-    results = []
-    failed = 0
-
-    # Nur 4 parallele Veranstaltungsseiten.
-    with ThreadPoolExecutor(
-        max_workers=4
-    ) as pool:
-
-        jobs = {
-            pool.submit(
-                fetch,
-                item,
-            ): item
-            for item in rss_events
-        }
-
-        for i, job in enumerate(
-            as_completed(jobs),
-            1,
-        ):
-
-            result, error = (
-                job.result()
-            )
-
-            if result:
-
-                results.append(
-                    result
-                )
-
-            else:
-
-                failed += 1
-
-                print(
-                    "FEHLER",
-                    i,
-                    "/",
-                    len(rss_events),
-                    jobs[job]["title"],
-                    "-",
-                    error,
-                )
-
-    unique = {
-        (
-            event["uid"],
-            event["start"],
-        ): event
-        for event in results
-    }
-
-    with open(
-        OUTPUT_FILE,
-        "w",
-        encoding="utf-8",
-        newline="",
-    ) as file:
-
-        file.write(
-            make_ics(
-                list(
-                    unique.values()
-                )
-            )
+            else [obj]
         )
 
-    print()
-    print(
-        "FERTIG!"
+        while stack:
+
+            cur = stack.pop()
+
+            if isinstance(
+                cur,
+                dict,
+            ):
+
+                typ = cur.get(
+                    "@type",
+                    "",
+                )
+
+                if isinstance(
+                    typ,
+                    list,
+                ):
+
+                    types = [
+                        str(x).lower()
+                        for x in typ
+                    ]
+
+                else:
+
+                    types = [
+                        str(typ).lower()
+                    ]
+
+                if (
+                    "event" in types
+                    or "eventseries" in types
+                ):
+
+                    return cur
+
+                stack.extend(
+                    cur.values()
+                )
+
+            elif isinstance(
+                cur,
+                list,
+            ):
+
+                stack.extend(cur)
+
+    return None
+
+
+def fallback_from_url(item):
+
+    match = re.search(
+        r"/(20\d{2})-"
+        r"(\d{2})-"
+        r"(\d{2})"
+        r"(?:-(\d{2})-(\d{2}))?/?$",
+        item["link"],
     )
 
-    print(
-        "Veranstaltungen geschrieben:",
-        len(unique),
+    if not match:
+        return None, None, False
+
+    y, m, d = map(
+        int,
+        match.group(
+            1,
+            2,
+            3,
+        ),
     )
 
-    print(
-        "Nicht verarbeitet:",
-        failed,
+    if match.group(4):
+
+        start = datetime(
+            y,
+            m,
+            d,
+            int(match.group(4)),
+            int(match.group(5)),
+        )
+
+        return (
+            start,
+            start,
+            False,
+        )
+
+    start = date(
+        y,
+        m,
+        d,
+    )
+
+    return (
+        start,
+        start + timedelta(
+            days=1
+        ),
+        True,
     )
 
 
-if __name__ == "__main__":
-    main()
+def make_event(
+   
