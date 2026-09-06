@@ -11,23 +11,22 @@ from datetime import date, datetime, timezone, time as dtime, timedelta
 from zoneinfo import ZoneInfo
 
 
-# ============================================================
-# GRUNDEINSTELLUNGEN
-# ============================================================
-
 BASE = "https://www.leverkusen.de/stadt-erleben/veranstaltungskalender/"
 OUT = "veranstaltungen.ics"
+GEO_CACHE_FILE = "geo_cache.json"
 
 TZ = ZoneInfo("Europe/Berlin")
 
-UA = "Mozilla/5.0 (LeverkusenKalender/9.0)"
+UA = (
+    "LeverkusenWebCal/1.0 "
+    "(https://github.com/CNobach23/Leverkusen-kalender)"
+)
 
-CURRENT_YEAR = datetime.now(TZ).year
+# Öffentlicher Nominatim-Dienst von OpenStreetMap.
+# Bei regelmäßig automatisierten Abfragen maximal 4 Anfragen/Minute.
+NOMINATIM_URL = "https://nominatim.openstreetmap.org/search"
+NOMINATIM_DELAY = 15.1
 
-
-# ============================================================
-# GEWÜNSCHTE KATEGORIEN
-# ============================================================
 
 CATEGORIES = [
     ("42023", "Familie & Kinder"),
@@ -43,10 +42,6 @@ CATEGORIES = [
     ("34821", "Warntage"),
 ]
 
-
-# ============================================================
-# MONATE
-# ============================================================
 
 MONTHS = {
     "januar": 1,
@@ -65,134 +60,108 @@ MONTHS = {
 }
 
 
-# ============================================================
-# HTTP-ABRUF
-# ============================================================
+# ------------------------------------------------------------
+# HTTP
+# ------------------------------------------------------------
 
-def get(url, timeout=15, tries=3):
-    """
-    Lädt eine URL.
-    Unterstützt gzip-komprimierte Antworten.
-    """
+def get(url, timeout=20, tries=3, user_agent=UA):
+    error = None
 
-    err = None
-
-    for n in range(tries):
+    for attempt in range(tries):
         try:
-            req = urllib.request.Request(
+            request = urllib.request.Request(
                 url,
                 headers={
-                    "User-Agent": UA,
+                    "User-Agent": user_agent,
                     "Connection": "close",
                     "Accept-Encoding": "gzip",
                 },
             )
 
-            with urllib.request.urlopen(req, timeout=timeout) as r:
-                raw = r.read()
+            with urllib.request.urlopen(request, timeout=timeout) as response:
+                raw = response.read()
 
+                # GitHub Actions bekommt die Leverkusen-Seiten teilweise
+                # gzip-komprimiert. Ohne diese Zeile sieht Python nur
+                # Binärdaten statt HTML.
                 encoding = (
-                    r.headers.get("Content-Encoding", "")
-                    .lower()
-                    .strip()
-                )
+                    response.headers.get("Content-Encoding") or ""
+                ).lower()
 
-                # gzip über Header erkennen
                 if encoding == "gzip":
                     raw = gzip.decompress(raw)
 
-                # gzip zusätzlich über Magic Bytes erkennen
-                elif raw[:2] == b"\x1f\x8b":
-                    raw = gzip.decompress(raw)
-
                 charset = (
-                    r.headers.get_content_charset()
+                    response.headers.get_content_charset()
                     or "utf-8"
                 )
 
-                return raw.decode(
-                    charset,
-                    errors="replace"
-                )
+                return raw.decode(charset, errors="replace")
 
-        except Exception as e:
-            err = e
+        except Exception as exc:
+            error = exc
 
-            if n + 1 < tries:
+            if attempt + 1 < tries:
                 time.sleep(1)
 
-    raise err
+    raise error
 
 
-# ============================================================
-# RSS-URL
-# ============================================================
+# ------------------------------------------------------------
+# RSS
+# ------------------------------------------------------------
 
-def rss_url(cid):
-    p = [
+def rss_url(category_id):
+    params = [
         ("sp:categories[13495][0]", "-"),
         ("sp:categories[13495][1]", "__last__"),
-
-        ("sp:categories[13459][0]", cid),
+        ("sp:categories[13459][0]", category_id),
         ("sp:categories[13459][1]", "__last__"),
-
         ("sp:dateFrom[0]", date.today().isoformat()),
         ("sp:dateTo[0]", ""),
-
         ("sp:fulltext[0]", ""),
-
         ("sp:out", "rss"),
         ("sp:cmp", "eventSearch-1-0-searchResult"),
         ("action", "submit"),
     ]
 
-    return (
-        BASE
-        + "?"
-        + urllib.parse.urlencode(p)
-    )
+    return BASE + "?" + urllib.parse.urlencode(params)
 
-
-# ============================================================
-# RSS AUSWERTEN
-# ============================================================
 
 def parse_rss(text, category):
     root = ET.fromstring(text)
-
-    out = []
+    events = []
 
     for item in root.findall(".//item"):
-
-        vals = {}
+        values = {}
 
         for child in item:
-            vals[child.tag.split("}")[-1]] = html.unescape(
+            name = child.tag.split("}")[-1]
+
+            values[name] = html.unescape(
                 "".join(child.itertext()).strip()
             )
 
-        if vals.get("title") and vals.get("link"):
+        if values.get("title") and values.get("link"):
+            events.append(
+                {
+                    "title": values["title"],
+                    "link": values["link"],
+                    "description": values.get("description", ""),
+                    "category": category,
+                }
+            )
 
-            out.append({
-                "title": vals["title"],
-                "link": vals["link"],
-                "description": vals.get(
-                    "description",
-                    ""
-                ),
-                "category": category,
-            })
-
-    return out
+    return events
 
 
-# ============================================================
-# ICS ESCAPING / UNESCAPING
-# ============================================================
+# ------------------------------------------------------------
+# iCalendar
+# ------------------------------------------------------------
 
-def unescape(v):
+def unescape_ical(value):
     return (
-        html.unescape(v or "")
+        html.unescape(value or "")
         .replace("\\n", "\n")
         .replace("\\N", "\n")
         .replace("\\,", ",")
@@ -201,68 +170,36 @@ def unescape(v):
     )
 
 
-def esc(v):
-    return (
-        html.unescape(str(v or ""))
-        .replace("\\", "\\\\")
-        .replace(";", "\\;")
-        .replace(",", "\\,")
-        .replace("\r", "")
-        .replace("\n", "\\n")
-    )
-
-
-# ============================================================
-# ICS DATUM AUSWERTEN
-# ============================================================
-
 def ical_value(value):
-
     value = value.strip()
 
-    # Nur Datum
     if re.fullmatch(r"\d{8}", value):
-
         return (
-            datetime.strptime(
-                value,
-                "%Y%m%d"
-            ).date(),
-            True
+            datetime.strptime(value, "%Y%m%d").date(),
+            True,
         )
 
-    # UTC
     if value.endswith("Z"):
-
         return (
             datetime.strptime(
                 value,
-                "%Y%m%dT%H%M%SZ"
-            ).replace(
-                tzinfo=timezone.utc
-            ),
-            False
+                "%Y%m%dT%H%M%SZ",
+            ).replace(tzinfo=timezone.utc),
+            False,
         )
 
-    # Lokale Zeit
     return (
         datetime.strptime(
             value[:15],
-            "%Y%m%dT%H%M%S"
+            "%Y%m%dT%H%M%S",
         ),
-        False
+        False,
     )
 
 
-# ============================================================
-# ICS PARSEN
-# ============================================================
-
 def parse_ics(text):
-
     lines = (
-        text
-        .replace("\r\n", "\n")
+        text.replace("\r\n", "\n")
         .replace("\r", "\n")
         .split("\n")
     )
@@ -270,60 +207,43 @@ def parse_ics(text):
     folded = []
 
     for line in lines:
-
         if line.startswith((" ", "\t")) and folded:
             folded[-1] += line[1:]
-
         else:
             folded.append(line)
 
-    ev = {}
-    inside = False
+    event = {}
+    inside_event = False
 
     for line in folded:
 
         if line == "BEGIN:VEVENT":
-
-            inside = True
-            ev = {}
+            inside_event = True
+            event = {}
 
         elif line == "END:VEVENT":
+            return event
 
-            return ev
+        elif inside_event and ":" in line:
+            left, value = line.split(":", 1)
 
-        elif inside and ":" in line:
+            name = left.split(";", 1)[0].upper()
 
-            left, value = line.split(
-                ":",
-                1
-            )
+            event[name] = unescape_ical(value)
 
-            name = left.split(
-                ";",
-                1
-            )[0].upper()
+    return event
 
-            ev[name] = unescape(value)
-
-    return ev
-
-
-# ============================================================
-# iCAL-LINK AUF DER VERANSTALTUNGSSEITE
-# ============================================================
 
 def page_ical_link(page):
-
     page = html.unescape(page)
 
     links = re.findall(
         r'href\s*=\s*["\']([^"\']+)["\']',
         page,
-        re.I
+        re.I,
     )
 
     for link in links:
-
         low = link.lower()
 
         if (
@@ -332,38 +252,34 @@ def page_ical_link(page):
         ):
             return urllib.parse.urljoin(
                 BASE,
-                link
+                link,
             )
 
     return None
 
 
-# ============================================================
-# JSON-LD VERANSTALTUNG FINDEN
-# ============================================================
+# ------------------------------------------------------------
+# JSON-LD
+# ------------------------------------------------------------
 
 def jsonld_event(page):
-
     pattern = (
-        r'<script[^>]+'
-        r'type=["\']application/ld\+json["\']'
-        r'[^>]*>(.*?)</script>'
+        r'<script[^>]+type=["\']'
+        r'application/ld\+json'
+        r'["\'][^>]*>(.*?)</script>'
     )
 
     blocks = re.findall(
         pattern,
         page,
-        re.I | re.S
+        re.I | re.S,
     )
 
     for raw in blocks:
 
         try:
-
             obj = json.loads(
-                html.unescape(
-                    raw
-                ).strip()
+                html.unescape(raw).strip()
             )
 
         except Exception:
@@ -377,337 +293,303 @@ def jsonld_event(page):
 
         while stack:
 
-            x = stack.pop()
+            current = stack.pop()
 
-            if isinstance(x, dict):
+            if isinstance(current, dict):
 
-                typ = x.get(
+                typ = current.get(
                     "@type",
-                    ""
+                    "",
                 )
 
-                types = (
-                    [
+                if isinstance(typ, list):
+                    types = [
                         str(t).lower()
                         for t in typ
                     ]
-                    if isinstance(typ, list)
-                    else [
+                else:
+                    types = [
                         str(typ).lower()
                     ]
-                )
 
                 if (
                     "event" in types
                     or "eventseries" in types
                 ):
-                    return x
+                    return current
 
                 stack.extend(
-                    x.values()
+                    current.values()
                 )
 
-            elif isinstance(x, list):
-
-                stack.extend(x)
+            elif isinstance(current, list):
+                stack.extend(current)
 
     return None
 
 
-# ============================================================
-# SICHTBAREN TEXT ERZEUGEN
-# ============================================================
-
-def visible_text(page):
-
-    s = html.unescape(page)
-
-    s = re.sub(
-        r"(?is)<(script|style|noscript).*?</\1>",
-        " ",
-        s
-    )
-
-    s = re.sub(
-        r"(?is)<[^>]+>",
-        " ",
-        s
-    )
-
-    s = re.sub(
-        r"\s+",
-        " ",
-        s
-    )
-
-    return s.strip()
-
-
-# ============================================================
-# VERANSTALTUNGSORT AUS JSON-LD
-# ============================================================
-
-def location_from_jsonld(data):
-
-    if not data:
+def jsonld_location(data):
+    if not isinstance(data, dict):
         return ""
 
-    loc = data.get(
+    location = data.get(
         "location",
-        ""
+        "",
     )
 
-    if isinstance(loc, list):
+    if isinstance(location, dict):
 
-        if loc:
-            loc = loc[0]
+        name = location.get(
+            "name",
+            "",
+        )
 
-        else:
-            loc = ""
-
-    # location ist Objekt
-    if isinstance(loc, dict):
-
-        name = str(
-            loc.get(
-                "name",
-                ""
-            )
-            or ""
-        ).strip()
-
-        address = loc.get(
+        address = location.get(
             "address",
-            ""
+            "",
         )
 
         if isinstance(address, dict):
 
-            street = str(
+            parts = [
                 address.get(
                     "streetAddress",
-                    ""
-                )
-                or ""
-            ).strip()
-
-            postal = str(
+                    "",
+                ),
                 address.get(
                     "postalCode",
-                    ""
-                )
-                or ""
-            ).strip()
-
-            city = str(
+                    "",
+                ),
                 address.get(
                     "addressLocality",
-                    ""
+                    "",
+                ),
+            ]
+
+            address = ", ".join(
+                part
+                for part in parts
+                if part
+            )
+
+        if name and address:
+            return f"{name}, {address}"
+
+        return (
+            name
+            or address
+            or ""
+        )
+
+    return str(location or "")
+
+
+def jsonld_geo(data):
+    if not isinstance(data, dict):
+        return None
+
+    geo = data.get("geo")
+
+    if isinstance(geo, dict):
+
+        try:
+            latitude = float(
+                geo.get("latitude")
+            )
+
+            longitude = float(
+                geo.get("longitude")
+            )
+
+            if (
+                -90 <= latitude <= 90
+                and -180 <= longitude <= 180
+            ):
+                return (
+                    latitude,
+                    longitude,
                 )
-                or ""
-            ).strip()
 
-            parts = []
+        except (
+            TypeError,
+            ValueError,
+        ):
+            pass
 
-            if name:
-                parts.append(name)
-
-            if street:
-                parts.append(street)
-
-            if postal or city:
-
-                city_part = " ".join(
-                    x
-                    for x in [
-                        postal,
-                        city
-                    ]
-                    if x
-                )
-
-                if city_part:
-                    parts.append(
-                        city_part
-                    )
-
-            if parts:
-                return ", ".join(parts)
-
-        if name:
-            return name
-
-    if isinstance(loc, str):
-
-        return loc.strip()
-
-    return ""
+    return None
 
 
-# ============================================================
-# VERANSTALTUNGSORT AUS SICHTBAREM TEXT
-# ============================================================
+# ------------------------------------------------------------
+# HTML
+# ------------------------------------------------------------
 
-def location_from_page(page):
+def visible_text(page):
+    text = html.unescape(page)
 
+    text = re.sub(
+        r"(?is)<(script|style|noscript).*?</\1>",
+        " ",
+        text,
+    )
+
+    text = re.sub(
+        r"(?is)<[^>]+>",
+        " ",
+        text,
+    )
+
+    text = re.sub(
+        r"\s+",
+        " ",
+        text,
+    )
+
+    return text.strip()
+
+
+def extract_visible_location(page):
     text = visible_text(page)
 
-    # Normalfall:
-    #
-    # Veranstaltungsort
-    # Name des Veranstaltungsortes
-    # Adresse
-    #
-    # Danach folgt normalerweise ein anderer Abschnitt.
-
+    # Typische Ortsangabe mit anschließendem Stadtteil.
     patterns = [
 
-        r"\bVeranstaltungsort\b\s*"
-        r"(.{2,400}?)"
-        r"(?=\s+"
-        r"(?:Veranstalter|"
-        r"Termin-Details|"
-        r"Ähnliche Veranstaltungen|"
-        r"Kosten|"
-        r"Kontakt)\b)",
+        r"Veranstaltungsort\s+(.*?)(?=\s+"
+        r"(?:Schlebusch|Opladen|Wiesdorf|Rheindorf|"
+        r"Hitdorf|Bürrig|Küppersteg|Manfort|Quettingen|"
+        r"Steinbüchel|Lützenkirchen|Alkenrath|"
+        r"Bergisch Neukirchen)\b)",
 
-        r"\bOrt\b\s*"
-        r"(.{2,300}?)"
-        r"(?=\s+"
-        r"(?:Veranstalter|"
-        r"Termin-Details|"
-        r"Ähnliche Veranstaltungen)\b)",
+        r"Veranstaltungsort\s+(.*?)(?=\s+\d{4,5}\s+Leverkusen)",
     ]
 
     for pattern in patterns:
 
-        m = re.search(
+        match = re.search(
             pattern,
             text,
-            re.I
+            re.I,
         )
 
-        if not m:
-            continue
+        if match:
 
-        result = re.sub(
+            value = re.sub(
+                r"\s+",
+                " ",
+                match.group(1),
+            ).strip(
+                " ,.-"
+            )
+
+            if value:
+                return value
+
+    # Fallback: HTML-Bereich zwischen Veranstaltungsort
+    # und Google Maps.
+    match = re.search(
+        r"Veranstaltungsort(.*?)"
+        r"(?:Google Maps|Ähnliche Veranstaltungen)",
+        page,
+        re.I | re.S,
+    )
+
+    if match:
+
+        chunk = visible_text(
+            match.group(1)
+        )
+
+        chunk = re.sub(
             r"\s+",
             " ",
-            m.group(1)
+            chunk,
         ).strip()
 
-        result = result.strip(
-            " :-–—"
+        chunk = re.sub(
+            r"^(?:\s*[:\-]\s*)",
+            "",
+            chunk,
         )
 
-        if result:
-            return result[:400]
+        if chunk:
+            return chunk[:500]
 
     return ""
 
 
-# ============================================================
-# BESTEN VERANSTALTUNGSORT ERMITTELN
-# ============================================================
-
-def extract_location(page, jsonld=None):
-
-    # 1. JSON-LD mit Adresse
-    loc = location_from_jsonld(
-        jsonld
-    )
-
-    if loc:
-        return loc
-
-    # 2. Sichtbarer Veranstaltungsort
-    loc = location_from_page(
-        page
-    )
-
-    if loc:
-        return loc
-
-    return ""
-
-
-# ============================================================
-# DEUTSCHE DATUMSERKENNUNG
-# ============================================================
+# ------------------------------------------------------------
+# Deutsche Datums- und Zeitangaben
+# ------------------------------------------------------------
 
 def german_dates(text):
 
     month = (
-        r"(Januar|Februar|März|Maerz|"
-        r"April|Mai|Juni|Juli|August|"
-        r"September|Oktober|November|Dezember)"
+        r"(Januar|Februar|März|Maerz|April|Mai|"
+        r"Juni|Juli|August|September|Oktober|"
+        r"November|Dezember)"
     )
 
     patterns = [
 
-        # 6.–8. September 2026
         rf"(\d{{1,2}})\.\s*[–-]\s*"
         rf"(\d{{1,2}})\.\s*{month}\s*(\d{{4}})",
 
-        # 6. bis 8. September 2026
         rf"(\d{{1,2}})\.\s*"
         rf"(?:bis|–|-)\s*"
         rf"(\d{{1,2}})\.\s*{month}\s*(\d{{4}})",
 
-        # 6. September 2026
         rf"(\d{{1,2}})\.\s*"
         rf"{month}\s*(\d{{4}})",
     ]
 
-    for pat in patterns:
+    for pattern in patterns:
 
-        m = re.search(
-            pat,
+        match = re.search(
+            pattern,
             text,
-            re.I
+            re.I,
         )
 
-        if not m:
+        if not match:
             continue
 
-        groups = m.groups()
+        groups = match.groups()
 
         try:
 
             if len(groups) == 4:
 
-                d1, d2, mon, year = groups
+                d1, d2, month_name, year = groups
 
-                mo = MONTHS[
-                    mon.lower()
+                month_number = MONTHS[
+                    month_name.lower()
                 ]
 
                 return (
                     date(
                         int(year),
-                        mo,
-                        int(d1)
+                        month_number,
+                        int(d1),
                     ),
                     date(
                         int(year),
-                        mo,
-                        int(d2)
-                    )
+                        month_number,
+                        int(d2),
+                    ),
                 )
 
-            d1, mon, year = groups
+            d1, month_name, year = groups
 
-            mo = MONTHS[
-                mon.lower()
+            month_number = MONTHS[
+                month_name.lower()
             ]
 
-            d = date(
+            day = date(
                 int(year),
-                mo,
-                int(d1)
+                month_number,
+                int(d1),
             )
 
-            return d, d
+            return day, day
 
         except Exception:
             pass
@@ -715,302 +597,208 @@ def german_dates(text):
     return None, None
 
 
-# ============================================================
-# DEUTSCHE ZEITERKENNUNG
-# ============================================================
-
 def german_times(text):
 
-    # Explizite Zeitspanne bevorzugen.
     patterns = [
 
-        r"(\d{1,2}:\d{2})\s*"
-        r"[–-]\s*"
+        r"(\d{1,2}:\d{2})\s*[–-]\s*"
         r"(\d{1,2}:\d{2})\s*Uhr",
 
         r"(\d{1,2}:\d{2})\s*"
         r"(?:bis|–|-)\s*"
         r"(\d{1,2}:\d{2})\s*Uhr",
-
-        # "Zeit: 14:15 – 15:15"
-        r"(?:Zeit|Uhrzeit)\s*:\s*"
-        r"(\d{1,2}:\d{2})\s*"
-        r"[–-]\s*"
-        r"(\d{1,2}:\d{2})",
-
-        r"(?:Beginn|Start)\s*:\s*"
-        r"(\d{1,2}:\d{2})\s*"
-        r"(?:Uhr)?\s*"
-        r"(?:bis|–|-)\s*"
-        r"(\d{1,2}:\d{2})\s*"
-        r"Uhr",
     ]
 
-    for pat in patterns:
+    for pattern in patterns:
 
-        m = re.search(
-            pat,
+        match = re.search(
+            pattern,
             text,
-            re.I
+            re.I,
         )
 
-        if m:
+        if match:
             return (
-                m.group(1),
-                m.group(2)
+                match.group(1),
+                match.group(2),
             )
 
-    # Nur Beginn
-    m = re.search(
-        r"(?:ab\s+|Start\s*:\s*|Beginn\s*:\s*)?"
+    match = re.search(
+        r"(?:ab\s+|Start\s*:\s*)?"
         r"(\d{1,2}:\d{2})\s*Uhr",
         text,
-        re.I
+        re.I,
     )
 
-    if m:
+    if match:
         return (
-            m.group(1),
-            None
+            match.group(1),
+            None,
         )
 
     return None, None
 
 
-# ============================================================
-# LOKALE DATETIME ERZEUGEN
-# ============================================================
-
-def make_local(d, hhmm):
+def make_local(day, hhmm):
 
     if not hhmm:
-
         return datetime.combine(
-            d,
-            dtime.min
+            day,
+            dtime.min,
         ).replace(
             tzinfo=TZ
         )
 
-    h, m = map(
+    hour, minute = map(
         int,
-        hhmm.split(":")
+        hhmm.split(":"),
     )
 
     return datetime.combine(
-        d,
-        dtime(h, m)
+        day,
+        dtime(
+            hour,
+            minute,
+        ),
     ).replace(
         tzinfo=TZ
     )
 
 
-# ============================================================
-# DATUM + ZEIT VON VERANSTALTUNGSSEITE
-# ============================================================
-
 def parse_page_dates(
     page,
-    fallback_text=""
+    fallback_text="",
 ):
 
-    text = visible_text(
-        page
-    )
+    text = visible_text(page)
 
-    d1, d2 = german_dates(
-        text
-    )
-
-    if d1 is None and fallback_text:
-
-        d1, d2 = german_dates(
-            visible_text(
-                fallback_text
-            )
-        )
-
-    if d1 is None:
-
-        return (
-            None,
-            None,
-            False
-        )
-
-    start_t, end_t = german_times(
+    start_date, end_date = german_dates(
         text
     )
 
     if (
-        not start_t
+        start_date is None
         and fallback_text
     ):
-
-        start_t, end_t = german_times(
+        start_date, end_date = german_dates(
             visible_text(
                 fallback_text
             )
         )
 
-    # Datum ohne Uhrzeit =
-    # Ganztagstermin
-    if not start_t:
+    if start_date is None:
+        return None, None, False
 
+    start_time, end_time = german_times(
+        text
+    )
+
+    if (
+        not start_time
+        and fallback_text
+    ):
+        start_time, end_time = german_times(
+            visible_text(
+                fallback_text
+            )
+        )
+
+    if not start_time:
         return (
-            d1,
-            d2,
-            True
+            start_date,
+            end_date,
+            True,
         )
 
     start = make_local(
-        d1,
-        start_t
+        start_date,
+        start_time,
     )
 
-    # Mehrtägiger Termin
-    if d2 > d1:
+    if end_date > start_date:
 
         end = make_local(
-            d2,
-            end_t or start_t
+            end_date,
+            end_time or start_time,
+        )
+
+    elif end_time:
+
+        end = make_local(
+            start_date,
+            end_time,
         )
 
     else:
 
-        if end_t:
-
-            end = make_local(
-                d1,
-                end_t
-            )
-
-        else:
-
-            # Nur Beginn vorhanden:
-            # 1 Stunde Standarddauer
-            end = (
-                start
-                + timedelta(hours=1)
-            )
+        end = start + timedelta(
+            hours=1
+        )
 
     if end <= start:
-
-        end = (
-            start
-            + timedelta(hours=1)
+        end = start + timedelta(
+            hours=1
         )
 
     return (
         start,
         end,
-        False
+        False,
     )
 
 
-# ============================================================
-# ISO-DATUM
-# ============================================================
-
-def parse_iso(v):
-
-    if not v:
-
-        return None, False
-
-    v = str(v).strip()
-
-    if re.fullmatch(
-        r"\d{4}-\d{2}-\d{2}",
-        v
-    ):
-
-        return (
-            datetime.strptime(
-                v,
-                "%Y-%m-%d"
-            ).date(),
-            True
-        )
-
-    try:
-
-        return (
-            datetime.fromisoformat(
-                v.replace(
-                    "Z",
-                    "+00:00"
-                )
-            ),
-            False
-        )
-
-    except Exception:
-
-        return None, False
-
-
-# ============================================================
-# URL-FALLBACK
-# ============================================================
+# ------------------------------------------------------------
+# URL-Datum als letzte Reserve
+# ------------------------------------------------------------
 
 def url_fallback(item):
 
-    m = re.search(
+    match = re.search(
         r"/(20\d{2})-(\d{2})-(\d{2})"
         r"(?:-(\d{2})-(\d{2}))?/?$",
-        item["link"]
+        item["link"],
     )
 
-    if not m:
+    if not match:
+        return None, None, False
 
-        return (
-            None,
-            None,
-            False
-        )
-
-    y, mo, d = map(
+    year, month, day = map(
         int,
-        m.group(
-            1,
-            2,
-            3
-        )
+        match.group(1, 2, 3),
     )
 
-    if m.group(4):
+    if match.group(4):
 
         start = datetime(
-            y,
-            mo,
-            d,
-            int(m.group(4)),
-            int(m.group(5))
+            year,
+            month,
+            day,
+            int(match.group(4)),
+            int(match.group(5)),
         )
 
         return (
             start,
             start + timedelta(hours=1),
-            False
+            False,
         )
 
     start = date(
-        y,
-        mo,
-        d
+        year,
+        month,
+        day,
     )
 
     return (
         start,
         start,
-        True
+        True,
     )
 
 
-# ============================================================
-# VERANSTALTUNG ABRUFEN
-# ============================================================
+# ------------------------------------------------------------
+# Einzelne Veranstaltung
+# ------------------------------------------------------------
 
 def fetch_event(item):
 
@@ -1020,83 +808,87 @@ def fetch_event(item):
             item["link"]
         )
 
-        # ----------------------------------------------------
-        # JSON-LD frühzeitig auslesen
-        # ----------------------------------------------------
-
-        data = jsonld_event(
-            page
-        )
+        location = ""
+        geo = None
 
         # ----------------------------------------------------
-        # VERANSTALTUNGSORT ERMITTELN
+        # 1. Offizieller iCalendar-Datensatz
         # ----------------------------------------------------
 
-        location = extract_location(
-            page,
-            data
-        )
-
-        # ----------------------------------------------------
-        # 1. OFFIZIELLER iCAL-DATENSATZ
-        # ----------------------------------------------------
-
-        ical = page_ical_link(
-            page
-        )
+        ical = page_ical_link(page)
 
         if ical:
 
             try:
 
-                src = parse_ics(
+                source = parse_ics(
                     get(
                         ical,
                         12,
-                        2
+                        2,
                     )
                 )
 
-                if "DTSTART" in src:
+                if "DTSTART" in source:
 
                     start, all_day = ical_value(
-                        src["DTSTART"]
+                        source["DTSTART"]
                     )
 
                     end = start
 
-                    if "DTEND" in src:
-
+                    if "DTEND" in source:
                         end, _ = ical_value(
-                            src["DTEND"]
+                            source["DTEND"]
                         )
 
                     if (
                         not all_day
                         and isinstance(
                             start,
-                            datetime
+                            datetime,
                         )
                         and isinstance(
                             end,
-                            datetime
+                            datetime,
                         )
                         and end <= start
                     ):
-
-                        end = (
-                            start
-                            + timedelta(hours=1)
+                        end = start + timedelta(
+                            hours=1
                         )
 
-                    # Offizieller iCal-Ort
-                    ical_location = src.get(
+                    location = source.get(
                         "LOCATION",
-                        ""
+                        "",
                     )
 
-                    if ical_location:
-                        location = ical_location
+                    # Falls die Quelle selbst GEO liefert.
+                    if source.get("GEO"):
+
+                        try:
+
+                            latitude, longitude = (
+                                source["GEO"].split(
+                                    ";",
+                                    1,
+                                )
+                            )
+
+                            geo = (
+                                float(latitude),
+                                float(longitude),
+                            )
+
+                        except Exception:
+                            pass
+
+                    if not location:
+                        location = (
+                            extract_visible_location(
+                                page
+                            )
+                        )
 
                     return {
                         "uid": item["link"],
@@ -1104,16 +896,21 @@ def fetch_event(item):
                         "end": end,
                         "all_day": all_day,
                         "summary": (
-                            src.get("SUMMARY")
+                            source.get(
+                                "SUMMARY"
+                            )
                             or item["title"]
                         ),
                         "description": (
-                            src.get("DESCRIPTION")
+                            source.get(
+                                "DESCRIPTION"
+                            )
                             or item["description"]
                         ),
                         "location": location,
+                        "geo": geo,
                         "url": (
-                            src.get("URL")
+                            source.get("URL")
                             or item["link"]
                         ),
                         "category": item["category"],
@@ -1126,8 +923,11 @@ def fetch_event(item):
         # 2. JSON-LD
         # ----------------------------------------------------
 
-        if data and data.get(
-            "startDate"
+        data = jsonld_event(page)
+
+        if (
+            data
+            and data.get("startDate")
         ):
 
             start, all_day = parse_iso(
@@ -1147,20 +947,20 @@ def fetch_event(item):
                         and end <= start
                     )
                 ):
-
                     end = (
-                        start
-                        if all_day
+                        start + timedelta(hours=1)
+                        if not all_day
                         else start
-                        + timedelta(hours=1)
                     )
 
-                json_location = location_from_jsonld(
-                    data
+                location = (
+                    jsonld_location(data)
+                    or extract_visible_location(
+                        page
+                    )
                 )
 
-                if json_location:
-                    location = json_location
+                geo = jsonld_geo(data)
 
                 return {
                     "uid": item["link"],
@@ -1176,6 +976,7 @@ def fetch_event(item):
                         or item["description"]
                     ),
                     "location": location,
+                    "geo": geo,
                     "url": (
                         data.get("url")
                         or item["link"]
@@ -1184,12 +985,12 @@ def fetch_event(item):
                 }, None
 
         # ----------------------------------------------------
-        # 3. SICHTBARE DATUMS-/ZEITANGABEN
+        # 3. Sichtbarer deutscher Veranstaltungstext
         # ----------------------------------------------------
 
         start, end, all_day = parse_page_dates(
             page,
-            item["description"]
+            item["description"],
         )
 
         if start is not None:
@@ -1201,13 +1002,16 @@ def fetch_event(item):
                 "all_day": all_day,
                 "summary": item["title"],
                 "description": item["description"],
-                "location": location,
+                "location": extract_visible_location(
+                    page
+                ),
+                "geo": None,
                 "url": item["link"],
                 "category": item["category"],
             }, None
 
         # ----------------------------------------------------
-        # 4. DATUM AUS URL
+        # 4. Datum aus URL
         # ----------------------------------------------------
 
         start, end, all_day = url_fallback(
@@ -1223,57 +1027,473 @@ def fetch_event(item):
                 "all_day": all_day,
                 "summary": item["title"],
                 "description": item["description"],
-                "location": location,
+                "location": extract_visible_location(
+                    page
+                ),
+                "geo": None,
                 "url": item["link"],
                 "category": item["category"],
             }, None
 
+        return None, "kein Datum gefunden"
+
+    except Exception as exc:
+        return None, str(exc)
+
+
+# ------------------------------------------------------------
+# ISO-Datum
+# ------------------------------------------------------------
+
+def parse_iso(value):
+
+    if not value:
+        return None, False
+
+    value = str(value).strip()
+
+    if re.fullmatch(
+        r"\d{4}-\d{2}-\d{2}",
+        value,
+    ):
         return (
-            None,
-            "kein Datum gefunden"
+            datetime.strptime(
+                value,
+                "%Y-%m-%d",
+            ).date(),
+            True,
         )
 
-    except Exception as e:
+    try:
 
         return (
-            None,
-            str(e)
+            datetime.fromisoformat(
+                value.replace(
+                    "Z",
+                    "+00:00",
+                )
+            ),
+            False,
         )
 
+    except Exception:
+        return None, False
 
-# ============================================================
-# SORTIERUNG
-# ============================================================
 
-def sort_key(e):
+# ------------------------------------------------------------
+# GEO-Cache
+# ------------------------------------------------------------
 
-    x = e["start"]
+def load_geo_cache():
 
-    if (
-        isinstance(x, date)
-        and not isinstance(x, datetime)
+    try:
+
+        with open(
+            GEO_CACHE_FILE,
+            "r",
+            encoding="utf-8",
+        ) as file:
+            data = json.load(file)
+
+        return (
+            data
+            if isinstance(data, dict)
+            else {}
+        )
+
+    except (
+        FileNotFoundError,
+        json.JSONDecodeError,
+    ):
+        return {}
+
+
+def save_geo_cache(cache):
+
+    with open(
+        GEO_CACHE_FILE,
+        "w",
+        encoding="utf-8",
+    ) as file:
+
+        json.dump(
+            cache,
+            file,
+            ensure_ascii=False,
+            indent=2,
+            sort_keys=True,
+        )
+
+        file.write("\n")
+
+
+def normalize_location(location):
+
+    return re.sub(
+        r"\s+",
+        " ",
+        location or "",
+    ).strip()
+
+
+def geocode_location(
+    location,
+    cache,
+):
+
+    key = normalize_location(
+        location
+    )
+
+    if not key:
+        return None
+
+    # Bereits vorhandener Cache-Eintrag.
+    if key in cache:
+
+        value = cache[key]
+
+        if (
+            isinstance(value, list)
+            and len(value) == 2
+        ):
+
+            try:
+                return (
+                    float(value[0]),
+                    float(value[1]),
+                )
+
+            except (
+                TypeError,
+                ValueError,
+            ):
+                return None
+
+        return None
+
+    query = key
+
+    if "Leverkusen" not in query:
+        query += (
+            ", Leverkusen, Deutschland"
+        )
+
+    params = urllib.parse.urlencode(
+        {
+            "q": query,
+            "format": "jsonv2",
+            "limit": "1",
+            "countrycodes": "de",
+            "accept-language": "de",
+        }
+    )
+
+    url = (
+        NOMINATIM_URL
+        + "?"
+        + params
+    )
+
+    try:
+
+        request = urllib.request.Request(
+            url,
+            headers={
+                "User-Agent": UA,
+                "Connection": "close",
+                "Accept": "application/json",
+            },
+        )
+
+        with urllib.request.urlopen(
+            request,
+            timeout=20,
+        ) as response:
+
+            raw = response.read()
+
+            charset = (
+                response.headers.get_content_charset()
+                or "utf-8"
+            )
+
+            data = json.loads(
+                raw.decode(
+                    charset,
+                    errors="replace",
+                )
+            )
+
+        if data:
+
+            latitude = float(
+                data[0]["lat"]
+            )
+
+            longitude = float(
+                data[0]["lon"]
+            )
+
+            if (
+                -90 <= latitude <= 90
+                and -180 <= longitude <= 180
+            ):
+
+                cache[key] = [
+                    round(latitude, 6),
+                    round(longitude, 6),
+                ]
+
+                return (
+                    latitude,
+                    longitude,
+                )
+
+        # Auch erfolglose Suchen speichern,
+        # damit sie nicht jeden Tag wiederholt werden.
+        cache[key] = None
+
+        return None
+
+    except Exception as exc:
+
+        print(
+            "GEO FEHLER:",
+            key,
+            "-",
+            exc,
+        )
+
+        return None
+
+
+def add_missing_geo(events):
+
+    cache = load_geo_cache()
+
+    missing = []
+    seen = set()
+
+    source_geo = 0
+
+    for event in events:
+
+        if event.get("geo"):
+            source_geo += 1
+            continue
+
+        key = normalize_location(
+            event.get(
+                "location",
+                "",
+            )
+        )
+
+        if (
+            key
+            and key not in cache
+            and key not in seen
+        ):
+            seen.add(key)
+            missing.append(key)
+
+    cache_geo = 0
+
+    for event in events:
+
+        if event.get("geo"):
+            continue
+
+        key = normalize_location(
+            event.get(
+                "location",
+                "",
+            )
+        )
+
+        if (
+            key
+            and key in cache
+            and isinstance(
+                cache[key],
+                list,
+            )
+        ):
+            cache_geo += 1
+
+    print(
+        "GEO bereits aus Quelle:",
+        source_geo,
+    )
+
+    print(
+        "GEO bereits im Cache:",
+        cache_geo,
+    )
+
+    print(
+        "Neue GEO-Abfragen:",
+        len(missing),
+    )
+
+    cache_changed = False
+
+    for index, location in enumerate(
+        missing,
+        1,
     ):
 
-        x = datetime.combine(
-            x,
+        print(
+            f"  GEO [{index}/{len(missing)}]: "
+            f"{location}"
+        )
+
+        geo = geocode_location(
+            location,
+            cache,
+        )
+
+        cache_changed = True
+
+        if geo:
+
+            print(
+                "      -> "
+                f"{geo[0]:.6f};"
+                f"{geo[1]:.6f}"
+            )
+
+        else:
+
+            print(
+                "      -> keine "
+                "Koordinaten gefunden"
+            )
+
+        if index < len(missing):
+            time.sleep(
+                NOMINATIM_DELAY
+            )
+
+    if cache_changed:
+        save_geo_cache(cache)
+
+    # Cache auf die Veranstaltungen anwenden.
+    for event in events:
+
+        if event.get("geo"):
+            continue
+
+        key = normalize_location(
+            event.get(
+                "location",
+                "",
+            )
+        )
+
+        if not key:
+            continue
+
+        value = cache.get(key)
+
+        if (
+            isinstance(value, list)
+            and len(value) == 2
+        ):
+
+            try:
+
+                event["geo"] = (
+                    float(value[0]),
+                    float(value[1]),
+                )
+
+            except (
+                TypeError,
+                ValueError,
+            ):
+                pass
+
+
+# ------------------------------------------------------------
+# iCalendar-Ausgabe
+# ------------------------------------------------------------
+
+def esc(value):
+
+    return (
+        html.unescape(
+            str(value or "")
+        )
+        .replace("\\", "\\\\")
+        .replace(";", "\\;")
+        .replace(",", "\\,")
+        .replace("\r", "")
+        .replace("\n", "\\n")
+    )
+
+
+def fold_ics_line(
+    line,
+    limit=73,
+):
+
+    chunks = []
+    current = ""
+
+    for char in line:
+
+        if (
+            len(
+                (current + char)
+                .encode("utf-8")
+            )
+            > limit
+        ):
+
+            chunks.append(current)
+            current = char
+
+        else:
+            current += char
+
+    chunks.append(current)
+
+    return chunks[0] + "".join(
+        "\r\n " + chunk
+        for chunk in chunks[1:]
+    )
+
+
+def sort_key(event):
+
+    value = event["start"]
+
+    if (
+        isinstance(value, date)
+        and not isinstance(
+            value,
+            datetime,
+        )
+    ):
+
+        value = datetime.combine(
+            value,
             datetime.min.time(),
+            tzinfo=TZ,
+        )
+
+    elif value.tzinfo is None:
+
+        value = value.replace(
             tzinfo=TZ
         )
 
-    elif x.tzinfo is None:
-
-        x = x.replace(
-            tzinfo=TZ
-        )
-
-    return x.astimezone(
+    return value.astimezone(
         timezone.utc
     ).timestamp()
 
-
-# ============================================================
-# ICS ERZEUGEN
-# ============================================================
 
 def make_ics(events):
 
@@ -1293,67 +1513,63 @@ def make_ics(events):
         "X-WR-TIMEZONE:Europe/Berlin",
     ]
 
-    for e in sorted(
+    for event in sorted(
         events,
-        key=sort_key
+        key=sort_key,
     ):
 
-        lines += [
-            "BEGIN:VEVENT",
-            "UID:" + esc(
-                e["uid"]
-            ),
-            "DTSTAMP:" + stamp,
-        ]
+        lines.extend(
+            [
+                "BEGIN:VEVENT",
+                "UID:" + esc(
+                    event["uid"]
+                ),
+                "DTSTAMP:" + stamp,
+            ]
+        )
 
-        # ----------------------------------------------------
-        # DATUM / ZEIT
-        # ----------------------------------------------------
-
-        if e["all_day"]:
+        if event["all_day"]:
 
             lines.append(
                 "DTSTART;VALUE=DATE:"
-                + e["start"].strftime(
+                + event["start"].strftime(
                     "%Y%m%d"
                 )
             )
 
-            # DTEND bei Ganztagsterminen
-            # ist exklusiv.
-            end_date = (
-                e["end"]
-                + timedelta(days=1)
-            )
-
+            # DTEND bei ganztägigen Ereignissen
+            # ist im iCalendar-Standard exklusiv.
             lines.append(
                 "DTEND;VALUE=DATE:"
-                + end_date.strftime(
+                + (
+                    event["end"]
+                    + timedelta(days=1)
+                ).strftime(
                     "%Y%m%d"
                 )
             )
 
         else:
 
-            s = (
-                e["start"]
-                if e["start"].tzinfo
-                else e["start"].replace(
+            start = (
+                event["start"]
+                if event["start"].tzinfo
+                else event["start"].replace(
                     tzinfo=TZ
                 )
             )
 
-            d = (
-                e["end"]
-                if e["end"].tzinfo
-                else e["end"].replace(
+            end = (
+                event["end"]
+                if event["end"].tzinfo
+                else event["end"].replace(
                     tzinfo=TZ
                 )
             )
 
             lines.append(
                 "DTSTART:"
-                + s.astimezone(
+                + start.astimezone(
                     timezone.utc
                 ).strftime(
                     "%Y%m%dT%H%M%SZ"
@@ -1362,74 +1578,68 @@ def make_ics(events):
 
             lines.append(
                 "DTEND:"
-                + d.astimezone(
+                + end.astimezone(
                     timezone.utc
                 ).strftime(
                     "%Y%m%dT%H%M%SZ"
                 )
             )
 
-        # ----------------------------------------------------
-        # BESCHREIBUNG
-        # ----------------------------------------------------
-
-        desc = e.get(
-            "description",
-            ""
+        description = (
+            event["description"]
+            or ""
         )
 
-        if desc:
-            desc += "\n\n"
+        if description:
+            description += "\n\n"
 
-        desc += (
+        description += (
             "Kategorie: "
-            + e["category"]
+            + event["category"]
             + "\n\n"
-            + e["url"]
+            + event["url"]
         )
 
         lines.append(
             "SUMMARY:"
-            + esc(e["summary"])
+            + esc(event["summary"])
         )
 
         lines.append(
             "DESCRIPTION:"
-            + esc(desc)
+            + esc(description)
         )
 
-        # ----------------------------------------------------
-        # VERANSTALTUNGSORT
-        # ----------------------------------------------------
-
-        location = e.get(
-            "location",
-            ""
-        )
-
-        if location:
+        if event.get("location"):
 
             lines.append(
                 "LOCATION:"
-                + esc(location)
+                + esc(
+                    event["location"]
+                )
             )
 
-        # ----------------------------------------------------
-        # URL
-        # ----------------------------------------------------
+        # Das ist der entscheidende neue Eintrag:
+        # LATITUDE;LONGITUDE
+        if event.get("geo"):
+
+            latitude, longitude = (
+                event["geo"]
+            )
+
+            lines.append(
+                f"GEO:{latitude:.6f};"
+                f"{longitude:.6f}"
+            )
 
         lines.append(
             "URL:"
-            + esc(e["url"])
+            + esc(event["url"])
         )
-
-        # ----------------------------------------------------
-        # KATEGORIE
-        # ----------------------------------------------------
 
         lines.append(
             "CATEGORIES:"
-            + esc(e["category"])
+            + esc(event["category"])
         )
 
         lines.append(
@@ -1440,48 +1650,43 @@ def make_ics(events):
         "END:VCALENDAR"
     )
 
-    return (
-        "\r\n".join(lines)
-        + "\r\n"
-    )
+    return "\r\n".join(
+        fold_ics_line(line)
+        for line in lines
+    ) + "\r\n"
 
 
-# ============================================================
-# HAUPTPROGRAMM
-# ============================================================
+# ------------------------------------------------------------
+# Hauptprogramm
+# ------------------------------------------------------------
 
 def main():
-
-    print("=" * 80)
-    print("LEVERKUSEN WEB-CAL KALENDER")
-    print("=" * 80)
-    print()
 
     items = []
     seen = set()
 
     # --------------------------------------------------------
-    # ALLE RSS-KATEGORIEN ABRUFEN
+    # RSS aller 11 Kategorien
     # --------------------------------------------------------
 
-    for cid, category in CATEGORIES:
+    for category_id, category in CATEGORIES:
 
         try:
 
             found = parse_rss(
                 get(
-                    rss_url(cid),
-                    15,
-                    3
+                    rss_url(category_id),
+                    20,
+                    3,
                 ),
-                category
+                category,
             )
 
             print(
                 "Kategorie:",
                 category,
-                "RSS-Veranstaltungen:",
-                len(found)
+                "RSS:",
+                len(found),
             )
 
             for item in found:
@@ -1496,25 +1701,25 @@ def main():
                         item
                     )
 
-        except Exception as e:
+        except Exception as exc:
 
             print(
                 "RSS FEHLER:",
                 category,
-                e
+                exc,
             )
 
-    print()
     print("=" * 80)
+
     print(
         "EINDEUTIGE VERANSTALTUNGEN:",
-        len(items)
+        len(items),
     )
+
     print("=" * 80)
-    print()
 
     # --------------------------------------------------------
-    # VERANSTALTUNGSSEITEN PARALLEL ABRUFEN
+    # Veranstaltungen parallel abrufen
     # --------------------------------------------------------
 
     results = []
@@ -1527,17 +1732,12 @@ def main():
         jobs = {
             pool.submit(
                 fetch_event,
-                item
+                item,
             ): item
             for item in items
         }
 
-        completed = 0
-        total = len(jobs)
-
         for job in as_completed(jobs):
-
-            completed += 1
 
             result, error = job.result()
 
@@ -1548,15 +1748,21 @@ def main():
                 )
 
                 print(
-                    f"[{completed}/{total}] "
-                    + result["summary"]
+                    "[OK]",
+                    result["summary"],
                 )
 
                 if result.get("location"):
-
                     print(
                         "    Ort:",
-                        result["location"]
+                        result["location"],
+                    )
+
+                if result.get("geo"):
+                    print(
+                        "    GEO:"
+                        f"{result['geo'][0]:.6f};"
+                        f"{result['geo'][1]:.6f}"
                     )
 
             else:
@@ -1567,102 +1773,118 @@ def main():
                     "FEHLER:",
                     jobs[job]["title"],
                     "-",
-                    error
+                    error,
                 )
 
     # --------------------------------------------------------
-    # DUPLIKATE ENTFERNEN
+    # Doppelte Veranstaltungen entfernen
     # --------------------------------------------------------
 
     unique = {
         (
-            e["uid"],
-            e["start"]
-        ): e
-        for e in results
+            event["uid"],
+            event["start"],
+        ): event
+        for event in results
     }
 
+    events = list(
+        unique.values()
+    )
+
     # --------------------------------------------------------
-    # ICS SCHREIBEN
+    # GEO ergänzen
     # --------------------------------------------------------
 
-    print()
     print("=" * 80)
-    print("SCHREIBE KALENDER")
+    print("GEO KOORDINATEN")
     print("=" * 80)
-    print()
+
+    add_missing_geo(
+        events
+    )
+
+    # --------------------------------------------------------
+    # ICS schreiben
+    # --------------------------------------------------------
 
     with open(
         OUT,
         "w",
         encoding="utf-8",
-        newline=""
-    ) as f:
+        newline="",
+    ) as file:
 
-        f.write(
-            make_ics(
-                list(
-                    unique.values()
-                )
-            )
+        file.write(
+            make_ics(events)
         )
 
     # --------------------------------------------------------
-    # STATISTIK
+    # Statistik
     # --------------------------------------------------------
 
     counts = {}
+    geo_count = 0
 
-    for e in unique.values():
+    for event in events:
 
-        counts[e["category"]] = (
+        category = event["category"]
+
+        counts[category] = (
             counts.get(
-                e["category"],
-                0
+                category,
+                0,
             )
             + 1
         )
 
-    print()
+        if event.get("geo"):
+            geo_count += 1
+
     print("=" * 80)
     print("FERTIG!")
     print("=" * 80)
 
     print(
         "Veranstaltungen geschrieben:",
-        len(unique)
+        len(events),
     )
 
     print(
         "Nicht verarbeitet:",
-        failures
+        failures,
     )
 
-    print()
+    print(
+        "Mit GEO:",
+        geo_count,
+    )
+
+    print(
+        "Ohne GEO:",
+        len(events) - geo_count,
+    )
 
     for _, category in CATEGORIES:
 
         print(
-            category
-            + ": "
-            + str(
-                counts.get(
-                    category,
-                    0
-                )
-            )
+            category + ":",
+            counts.get(
+                category,
+                0,
+            ),
         )
 
-    print()
     print(
         "Datei:",
-        OUT
+        OUT,
     )
 
+    print(
+        "GEO-Cache:",
+        GEO_CACHE_FILE,
+    )
 
-# ============================================================
-# START
-# ============================================================
 
 if __name__ == "__main__":
     main()
