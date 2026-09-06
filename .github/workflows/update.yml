@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: lewerkusen-kalender
+  group: leverkusen-kalender
   cancel-in-progress: false
 
 jobs:
@@ -27,6 +27,10 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Aktuellen Stand von GitHub übernehmen
+        run: |
+          git pull --rebase origin main
+
       - name: Kalender erzeugen
         run: python kalender.py
 
@@ -43,10 +47,6 @@ jobs:
           fi
 
           git commit -m "Kalender aktualisieren"
-
-      - name: Änderungen von GitHub übernehmen
-        run: |
-          git pull --rebase origin main
 
       - name: Kalender speichern
         run: |
