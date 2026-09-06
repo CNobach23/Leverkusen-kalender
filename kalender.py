@@ -1,12 +1,17 @@
 import gzip
 import html
 import re
-import ssl
-import urllib.request
 import urllib.parse
+import urllib.request
 import xml.etree.ElementTree as ET
 from collections import OrderedDict
+from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 
+
+# ============================================================
+# LEVERKUSEN WEB-CAL KALENDER
+# ============================================================
 
 CATEGORIES = OrderedDict([
     ("Familie & Kinder", 42023),
@@ -27,6 +32,10 @@ BASE_RSS = (
     "stadt-erleben/veranstaltungskalender/index.php"
 )
 
+OUTPUT_FILE = "veranstaltungen.ics"
+
+TIMEZONE = ZoneInfo("Europe/Berlin")
+
 HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (X11; Linux x86_64) "
@@ -43,36 +52,52 @@ HEADERS = {
 }
 
 
+# ============================================================
+# HTTP
+# ============================================================
+
 def fetch(url, timeout=30):
-    request = urllib.request.Request(url, headers=HEADERS)
+
+    request = urllib.request.Request(
+        url,
+        headers=HEADERS
+    )
 
     try:
-        with urllib.request.urlopen(request, timeout=timeout) as response:
+        with urllib.request.urlopen(
+            request,
+            timeout=timeout
+        ) as response:
+
             data = response.read()
 
-            content_type = response.headers.get("Content-Type", "")
-            content_encoding = response.headers.get("Content-Encoding", "")
+            content_type = response.headers.get(
+                "Content-Type",
+                ""
+            )
+
+            content_encoding = response.headers.get(
+                "Content-Encoding",
+                ""
+            )
+
             final_url = response.geturl()
             status = response.status
 
             # ------------------------------------------------
-            # WICHTIG:
-            # GitHub bekommt teilweise gzip-komprimierte Daten.
-            # Diese müssen vor dem HTML-Parsing entpackt werden.
+            # gzip erkennen und dekomprimieren
             # ------------------------------------------------
-            if content_encoding.lower() == "gzip" or data[:2] == b"\x1f\x8b":
-                try:
-                    data = gzip.decompress(data)
-                except Exception as exc:
-                    return {
-                        "ok": False,
-                        "status": status,
-                        "content_type": content_type,
-                        "content_encoding": content_encoding,
-                        "final_url": final_url,
-                        "text": "",
-                        "error": f"gzip-Dekompression fehlgeschlagen: {exc}",
-                    }
+
+            if (
+                content_encoding.lower() == "gzip"
+                or data[:2] == b"\x1f\x8b"
+            ):
+
+                data = gzip.decompress(data)
+
+            # ------------------------------------------------
+            # Zeichensatz bestimmen
+            # ------------------------------------------------
 
             charset = "utf-8"
 
@@ -86,33 +111,36 @@ def fetch(url, timeout=30):
                 charset = match.group(1).strip('"')
 
             try:
-                text = data.decode(charset, errors="replace")
+                text = data.decode(
+                    charset,
+                    errors="replace"
+                )
             except LookupError:
-                text = data.decode("utf-8", errors="replace")
+                text = data.decode(
+                    "utf-8",
+                    errors="replace"
+                )
 
-            return {
-                "ok": True,
-                "status": status,
-                "content_type": content_type,
-                "content_encoding": content_encoding,
-                "final_url": final_url,
-                "text": text,
-                "error": None,
-            }
+            return text, final_url
 
     except Exception as exc:
-        return {
-            "ok": False,
-            "status": None,
-            "content_type": "",
-            "content_encoding": "",
-            "final_url": url,
-            "text": "",
-            "error": repr(exc),
-        }
 
+        print(
+            f"FEHLER beim Abruf: {url}"
+        )
+        print(
+            f"  {exc}"
+        )
+
+        return "", url
+
+
+# ============================================================
+# RSS
+# ============================================================
 
 def rss_url(category_id):
+
     params = [
         ("sp:categories[13495][0]", "-"),
         ("sp:categories[13495][1]", "__last__"),
@@ -126,261 +154,831 @@ def rss_url(category_id):
         ("action", "submit"),
     ]
 
-    return BASE_RSS + "?" + urllib.parse.urlencode(params)
+    return (
+        BASE_RSS
+        + "?"
+        + urllib.parse.urlencode(params)
+    )
 
+
+def parse_rss(xml_text):
+
+    root = ET.fromstring(xml_text)
+
+    events = []
+
+    for item in root.findall(".//item"):
+
+        title = item.findtext(
+            "title",
+            default=""
+        )
+
+        link = item.findtext(
+            "link",
+            default=""
+        )
+
+        description = item.findtext(
+            "description",
+            default=""
+        )
+
+        title = html.unescape(
+            title
+        ).strip()
+
+        link = html.unescape(
+            link
+        ).strip()
+
+        description = html.unescape(
+            description
+        ).strip()
+
+        if title and link:
+
+            events.append({
+                "title": title,
+                "link": link,
+                "description": description,
+            })
+
+    return events
+
+
+# ============================================================
+# TEXT / HTML
+# ============================================================
 
 def clean_text(value):
-    value = html.unescape(value or "")
+
+    value = html.unescape(
+        value or ""
+    )
 
     value = re.sub(
         r"<script\b[^>]*>.*?</script>",
         " ",
         value,
-        flags=re.I | re.S,
+        flags=re.I | re.S
     )
 
     value = re.sub(
         r"<style\b[^>]*>.*?</style>",
         " ",
         value,
-        flags=re.I | re.S,
+        flags=re.I | re.S
     )
 
-    value = re.sub(r"<[^>]+>", " ", value)
-    value = re.sub(r"\s+", " ", value)
+    value = re.sub(
+        r"<[^>]+>",
+        " ",
+        value
+    )
+
+    value = re.sub(
+        r"\s+",
+        " ",
+        value
+    )
 
     return value.strip()
 
 
-def parse_rss(xml_text):
-    root = ET.fromstring(xml_text)
+# ============================================================
+# DATUM
+# ============================================================
 
-    items = []
-
-    for item in root.findall(".//item"):
-        title = item.findtext("title", default="")
-        link = item.findtext("link", default="")
-        description = item.findtext("description", default="")
-
-        title = html.unescape(title).strip()
-        link = html.unescape(link).strip()
-        description = html.unescape(description).strip()
-
-        if title and link:
-            items.append({
-                "title": title,
-                "link": link,
-                "description": description,
-            })
-
-    return items
+MONTHS = {
+    "januar": 1,
+    "februar": 2,
+    "märz": 3,
+    "april": 4,
+    "mai": 5,
+    "juni": 6,
+    "juli": 7,
+    "august": 8,
+    "september": 9,
+    "oktober": 10,
+    "november": 11,
+    "dezember": 12,
+}
 
 
-def show_diagnosis(item):
+def parse_date(text):
 
-    print()
-    print("=" * 80)
-    print("DIAGNOSE VERANSTALTUNG")
-    print("=" * 80)
+    pattern = (
+        r"(\d{1,2})\.\s*"
+        r"(Januar|Februar|März|April|Mai|Juni|Juli|"
+        r"August|September|Oktober|November|Dezember)"
+        r"\s+(\d{4})"
+    )
 
-    print("TITEL:")
-    print(item["title"])
+    match = re.search(
+        pattern,
+        text,
+        re.IGNORECASE
+    )
 
-    print()
-    print("RSS-LINK:")
-    print(item["link"])
+    if not match:
+        return None
 
-    result = fetch(item["link"])
+    day = int(match.group(1))
 
-    print()
-    print("HTTP-STATUS:")
-    print(result["status"])
+    month_name = match.group(2).lower()
 
-    print()
-    print("CONTENT-TYPE:")
-    print(result["content_type"])
+    month = MONTHS.get(
+        month_name
+    )
 
-    print()
-    print("CONTENT-ENCODING:")
-    print(result["content_encoding"])
+    year = int(
+        match.group(3)
+    )
 
-    print()
-    print("ENDGÜLTIGE URL:")
-    print(result["final_url"])
+    if not month:
+        return None
 
-    if not result["ok"]:
-        print()
-        print("FEHLER:")
-        print(result["error"])
-        return
+    try:
 
-    text = result["text"]
+        return datetime(
+            year,
+            month,
+            day
+        ).date()
 
-    print()
-    print("HTML-LÄNGE NACH DEKOMPRESSION:")
-    print(len(text))
+    except ValueError:
 
-    print()
-    print("HTML-BEGINN NACH DEKOMPRESSION:")
-    print("-" * 80)
-    print(text[:500])
-    print("-" * 80)
+        return None
 
-    plain = clean_text(text)
 
-    print()
-    print("TEXT – ERSTE 3000 ZEICHEN:")
-    print("-" * 80)
-    print(plain[:3000])
-    print("-" * 80)
+# ============================================================
+# UHRZEIT
+# ============================================================
 
-    print()
-    print("SUCHTESTELLEN:")
+def parse_times(text):
 
-    patterns = [
-        r"Termin-Details",
-        r"Beginn",
-        r"Ende",
-        r"\d{1,2}\.\s*(?:Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember)",
-        r"\d{1,2}:\d{2}",
-        r"2026",
-        r"2027",
+    # --------------------------------------------------------
+    # Bevorzugt:
+    # "Zeit: 16:00 – 17:00 Uhr"
+    # bzw.
+    # "Beginn: 11:00 Uhr"
+    # --------------------------------------------------------
+
+    time_range_patterns = [
+
+        r"Zeit:\s*(\d{1,2}):(\d{2})\s*[–\-]\s*(\d{1,2}):(\d{2})",
+
+        r"Beginn:\s*(\d{1,2}):(\d{2})"
+        r".{0,120}?"
+        r"(?:Ende|bis)\s*:?\s*"
+        r"(\d{1,2}):(\d{2})",
+
     ]
 
-    for pattern in patterns:
-        found = re.search(pattern, plain, re.IGNORECASE)
-        print(
-            f"  {pattern!r}: "
-            f"{'JA' if found else 'NEIN'}"
+    for pattern in time_range_patterns:
+
+        match = re.search(
+            pattern,
+            text,
+            re.IGNORECASE
         )
 
+        if match:
+
+            return (
+                (
+                    int(match.group(1)),
+                    int(match.group(2))
+                ),
+                (
+                    int(match.group(3)),
+                    int(match.group(4))
+                )
+            )
+
+    # --------------------------------------------------------
+    # Nur Beginn vorhanden
+    # --------------------------------------------------------
+
+    start_patterns = [
+
+        r"Beginn:\s*(\d{1,2}):(\d{2})",
+
+        r"(?:Beginn|Start|Los geht es)"
+        r"\s*(?:um|:)?\s*"
+        r"(\d{1,2}):(\d{2})\s*Uhr",
+
+    ]
+
+    for pattern in start_patterns:
+
+        match = re.search(
+            pattern,
+            text,
+            re.IGNORECASE
+        )
+
+        if match:
+
+            return (
+                (
+                    int(match.group(1)),
+                    int(match.group(2))
+                ),
+                None
+            )
+
+    # --------------------------------------------------------
+    # Allgemeine Zeitangabe
+    # --------------------------------------------------------
+
+    general = re.search(
+        r"(\d{1,2}):(\d{2})\s*Uhr",
+        text
+    )
+
+    if general:
+
+        return (
+            (
+                int(general.group(1)),
+                int(general.group(2))
+            ),
+            None
+        )
+
+    return None, None
+
+
+# ============================================================
+# VERANSTALTUNGSINFORMATIONEN
+# ============================================================
+
+def extract_event_data(event):
+
+    html_text, final_url = fetch(
+        event["link"]
+    )
+
+    if not html_text:
+
+        return None
+
+    text = clean_text(
+        html_text
+    )
+
+    # --------------------------------------------------------
+    # Datum
+    # --------------------------------------------------------
+
+    event_date = parse_date(
+        text
+    )
+
+    if not event_date:
+
+        print(
+            f"  KEIN DATUM: {event['title']}"
+        )
+
+        return None
+
+    # --------------------------------------------------------
+    # Zeit
+    # --------------------------------------------------------
+
+    start_time, end_time = parse_times(
+        text
+    )
+
+    # --------------------------------------------------------
+    # Start
+    # --------------------------------------------------------
+
+    if start_time:
+
+        start = datetime(
+            event_date.year,
+            event_date.month,
+            event_date.day,
+            start_time[0],
+            start_time[1],
+            tzinfo=TIMEZONE
+        )
+
+    else:
+
+        # Ganztägige Veranstaltung
+        start = datetime(
+            event_date.year,
+            event_date.month,
+            event_date.day,
+            tzinfo=TIMEZONE
+        )
+
+    # --------------------------------------------------------
+    # Ende
+    # --------------------------------------------------------
+
+    if end_time:
+
+        end = datetime(
+            event_date.year,
+            event_date.month,
+            event_date.day,
+            end_time[0],
+            end_time[1],
+            tzinfo=TIMEZONE
+        )
+
+        # Falls eine Veranstaltung über Mitternacht geht
+        if end <= start:
+            end += timedelta(
+                days=1
+            )
+
+    elif start_time:
+
+        # Bei vorhandener Startzeit, aber fehlender Endzeit:
+        # 2 Stunden Standarddauer.
+        end = start + timedelta(
+            hours=2
+        )
+
+    else:
+
+        # Ganztägig
+        end = start + timedelta(
+            days=1
+        )
+
+    return {
+        "title": event["title"],
+        "url": final_url,
+        "date": event_date,
+        "start": start,
+        "end": end,
+        "description": text,
+    }
+
+
+# ============================================================
+# ICS
+# ============================================================
+
+def ics_escape(value):
+
+    value = str(value)
+
+    value = value.replace(
+        "\\",
+        "\\\\"
+    )
+
+    value = value.replace(
+        ";",
+        "\\;"
+    )
+
+    value = value.replace(
+        ",",
+        "\\,"
+    )
+
+    value = value.replace(
+        "\r",
+        ""
+    )
+
+    value = value.replace(
+        "\n",
+        "\\n"
+    )
+
+    return value
+
+
+def fold_ics_line(line):
+
+    # RFC 5545:
+    # Zeilen dürfen maximal 75 Oktette lang sein.
+    # Für UTF-8 ist eine einfache Zeichenbegrenzung
+    # hier ausreichend praktisch.
+    result = []
+
+    while len(line) > 73:
+
+        result.append(
+            line[:73]
+        )
+
+        line = " " + line[73:]
+
+    result.append(line)
+
+    return "\r\n".join(result)
+
+
+def format_dt(dt):
+
+    return dt.strftime(
+        "%Y%m%dT%H%M%S"
+    )
+
+
+def make_uid(event):
+
+    encoded = urllib.parse.quote(
+        event["url"],
+        safe=""
+    )
+
+    return (
+        encoded[:180]
+        + "@leverkusen-kalender"
+    )
+
+
+def make_vevent(event, categories):
+
+    lines = []
+
+    lines.append(
+        "BEGIN:VEVENT"
+    )
+
+    lines.append(
+        f"UID:{make_uid(event)}"
+    )
+
+    lines.append(
+        f"DTSTAMP:{datetime.now(tz=TIMEZONE).strftime('%Y%m%dT%H%M%SZ')}"
+    )
+
+    # --------------------------------------------------------
+    # DATE / TIME
+    # --------------------------------------------------------
+
+    lines.append(
+        f"DTSTART;TZID=Europe/Berlin:"
+        f"{format_dt(event['start'])}"
+    )
+
+    lines.append(
+        f"DTEND;TZID=Europe/Berlin:"
+        f"{format_dt(event['end'])}"
+    )
+
+    # --------------------------------------------------------
+    # TITLE
+    # --------------------------------------------------------
+
+    lines.append(
+        "SUMMARY:"
+        + ics_escape(
+            event["title"]
+        )
+    )
+
+    # --------------------------------------------------------
+    # KATEGORIEN
+    # --------------------------------------------------------
+
+    unique_categories = []
+
+    for category in categories:
+
+        if category not in unique_categories:
+            unique_categories.append(
+                category
+            )
+
+    if unique_categories:
+
+        lines.append(
+            "CATEGORIES:"
+            + ",".join(
+                ics_escape(c)
+                for c in unique_categories
+            )
+        )
+
+    # --------------------------------------------------------
+    # URL
+    # --------------------------------------------------------
+
+    lines.append(
+        "URL:"
+        + event["url"]
+    )
+
+    # --------------------------------------------------------
+    # BESCHREIBUNG
+    # --------------------------------------------------------
+
+    description = event.get(
+        "description",
+        ""
+    )
+
+    # Nicht die komplette Website in den Kalender schreiben.
+    # Nur einen sinnvollen Ausschnitt.
+    if description:
+
+        # Hauptnavigation und typische Seitenteile entfernen,
+        # soweit möglich.
+        description = re.sub(
+            r"\s+",
+            " ",
+            description
+        ).strip()
+
+        if len(description) > 1500:
+
+            description = (
+                description[:1500]
+                + "…"
+            )
+
+        lines.append(
+            "DESCRIPTION:"
+            + ics_escape(
+                description
+            )
+        )
+
+    lines.append(
+        "END:VEVENT"
+    )
+
+    return "\r\n".join(
+        fold_ics_line(line)
+        for line in lines
+    )
+
+
+# ============================================================
+# MAIN
+# ============================================================
 
 def main():
 
-    print("=" * 80)
-    print("LEVERKUSEN KALENDER – GZIP-DIAGNOSE")
-    print("=" * 80)
+    print(
+        "=" * 80
+    )
+
+    print(
+        "LEVERKUSEN WEB-CAL KALENDER"
+    )
+
+    print(
+        "=" * 80
+    )
 
     all_events = OrderedDict()
 
+    category_counts = OrderedDict()
+
+    # --------------------------------------------------------
+    # RSS laden
+    # --------------------------------------------------------
+
     for category, category_id in CATEGORIES.items():
 
-        url = rss_url(category_id)
-
         print()
-        print(f"Lade RSS: {category}")
+        print(
+            f"Kategorie: {category}"
+        )
 
-        result = fetch(url)
+        url = rss_url(
+            category_id
+        )
 
-        if not result["ok"]:
-            print("  FEHLER:", result["error"])
+        xml_text, _ = fetch(
+            url
+        )
+
+        if not xml_text:
+
+            print(
+                "  RSS konnte nicht geladen werden."
+            )
+
+            category_counts[category] = 0
+
+            continue
+
+        try:
+
+            events = parse_rss(
+                xml_text
+            )
+
+        except Exception as exc:
+
+            print(
+                f"  RSS-Fehler: {exc}"
+            )
+
+            category_counts[category] = 0
+
             continue
 
         print(
-            f"  HTTP {result['status']} – "
-            f"{len(result['text'])} Zeichen"
+            f"  RSS-Veranstaltungen: {len(events)}"
         )
 
-        try:
-            events = parse_rss(result["text"])
-        except Exception as exc:
-            print("  RSS-PARSE-FEHLER:", repr(exc))
-            continue
-
-        print(f"  Veranstaltungen: {len(events)}")
+        category_counts[category] = len(
+            events
+        )
 
         for event in events:
 
-            key = (
-                event["title"],
-                event["link"],
-            )
+            key = event["link"]
 
             if key not in all_events:
-                all_events[key] = event
 
-    events = list(all_events.values())
+                all_events[key] = {
+                    "title": event["title"],
+                    "link": event["link"],
+                    "description": event["description"],
+                    "categories": [category],
+                }
 
-    print()
-    print("=" * 80)
-    print(f"EINDEUTIGE RSS-VERANSTALTUNGEN: {len(events)}")
-    print("=" * 80)
+            else:
 
-    targets = [
-        "Familientag im Sensenhammer",
-        "Lesen verleiht Flügel",
-        "Karnevalszug Hitdorf",
-    ]
+                if category not in all_events[key]["categories"]:
 
-    selected = []
-
-    for target in targets:
-
-        for event in events:
-
-            if target.lower() in event["title"].lower():
-
-                if event not in selected:
-                    selected.append(event)
-
-                break
-
-    if len(selected) < 3:
-
-        for event in events:
-
-            if event not in selected:
-                selected.append(event)
-
-            if len(selected) >= 3:
-                break
+                    all_events[key]["categories"].append(
+                        category
+                    )
 
     print()
-    print("Es werden folgende Veranstaltungen untersucht:")
+    print(
+        "=" * 80
+    )
 
-    for i, event in enumerate(selected, 1):
+    print(
+        f"EINDEUTIGE VERANSTALTUNGEN: "
+        f"{len(all_events)}"
+    )
 
-        print(f"{i}. {event['title']}")
-        print(f"   {event['link']}")
+    print(
+        "=" * 80
+    )
 
-    for event in selected:
-        show_diagnosis(event)
+    # --------------------------------------------------------
+    # Veranstaltungsseiten auswerten
+    # --------------------------------------------------------
 
-    print()
-    print("=" * 80)
-    print("RSS-BESCHREIBUNGEN – VERGLEICH")
-    print("=" * 80)
+    processed = []
 
-    shown = 0
+    failed = []
 
-    for event in events:
+    for number, event in enumerate(
+        all_events.values(),
+        1
+    ):
 
-        description = clean_text(event["description"])
+        print(
+            f"[{number}/{len(all_events)}] "
+            f"{event['title']}"
+        )
 
-        if (
-            re.search(r"\d{1,2}:\d{2}", description)
-            or re.search(r"\d{1,2}\.\s*\w+", description)
-        ):
+        data = extract_event_data(
+            event
+        )
 
-            print()
-            print("TITEL:", event["title"])
-            print("LINK:", event["link"])
-            print(
-                "RSS-BESCHREIBUNG:",
-                description[:1000]
+        if data:
+
+            data["categories"] = event[
+                "categories"
+            ]
+
+            processed.append(
+                data
             )
 
-            shown += 1
+        else:
 
-            if shown >= 5:
-                break
+            failed.append(
+                event
+            )
+
+    # --------------------------------------------------------
+    # ICS schreiben
+    # --------------------------------------------------------
 
     print()
-    print("=" * 80)
-    print("DIAGNOSE BEENDET")
-    print("=" * 80)
+    print(
+        "=" * 80
+    )
+
+    print(
+        "SCHREIBE KALENDER"
+    )
+
+    print(
+        "=" * 80
+    )
+
+    ics_lines = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//CNobach23//Leverkusen Kalender//DE",
+        "CALSCALE:GREGORIAN",
+        "METHOD:PUBLISH",
+        "X-WR-CALNAME:Leverkusen Veranstaltungen",
+        "X-WR-TIMEZONE:Europe/Berlin",
+    ]
+
+    for event in processed:
+
+        ics_lines.append(
+            make_vevent(
+                event,
+                event["categories"]
+            )
+        )
+
+    ics_lines.append(
+        "END:VCALENDAR"
+    )
+
+    with open(
+        OUTPUT_FILE,
+        "w",
+        encoding="utf-8",
+        newline=""
+    ) as file:
+
+        file.write(
+            "\r\n".join(
+                ics_lines
+            )
+            + "\r\n"
+        )
+
+    # --------------------------------------------------------
+    # Statistik
+    # --------------------------------------------------------
+
     print()
-    print("Es wurde absichtlich KEINE veranstaltungen.ics geschrieben.")
+    print(
+        "=" * 80
+    )
+
+    print(
+        "FERTIG!"
+    )
+
+    print(
+        "=" * 80
+    )
+
+    print(
+        f"Veranstaltungen geschrieben: "
+        f"{len(processed)}"
+    )
+
+    print(
+        f"Nicht verarbeitet: "
+        f"{len(failed)}"
+    )
+
+    print()
+
+    for category in CATEGORIES:
+
+        count = sum(
+            1
+            for event in processed
+            if category in event["categories"]
+        )
+
+        print(
+            f"{category}: {count}"
+        )
+
+    if failed:
+
+        print()
+        print(
+            "NICHT VERARBEITETE VERANSTALTUNGEN:"
+        )
+
+        for event in failed[:50]:
+
+            print(
+                f"  - {event['title']}"
+            )
+
+    print()
+    print(
+        f"Datei: {OUTPUT_FILE}"
+    )
 
 
 if __name__ == "__main__":
