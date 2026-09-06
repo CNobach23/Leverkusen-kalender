@@ -1,3 +1,4 @@
+import gzip
 import html
 import re
 import ssl
@@ -6,10 +7,6 @@ import urllib.parse
 import xml.etree.ElementTree as ET
 from collections import OrderedDict
 
-
-# ============================================================
-# LEVERKUSEN KALENDER – DIAGNOSE
-# ============================================================
 
 CATEGORIES = OrderedDict([
     ("Familie & Kinder", 42023),
@@ -41,22 +38,41 @@ HEADERS = {
         "q=0.9,*/*;q=0.8"
     ),
     "Accept-Language": "de-DE,de;q=0.9,en;q=0.8",
+    "Accept-Encoding": "gzip, deflate",
     "Referer": "https://www.leverkusen.de/",
 }
 
 
 def fetch(url, timeout=30):
-    """
-    Lädt eine URL und gibt zusätzlich technische Informationen zurück.
-    """
     request = urllib.request.Request(url, headers=HEADERS)
 
     try:
         with urllib.request.urlopen(request, timeout=timeout) as response:
             data = response.read()
+
             content_type = response.headers.get("Content-Type", "")
+            content_encoding = response.headers.get("Content-Encoding", "")
             final_url = response.geturl()
             status = response.status
+
+            # ------------------------------------------------
+            # WICHTIG:
+            # GitHub bekommt teilweise gzip-komprimierte Daten.
+            # Diese müssen vor dem HTML-Parsing entpackt werden.
+            # ------------------------------------------------
+            if content_encoding.lower() == "gzip" or data[:2] == b"\x1f\x8b":
+                try:
+                    data = gzip.decompress(data)
+                except Exception as exc:
+                    return {
+                        "ok": False,
+                        "status": status,
+                        "content_type": content_type,
+                        "content_encoding": content_encoding,
+                        "final_url": final_url,
+                        "text": "",
+                        "error": f"gzip-Dekompression fehlgeschlagen: {exc}",
+                    }
 
             charset = "utf-8"
 
@@ -78,6 +94,7 @@ def fetch(url, timeout=30):
                 "ok": True,
                 "status": status,
                 "content_type": content_type,
+                "content_encoding": content_encoding,
                 "final_url": final_url,
                 "text": text,
                 "error": None,
@@ -88,6 +105,7 @@ def fetch(url, timeout=30):
             "ok": False,
             "status": None,
             "content_type": "",
+            "content_encoding": "",
             "final_url": url,
             "text": "",
             "error": repr(exc),
@@ -95,10 +113,6 @@ def fetch(url, timeout=30):
 
 
 def rss_url(category_id):
-    """
-    Baut die offizielle RSS-URL der jeweiligen Kategorie.
-    """
-
     params = [
         ("sp:categories[13495][0]", "-"),
         ("sp:categories[13495][1]", "__last__"),
@@ -116,24 +130,29 @@ def rss_url(category_id):
 
 
 def clean_text(value):
-    """
-    Entfernt HTML-Tags und macht HTML-Entities lesbar.
-    """
     value = html.unescape(value or "")
-    value = re.sub(r"<script\b[^>]*>.*?</script>", " ", value,
-                   flags=re.I | re.S)
-    value = re.sub(r"<style\b[^>]*>.*?</style>", " ", value,
-                   flags=re.I | re.S)
+
+    value = re.sub(
+        r"<script\b[^>]*>.*?</script>",
+        " ",
+        value,
+        flags=re.I | re.S,
+    )
+
+    value = re.sub(
+        r"<style\b[^>]*>.*?</style>",
+        " ",
+        value,
+        flags=re.I | re.S,
+    )
+
     value = re.sub(r"<[^>]+>", " ", value)
     value = re.sub(r"\s+", " ", value)
+
     return value.strip()
 
 
 def parse_rss(xml_text):
-    """
-    Liest die RSS-Veranstaltungen aus.
-    """
-
     root = ET.fromstring(xml_text)
 
     items = []
@@ -158,10 +177,6 @@ def parse_rss(xml_text):
 
 
 def show_diagnosis(item):
-    """
-    Lädt genau eine Veranstaltungsseite und zeigt,
-    was GitHub tatsächlich bekommt.
-    """
 
     print()
     print("=" * 80)
@@ -186,31 +201,35 @@ def show_diagnosis(item):
     print(result["content_type"])
 
     print()
+    print("CONTENT-ENCODING:")
+    print(result["content_encoding"])
+
+    print()
     print("ENDGÜLTIGE URL:")
     print(result["final_url"])
 
     if not result["ok"]:
         print()
-        print("FEHLER BEIM ABRUF:")
+        print("FEHLER:")
         print(result["error"])
         return
 
     text = result["text"]
 
     print()
-    print("HTML-LÄNGE:")
+    print("HTML-LÄNGE NACH DEKOMPRESSION:")
     print(len(text))
 
     print()
-    print("ROHES HTML – ERSTE 1500 ZEICHEN:")
+    print("HTML-BEGINN NACH DEKOMPRESSION:")
     print("-" * 80)
-    print(text[:1500])
+    print(text[:500])
     print("-" * 80)
 
     plain = clean_text(text)
 
     print()
-    print("TEXTINHALT – ERSTE 3000 ZEICHEN:")
+    print("TEXT – ERSTE 3000 ZEICHEN:")
     print("-" * 80)
     print(plain[:3000])
     print("-" * 80)
@@ -230,15 +249,17 @@ def show_diagnosis(item):
 
     for pattern in patterns:
         found = re.search(pattern, plain, re.IGNORECASE)
-        print(f"  {pattern!r}: {'JA' if found else 'NEIN'}")
+        print(
+            f"  {pattern!r}: "
+            f"{'JA' if found else 'NEIN'}"
+        )
 
 
 def main():
 
     print("=" * 80)
-    print("LEVERKUSEN KALENDER – DIAGNOSE")
+    print("LEVERKUSEN KALENDER – GZIP-DIAGNOSE")
     print("=" * 80)
-    print()
 
     all_events = OrderedDict()
 
@@ -246,6 +267,7 @@ def main():
 
         url = rss_url(category_id)
 
+        print()
         print(f"Lade RSS: {category}")
 
         result = fetch(url)
@@ -268,6 +290,7 @@ def main():
         print(f"  Veranstaltungen: {len(events)}")
 
         for event in events:
+
             key = (
                 event["title"],
                 event["link"],
@@ -283,10 +306,6 @@ def main():
     print(f"EINDEUTIGE RSS-VERANSTALTUNGEN: {len(events)}")
     print("=" * 80)
 
-    # --------------------------------------------------------
-    # Zuerst versuchen wir gezielt die bekannten Problemfälle
-    # --------------------------------------------------------
-
     targets = [
         "Familientag im Sensenhammer",
         "Lesen verleiht Flügel",
@@ -296,16 +315,20 @@ def main():
     selected = []
 
     for target in targets:
+
         for event in events:
+
             if target.lower() in event["title"].lower():
+
                 if event not in selected:
                     selected.append(event)
+
                 break
 
-    # Falls einer der bekannten Titel nicht im RSS vorkommt:
-    # zusätzliche Veranstaltungen untersuchen.
     if len(selected) < 3:
+
         for event in events:
+
             if event not in selected:
                 selected.append(event)
 
@@ -316,21 +339,12 @@ def main():
     print("Es werden folgende Veranstaltungen untersucht:")
 
     for i, event in enumerate(selected, 1):
+
         print(f"{i}. {event['title']}")
         print(f"   {event['link']}")
 
-    # --------------------------------------------------------
-    # Diagnose
-    # --------------------------------------------------------
-
     for event in selected:
         show_diagnosis(event)
-
-    # --------------------------------------------------------
-    # Zusätzlicher Vergleich:
-    # Suche im gesamten RSS nach einem Event mit Terminangaben
-    # in der Beschreibung.
-    # --------------------------------------------------------
 
     print()
     print("=" * 80)
@@ -347,10 +361,14 @@ def main():
             re.search(r"\d{1,2}:\d{2}", description)
             or re.search(r"\d{1,2}\.\s*\w+", description)
         ):
+
             print()
             print("TITEL:", event["title"])
             print("LINK:", event["link"])
-            print("RSS-BESCHREIBUNG:", description[:1000])
+            print(
+                "RSS-BESCHREIBUNG:",
+                description[:1000]
+            )
 
             shown += 1
 
@@ -363,7 +381,6 @@ def main():
     print("=" * 80)
     print()
     print("Es wurde absichtlich KEINE veranstaltungen.ics geschrieben.")
-    print("Bitte diesen kompletten Actions-Log zurückschicken.")
 
 
 if __name__ == "__main__":
