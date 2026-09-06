@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: lewerkusen-kalender
+  cancel-in-progress: false
+
 jobs:
   update-calendar:
     runs-on: ubuntu-latest
@@ -15,6 +19,8 @@ jobs:
     steps:
       - name: Repository herunterladen
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Python einrichten
         uses: actions/setup-python@v5
@@ -24,10 +30,24 @@ jobs:
       - name: Kalender erzeugen
         run: python kalender.py
 
-      - name: Kalender speichern
+      - name: Änderungen vorbereiten
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add veranstaltungen.ics
-          git diff --cached --quiet || git commit -m "Kalender aktualisieren"
-          git push
+
+          git add veranstaltungen.ics geo_cache.json
+
+          if git diff --cached --quiet; then
+            echo "Keine Änderungen vorhanden."
+            exit 0
+          fi
+
+          git commit -m "Kalender aktualisieren"
+
+      - name: Änderungen von GitHub übernehmen
+        run: |
+          git pull --rebase origin main
+
+      - name: Kalender speichern
+        run: |
+          git push origin HEAD:main
