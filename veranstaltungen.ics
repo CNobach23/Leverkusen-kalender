@@ -6,24 +6,9 @@ METHOD:PUBLISH
 X-WR-CALNAME:Leverkusen Veranstaltungen
 X-WR-TIMEZONE:Europe/Berlin
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/jobmesse-kompakt/
-DTSTAMP:20260908T042958Z
-DTSTART:20260908T080000Z
-DTEND:20260908T140000Z
-SUMMARY:Jobmesse Kompakt
-DESCRIPTION:Entdecken Sie Ihre Karrierechancen auf der Jobmesse KOMPAKT Lev
- erkusen – treffen Sie Arbeitgeber und knüpfen Sie wertvolle Kontakte!\n
- \nKategorie: Märkte & Messen\n\nhttps://lust-auf-leverkusen.de/veranstalt
- ung/jobmesse-kompakt/
-LOCATION:Forum Leverkusen\, Am Büchelter Hof 9\, 51373\, Leverkusen
-GEO:51.034695;6.989814
-URL:https://lust-auf-leverkusen.de/veranstaltung/jobmesse-kompakt/
-CATEGORIES:Märkte & Messen
-END:VEVENT
-BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/mittwochsclub-treff-fuer-s
  eniorinnen-und-senioren/2026-09-09-14-30/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260909T123000Z
 DTEND:20260909T143000Z
 SUMMARY:Mittwochsclub. Treff für Seniorinnen und Senioren.
@@ -41,7 +26,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/time-out-silent-reading-un
  d-mehr-2/2026-09-09-18-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260909T160000Z
 DTEND:20260909T190000Z
 SUMMARY:Time-out – Silent Reading und mehr
@@ -59,7 +44,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://www.leverkusen.de/veranstaltungskalender/veranstaltungen/hauptk
  alender/bundesweiter-warntag
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260910T090000Z
 DTEND:20260910T100000Z
 SUMMARY:Bundesweiter Warntag
@@ -73,7 +58,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel-202
  6-09-10-16-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260910T140000Z
 DTEND:20260910T150000Z
 SUMMARY:Lesen verleiht Flügel
@@ -91,7 +76,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-09-10
  -17-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260910T150000Z
 DTEND:20260910T200000Z
 SUMMARY:Afterwork-Party am Flugplatz
@@ -108,7 +93,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/sven-ruehl-chris-tobi-lesu
  ng/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260911T163000Z
 DTEND:20260911T180000Z
 SUMMARY:Sven Rühl. Chris & Tobi.
@@ -126,7 +111,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/stage-session-die-offene-b
  uehne/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260911T180000Z
 DTEND:20260911T190000Z
 SUMMARY:Stage Session: Die offene Bühne
@@ -141,9 +126,24 @@ URL:https://lust-auf-leverkusen.de/veranstaltung/stage-session-die-offene-b
 CATEGORIES:Partys & Nachtleben
 END:VEVENT
 BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/edelrather-kirmes/
+DTSTAMP:20260909T042916Z
+DTSTART;VALUE=DATE:20260912
+DTEND;VALUE=DATE:20260913
+SUMMARY:Edelrather Kirmes
+DESCRIPTION:Erlebe die Edelrather Kirmes mit spannenden Wettbewerben\, trad
+ itionellem Brauchtum und einem bunten Kinderfest für die ganze Familie!\n
+ \nKategorie: Feste & Brauchtum\n\nhttps://lust-auf-leverkusen.de/veranstal
+ tung/edelrather-kirmes/
+LOCATION:Edelrather Kirmesplatz\, Edelrather Weg\, 51375\, Leverkusen
+GEO:51.032131;7.068849
+URL:https://lust-auf-leverkusen.de/veranstaltung/edelrather-kirmes/
+CATEGORIES:Feste & Brauchtum
+END:VEVENT
+BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/kastanienfest-in-pattschei
  d/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART;VALUE=DATE:20260912
 DTEND;VALUE=DATE:20260913
 SUMMARY:Kastanienfest in Pattscheid
@@ -158,24 +158,9 @@ URL:https://lust-auf-leverkusen.de/veranstaltung/kastanienfest-in-pattschei
 CATEGORIES:Feste & Brauchtum
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/edelrather-kirmes/
-DTSTAMP:20260908T042958Z
-DTSTART;VALUE=DATE:20260912
-DTEND;VALUE=DATE:20260913
-SUMMARY:Edelrather Kirmes
-DESCRIPTION:Erlebe die Edelrather Kirmes mit spannenden Wettbewerben\, trad
- itionellem Brauchtum und einem bunten Kinderfest für die ganze Familie!\n
- \nKategorie: Feste & Brauchtum\n\nhttps://lust-auf-leverkusen.de/veranstal
- tung/edelrather-kirmes/
-LOCATION:Edelrather Kirmesplatz\, Edelrather Weg\, 51375\, Leverkusen
-GEO:51.032131;7.068849
-URL:https://lust-auf-leverkusen.de/veranstaltung/edelrather-kirmes/
-CATEGORIES:Feste & Brauchtum
-END:VEVENT
-BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/feuerwehrfest-loeschzug-rh
  eindorf/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART;VALUE=DATE:20260912
 DTEND;VALUE=DATE:20260913
 SUMMARY:Feuerwehrfest Löschzug Rheindorf
@@ -192,7 +177,7 @@ CATEGORIES:Feste & Brauchtum
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/flugplatzfest/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART;VALUE=DATE:20260912
 DTEND;VALUE=DATE:20260913
 SUMMARY:Flugplatzfest Leverkusen 2026. Flugplatz Kurtekotten.
@@ -207,7 +192,7 @@ CATEGORIES:Tipps
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/mallorca-festival-xxl/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260912T100000Z
 DTEND:20260912T200000Z
 SUMMARY:Mallorca Festival XXL
@@ -222,7 +207,7 @@ CATEGORIES:Festivals & Open-Airs
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/sommerfest-karlstrasse/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260912T120000Z
 DTEND:20260912T180000Z
 SUMMARY:Straßenfest Karlstraße
@@ -237,7 +222,7 @@ CATEGORIES:Feste & Brauchtum
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/bunkertour-wiesdorf/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260912T143000Z
 DTEND:20260912T160000Z
 SUMMARY:Bunkertour Wiesdorf
@@ -253,7 +238,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/spelunke-elektrokneipe-kaw
  -25-50/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260912T170000Z
 DTEND:20260912T180000Z
 SUMMARY:Spelunke. Elektrokneipe. KAW 25/50.
@@ -271,7 +256,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/tus-1882-opladen-vs-s3l-le
  utershausen/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260912T173000Z
 DTEND:20260912T183000Z
 SUMMARY:TuS 1882 Opladen vs. S3L Leutershausen
@@ -289,7 +274,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/geheimnisvoller-wald-leben
  sraum-des-siebenschlaefers/2026-09-12-20-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260912T180000Z
 DTEND:20260912T200000Z
 SUMMARY:Nachtwanderung. Lebensraum des Siebenschläfers.
@@ -305,7 +290,7 @@ CATEGORIES:Familie & Kinder
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/golden-beats-ue40-party-2/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260912T180000Z
 DTEND:20260912T190000Z
 SUMMARY:Golden Beats. Ü40 Party.
@@ -321,7 +306,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/trash-party-meets-pride-am
  -rhein/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260912T190000Z
 DTEND:20260912T200000Z
 SUMMARY:Trash Party meets Pride am Rhein
@@ -337,7 +322,7 @@ CATEGORIES:Partys & Nachtleben
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/geschichtsfest-leverkusen/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260913T073000Z
 DTEND:20260913T183000Z
 SUMMARY:23. Geschichtsfest Leverkusen 2026
@@ -351,9 +336,26 @@ URL:https://lust-auf-leverkusen.de/veranstaltung/geschichtsfest-leverkusen/
 CATEGORIES:Feste & Brauchtum
 END:VEVENT
 BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/himmlische-gefuehle-sommer
+ fest/
+DTSTAMP:20260909T042916Z
+DTSTART:20260913T090000Z
+DTEND:20260913T110000Z
+SUMMARY:Himmlische Gefühle. Sommerfest.
+DESCRIPTION:Feiern Sie unter freiem Himmel einen musikalischen Gottesdienst
+  mit himmlischen Gefühlen und genießen Sie anschließend gesellige Begeg
+ nungen bei Essen und Trinken.\n\nKategorie: Familie & Kinder\n\nhttps://lu
+ st-auf-leverkusen.de/veranstaltung/himmlische-gefuehle-sommerfest/
+LOCATION:Matthäus-Gemeindehaus\, Karl-Bosch-Straße 2\, 51373\, Leverkusen
+GEO:51.030694;7.001170
+URL:https://lust-auf-leverkusen.de/veranstaltung/himmlische-gefuehle-sommer
+ fest/
+CATEGORIES:Familie & Kinder
+END:VEVENT
+BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/das-grosse-hoffest-kaw-25-
  50/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260913T100000Z
 DTEND:20260913T110000Z
 SUMMARY:Das Große Hoffest. KAW 25/50.
@@ -371,7 +373,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/historische-fuehrung-schlo
  ss-morsbroich-2/2026-09-13-15-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260913T130000Z
 DTEND:20260913T140000Z
 SUMMARY:Historische Führung. Schloss Morsbroich.
@@ -390,7 +392,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/opladen-mit-historischen-s
  puren/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260913T140000Z
 DTEND:20260913T153000Z
 SUMMARY:Opladen – mit historischen Spuren
@@ -407,7 +409,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-frauen/2026-09-14
  -18-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART;VALUE=DATE:20260914
 DTEND;VALUE=DATE:20260915
 SUMMARY:Bayer 04 Frauen vs. Bayern München
@@ -425,7 +427,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/zeig-dein-gesicht-male-dic
  h-selbst/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART;VALUE=DATE:20260915
 DTEND;VALUE=DATE:20260918
 SUMMARY:Zeig DEIN Gesicht. Male DICH selbst.
@@ -442,7 +444,7 @@ CATEGORIES:Familie & Kinder
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/lara-hoert-zu-2/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260915T140000Z
 DTEND:20260915T150000Z
 SUMMARY:Lara hört zu! Woche der Kinderrechte.
@@ -457,7 +459,7 @@ CATEGORIES:Familie & Kinder
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/trinkbar-kaw-25-50/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260916T100000Z
 DTEND:20260916T110000Z
 SUMMARY:TrinkBAR. KAW 25/50.
@@ -474,7 +476,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/gefuehlsuhr-basteln-woche-
  der-kinderrechte/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260916T133000Z
 DTEND:20260916T153000Z
 SUMMARY:Gefühlsuhr basteln. Woche der Kinderrechte.
@@ -492,7 +494,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/walk-talk-der-fairen-schok
  olade-auf-der-spur-faire-woche/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260916T150000Z
 DTEND:20260916T171500Z
 SUMMARY:Walk & Talk. Der fairen Schokolade auf der Spur. Faire Woche.
@@ -509,7 +511,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/culture-club/2026-09-16-19
  -00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260916T170000Z
 DTEND:20260916T210000Z
 SUMMARY:Culture Club
@@ -526,7 +528,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-leverkusen-vs-nk-
  celje-europa-league/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260916T190000Z
 DTEND:20260916T200000Z
 SUMMARY:Bayer 04 Leverkusen vs. NK Celje. Europa League.
@@ -543,7 +545,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/thematisches-familienfrueh
  stueck-woche-der-kinderrechte/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260917T073000Z
 DTEND:20260917T090000Z
 SUMMARY:Thematisches Familienfrühstück. Woche der Kinderrechte.
@@ -560,7 +562,7 @@ CATEGORIES:Familie & Kinder
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel-10/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260917T140000Z
 DTEND:20260917T150000Z
 SUMMARY:Lesen verleiht Flügel. Woche der Kinderrechte.
@@ -577,7 +579,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/juergen-wiebicke-liest-zuv
  ersicht-eine-kleine-philosophie-fuer-verrueckte-zeiten/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260917T173000Z
 DTEND:20260917T183000Z
 SUMMARY:Jürgen Wiebicke liest. Zuversicht – eine kleine Philosophie für
@@ -595,7 +597,7 @@ CATEGORIES:Lesungen & Literatur
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/schlebuscher-wochenende/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART;VALUE=DATE:20260918
 DTEND;VALUE=DATE:20260920
 SUMMARY:Schlebuscher Wochenende
@@ -611,7 +613,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/spielefest-alkenrath-stadt
  teilfest-fuer-die-ganze-familie/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260918T130000Z
 DTEND:20260918T160000Z
 SUMMARY:Spielefest Alkenrath. Stadtteilfest für die ganze Familie.
@@ -629,7 +631,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/cafe-gewollt/2026-09-18-16
  -00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260918T140000Z
 DTEND:20260918T160000Z
 SUMMARY:Café Gewollt
@@ -647,7 +649,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/open-air-oktoberfest/2026-
  09-18-17-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260918T150000Z
 DTEND:20260918T160000Z
 SUMMARY:Open Air Oktoberfest
@@ -665,7 +667,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/4-schlebuscher-vorlesenach
  t/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260918T153000Z
 DTEND:20260918T183000Z
 SUMMARY:4. Schlebuscher Vorlesenacht. Woche der Kinderrechte.
@@ -682,7 +684,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/gefuehle-in-schockstarre-g
  espraech-mit-notfallseelsorger-albi-roebke/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260918T173000Z
 DTEND:20260918T183000Z
 SUMMARY:Gefühle in Schockstarre – Gespräch mit Notfallseelsorger Albi R
@@ -700,7 +702,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/fairer-handel-in-der-fairt
  rade-stadt-leverkusen/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260919T083000Z
 DTEND:20260919T123000Z
 SUMMARY:Fairer Handel in der FairTrade-Stadt Leverkusen
@@ -717,7 +719,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/stadtrundfahrt-mit-schwerp
  unkt-bahnstationen/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260919T113000Z
 DTEND:20260919T123000Z
 SUMMARY:Stadtrundfahrt mit Schwerpunkt Bahnstationen
@@ -734,7 +736,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/verbrechen-der-ns-zeit-ein
  -stadtteilspaziergang-kaw-25-50/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260919T120000Z
 DTEND:20260919T143000Z
 SUMMARY:Verbrechen der NS Zeit. Ein Stadtteilspaziergang. KAW 25/50.
@@ -752,7 +754,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/leverkusener-literaturcafe
  -3/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260919T120000Z
 DTEND:20260919T140000Z
 SUMMARY:Leverkusener Literaturcafé
@@ -770,7 +772,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/open-air-oktoberfest/2026-
  09-19-17-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260919T150000Z
 DTEND:20260919T160000Z
 SUMMARY:Open Air Oktoberfest
@@ -788,7 +790,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-volleys/2026-09-19-1
  9-30/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260919T173000Z
 DTEND:20260919T183000Z
 SUMMARY:Bayer Volleys vs. VfL Oythe
@@ -803,7 +805,7 @@ CATEGORIES:Spitzensport
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/independance-kaw-25-50/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260919T200000Z
 DTEND:20260919T210000Z
 SUMMARY:IndepenDance. KAW 25/50.
@@ -818,9 +820,26 @@ URL:https://lust-auf-leverkusen.de/veranstaltung/independance-kaw-25-50/
 CATEGORIES:Partys & Nachtleben
 END:VEVENT
 BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/weltkindertag-im-neuland-p
+ ark/
+DTSTAMP:20260909T042916Z
+DTSTART:20260920T100000Z
+DTEND:20260920T150000Z
+SUMMARY:Weltkindertag im Neuland-Park
+DESCRIPTION:Feiert den Weltkindertag im Neuland-Park Leverkusen mit Spiel\,
+  Spaß und tollen Aktionen – der Eintritt ist frei! Kommt vorbei!\n\nKat
+ egorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/w
+ eltkindertag-im-neuland-park/
+LOCATION:Neuland-Park\, Nobelstraße 91\, 51373\, Leverkusen
+GEO:51.036564;6.972442
+URL:https://lust-auf-leverkusen.de/veranstaltung/weltkindertag-im-neuland-p
+ ark/
+CATEGORIES:Familie & Kinder
+END:VEVENT
+BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/minigolf-spielen-fuer-kind
  er-kostenlos-am-weltkindertag/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260920T100000Z
 DTEND:20260920T170000Z
 SUMMARY:Minigolf spielen – für Kinder kostenlos am Weltkindertag
@@ -836,26 +855,9 @@ URL:https://lust-auf-leverkusen.de/veranstaltung/minigolf-spielen-fuer-kind
 CATEGORIES:Familie & Kinder
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/weltkindertag-im-neuland-p
- ark/
-DTSTAMP:20260908T042958Z
-DTSTART:20260920T100000Z
-DTEND:20260920T150000Z
-SUMMARY:Weltkindertag im Neuland-Park
-DESCRIPTION:Feiert den Weltkindertag im Neuland-Park Leverkusen mit Spiel\,
-  Spaß und tollen Aktionen – der Eintritt ist frei! Kommt vorbei!\n\nKat
- egorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.de/veranstaltung/w
- eltkindertag-im-neuland-park/
-LOCATION:Neuland-Park\, Nobelstraße 91\, 51373\, Leverkusen
-GEO:51.036564;6.972442
-URL:https://lust-auf-leverkusen.de/veranstaltung/weltkindertag-im-neuland-p
- ark/
-CATEGORIES:Familie & Kinder
-END:VEVENT
-BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-leverkusen/2026-0
  9-20-15-30/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260920T133000Z
 DTEND:20260920T151500Z
 SUMMARY:Bayer 04 Leverkusen vs. RB Leipzig
@@ -871,7 +873,7 @@ CATEGORIES:Spitzensport
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/die-beamtenkolonie/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260920T140000Z
 DTEND:20260920T153000Z
 SUMMARY:Die Beamtenkolonie
@@ -888,7 +890,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/mittwochsclub-treff-fuer-s
  eniorinnen-und-senioren/2026-09-23-14-30/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260923T123000Z
 DTEND:20260923T143000Z
 SUMMARY:Mittwochsclub. Treff für Seniorinnen und Senioren.
@@ -906,7 +908,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/historische-fuehrung-schlo
  ss-morsbroich-2/2026-09-23-15-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260923T130000Z
 DTEND:20260923T140000Z
 SUMMARY:Historische Führung. Schloss Morsbroich.
@@ -925,7 +927,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel-202
  6-09-24-16-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260924T140000Z
 DTEND:20260924T150000Z
 SUMMARY:Lesen verleiht Flügel
@@ -943,7 +945,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-09-24
  -17-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260924T150000Z
 DTEND:20260924T200000Z
 SUMMARY:Afterwork-Party am Flugplatz
@@ -960,7 +962,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/drei-gaenge-musik-literatu
  r-essen/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260924T163000Z
 DTEND:20260924T194500Z
 SUMMARY:Drei Gänge. Musik\, Literatur\, Essen.
@@ -978,7 +980,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/hilla-hombach-gedichte-und
  -geschichten/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260925T173000Z
 DTEND:20260925T183000Z
 SUMMARY:Hilla Hombach. Gedichte und Geschichten.
@@ -994,7 +996,7 @@ CATEGORIES:Lesungen & Literatur
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/mutti-rockt-hitdorf/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260925T180000Z
 DTEND:20260925T210000Z
 SUMMARY:Mutti rockt Hitdorf
@@ -1009,7 +1011,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/theatertour-wir-fuer-lever
  kusen/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260926T113000Z
 DTEND:20260926T123000Z
 SUMMARY:Theatertour. Wir für Leverkusen.
@@ -1026,7 +1028,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/oktoberfest-am-kettnersbus
  ch/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260926T120000Z
 DTEND:20260926T130000Z
 SUMMARY:Oktoberfest am Kettnersbusch
@@ -1043,7 +1045,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/bunkertour-opladen-2/2026-
  09-26-16-30/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260926T143000Z
 DTEND:20260926T160000Z
 SUMMARY:Bunkertour Opladen
@@ -1060,7 +1062,7 @@ CATEGORIES:Führungen & Touren
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/oktoberfest-gallodini/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260926T160000Z
 DTEND:20260926T170000Z
 SUMMARY:Oktoberfest. Gallodini.
@@ -1076,7 +1078,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/internationale-schlagerpar
  ty/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260926T180000Z
 DTEND:20260926T190000Z
 SUMMARY:Internationale Schlagerparty
@@ -1093,7 +1095,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/mama-geht-tanzen-x-knallbl
  ech-2/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260926T180000Z
 DTEND:20260926T210000Z
 SUMMARY:Mama geht tanzen x Knallblech
@@ -1110,7 +1112,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/schattentanz-dj-dalecooper
  /2026-09-26-21-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260926T190000Z
 DTEND:20260926T200000Z
 SUMMARY:Schattentanz. DJ Dalecooper.
@@ -1127,7 +1129,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/familientag-der-verkehrssi
  cherheit/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260927T080000Z
 DTEND:20260927T150000Z
 SUMMARY:Familientag der Verkehrssicherheit
@@ -1144,7 +1146,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/oktoberfest-im-gallodini-f
  amilientag/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20260927T100000Z
 DTEND:20260927T130000Z
 SUMMARY:Oktoberfest im Gallodini. Familientag.
@@ -1161,7 +1163,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/buechermaeuse/2026-10-01-0
  9-30/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261001T073000Z
 DTEND:20261001T081500Z
 SUMMARY:Büchermäuse
@@ -1179,7 +1181,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel/202
  6-10-01-16-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261001T140000Z
 DTEND:20261001T150000Z
 SUMMARY:Lesen verleiht Flügel
@@ -1196,7 +1198,7 @@ CATEGORIES:Familie & Kinder
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/naehcafe/2026-10-02-15-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261002T130000Z
 DTEND:20261002T160000Z
 SUMMARY:Nadel & Faden. Nähcafé
@@ -1213,7 +1215,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/feuer-frei/2026-10-02-21-0
  0/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261002T190000Z
 DTEND:20261002T200000Z
 SUMMARY:Feuer Frei
@@ -1230,7 +1232,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/maedchenklamotte-flohmarkt
  /
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261003T090000Z
 DTEND:20261003T140000Z
 SUMMARY:Mädchenklamotte Flohmarkt
@@ -1247,7 +1249,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/braende-loeschen-leben-ret
  ten-und-selber-aktiv-werden-familienstadtrundfahrt/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261003T113000Z
 DTEND:20261003T123000Z
 SUMMARY:Brände löschen\, Leben retten und selber aktiv werden. Familienst
@@ -1265,7 +1267,7 @@ CATEGORIES:Führungen & Touren
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/rheindorf-ein-weindorf/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261003T140000Z
 DTEND:20261003T170000Z
 SUMMARY:Rheindorf. Ein Weindorf?!
@@ -1281,7 +1283,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/wings-leverkusen/2026-10-0
  3-18-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261003T160000Z
 DTEND:20261003T170000Z
 SUMMARY:WINGS Leverkusen vs. ChemCats Chemnitz
@@ -1298,7 +1300,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-frauen/2026-10-04
  /
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART;VALUE=DATE:20261004
 DTEND;VALUE=DATE:20261005
 SUMMARY:Bayer 04 Frauen vs. SV Werder Bremen
@@ -1316,7 +1318,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/fahrtag-der-dampfbahn/2026
  -10-04-11-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261004T090000Z
 DTEND:20261004T150000Z
 SUMMARY:Fahrtag der Dampfbahn
@@ -1333,7 +1335,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/adler-modellspielzeugmarkt
  /
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261004T090000Z
 DTEND:20261004T130000Z
 SUMMARY:Adler Modellspielzeugmarkt
@@ -1350,7 +1352,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-giants/2026-10-04-16
  -00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261004T140000Z
 DTEND:20261004T150000Z
 SUMMARY:Bayer Giants vs. CATL Basketball Löwen
@@ -1367,7 +1369,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/tus-1882-opladen-vs-hsg-du
  tenhofen-m-ii/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261004T150000Z
 DTEND:20261004T160000Z
 SUMMARY:TuS 1882 Opladen vs. HSG Dutenhofen M. II
@@ -1385,7 +1387,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/grusskarten-freundschaften
  -erzaehlcafe/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261007T113000Z
 DTEND:20261007T130000Z
 SUMMARY:Grußkarten-Freundschaften. Erzählcafé.
@@ -1403,7 +1405,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/mittwochsclub-treff-fuer-s
  eniorinnen-und-senioren/2026-10-07-14-30/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261007T123000Z
 DTEND:20261007T143000Z
 SUMMARY:Mittwochsclub. Treff für Seniorinnen und Senioren.
@@ -1421,7 +1423,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel/202
  6-10-08-16-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261008T140000Z
 DTEND:20261008T150000Z
 SUMMARY:Lesen verleiht Flügel
@@ -1439,7 +1441,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-10-08
  -17-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261008T150000Z
 DTEND:20261008T200000Z
 SUMMARY:Afterwork-Party am Flugplatz
@@ -1456,7 +1458,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/kinderrechtewoche-umgang-m
  it-stress-im-familienalltag-2026-10-09-12-30/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261009T103000Z
 DTEND:20261009T120000Z
 SUMMARY:Umgang mit Stress im Familienalltag
@@ -1474,7 +1476,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/kolonien-rund-um-wiesdorf/
  2026-10-10-16-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261010T140000Z
 DTEND:20261010T153000Z
 SUMMARY:Kolonien rund um Wiesdorf
@@ -1491,7 +1493,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/kindertroedelmarkt-lindenh
  of/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261011T090000Z
 DTEND:20261011T140000Z
 SUMMARY:Kindertrödelmarkt. Lindenhof.
@@ -1508,7 +1510,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/troedelmarkt-in-der-awo-be
  gegnungsstaette/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261011T090000Z
 DTEND:20261011T140000Z
 SUMMARY:Trödelmarkt in der AWO Begegnungsstätte
@@ -1526,7 +1528,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/historische-fuehrung-schlo
  ss-morsbroich-2/2026-10-11-15-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261011T130000Z
 DTEND:20261011T140000Z
 SUMMARY:Historische Führung. Schloss Morsbroich.
@@ -1545,7 +1547,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-giants/2026-10-14-19
  -30/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261014T173000Z
 DTEND:20261014T183000Z
 SUMMARY:Bayer Giants vs. Ahorn Camp Baskets
@@ -1562,7 +1564,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel/202
  6-10-15-16-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261015T140000Z
 DTEND:20261015T150000Z
 SUMMARY:Lesen verleiht Flügel
@@ -1580,7 +1582,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/jochen-malmsheimer-uwe-roe
  ssler/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261015T180000Z
 DTEND:20261015T190000Z
 SUMMARY:Jochen Malmsheimer & Uwe Rössler
@@ -1597,7 +1599,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/cafe-gewollt/2026-10-16-16
  -00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261016T140000Z
 DTEND:20261016T160000Z
 SUMMARY:Café Gewollt
@@ -1615,7 +1617,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/papier-schaetze-buecher-un
  d-antik-troedel-markt-2/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART;VALUE=DATE:20261017
 DTEND;VALUE=DATE:20261018
 SUMMARY:Papier & Schätze. Bücher- und Antik-Trödel-Markt.
@@ -1632,7 +1634,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-leverkusen/2026-1
  0-17/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART;VALUE=DATE:20261017
 DTEND;VALUE=DATE:20261018
 SUMMARY:Bayer 04 Leverkusen vs. SC Freiburg
@@ -1649,7 +1651,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/glow-hochzeitsmesse-im-gar
  tensaal-schloss-morsbroich/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261017T090000Z
 DTEND:20261017T160000Z
 SUMMARY:GLOW. Hochzeitsmesse im Schloss Morsbroich.
@@ -1667,7 +1669,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/tus-1882-opladen-vs-hsg-ha
  nau/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261017T150000Z
 DTEND:20261017T160000Z
 SUMMARY:TuS 1882 Opladen vs. HSG Hanau
@@ -1685,7 +1687,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/tsv-bayer-04-leverkusen/20
  26-10-17-18-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261017T160000Z
 DTEND:20261017T170000Z
 SUMMARY:TSV Bayer 04 Leverkusen vs. Füchse Berlin
@@ -1702,7 +1704,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-frauen/2026-10-18
  /
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART;VALUE=DATE:20261018
 DTEND;VALUE=DATE:20261019
 SUMMARY:Bayer 04 Frauen vs. Eintracht Frankfurt
@@ -1720,7 +1722,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/benjamin-bluemchen-das-mus
  ical/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261018T120000Z
 DTEND:20261018T140000Z
 SUMMARY:Benjamin Blümchen. Das Musical.
@@ -1737,7 +1739,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-volleys/2026-10-18-1
  6-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261018T140000Z
 DTEND:20261018T150000Z
 SUMMARY:Bayer Volleys vs. TV Planegg-Krailling
@@ -1753,7 +1755,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/mittwochsclub-treff-fuer-s
  eniorinnen-und-senioren/2026-10-21-14-30/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261021T123000Z
 DTEND:20261021T143000Z
 SUMMARY:Mittwochsclub. Treff für Seniorinnen und Senioren.
@@ -1771,7 +1773,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/basteln-mit-gaby-und-anika
  /2026-10-21-16-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261021T140000Z
 DTEND:20261021T160000Z
 SUMMARY:Basteln mit Gaby und Anika
@@ -1789,7 +1791,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/culture-club/2026-10-21-19
  -00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261021T170000Z
 DTEND:20261021T210000Z
 SUMMARY:Culture Club
@@ -1806,7 +1808,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel/202
  6-10-22-16-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261022T140000Z
 DTEND:20261022T150000Z
 SUMMARY:Lesen verleiht Flügel
@@ -1824,7 +1826,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-10-22
  -17-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261022T150000Z
 DTEND:20261022T200000Z
 SUMMARY:Afterwork-Party am Flugplatz
@@ -1841,7 +1843,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/time-out-silent-reading-un
  d-mehr-2/2026-10-23-18-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261023T160000Z
 DTEND:20261023T190000Z
 SUMMARY:Time-out – Silent Reading und mehr
@@ -1859,7 +1861,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/tus-1882-opladen-vs-tsg-mu
  enster/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261024T160000Z
 DTEND:20261024T170000Z
 SUMMARY:TuS 1882 Opladen vs. TSG Münster
@@ -1877,7 +1879,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-giants/2026-10-24-18
  -00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261024T160000Z
 DTEND:20261024T170000Z
 SUMMARY:Bayer Giants vs. FC Bayern Basketball II
@@ -1894,7 +1896,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/wings-leverkusen/2026-10-2
  4-18-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261024T160000Z
 DTEND:20261024T170000Z
 SUMMARY:WINGS Leverkusen vs. Eimsbütteler Turnverband
@@ -1911,7 +1913,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/80er-90er-party-mit-dj-tot
  te/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261024T180000Z
 DTEND:20261024T190000Z
 SUMMARY:80er/90er Party mit DJ Totte
@@ -1928,7 +1930,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/schattentanz-dj-dalecooper
  /2026-10-24-21-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261024T190000Z
 DTEND:20261024T200000Z
 SUMMARY:Schattentanz. DJ Dalecooper.
@@ -1945,7 +1947,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/opladen-die-neue-bahnstadt
  -stadtspaziergang/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261025T130000Z
 DTEND:20261025T143000Z
 SUMMARY:Opladen – Die Neue Bahnstadt. Stadtspaziergang.
@@ -1963,7 +1965,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/1-hitdorfer-kostuem-und-kr
  eativboerse/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261025T130000Z
 DTEND:20261025T170000Z
 SUMMARY:1. Hitdorfer Kostüm- und Kreativbörse.
@@ -1980,7 +1982,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/lara-hoert-zu/2026-10-27-1
  6-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261027T150000Z
 DTEND:20261027T160000Z
 SUMMARY:Lara hört zu!
@@ -1997,7 +1999,7 @@ CATEGORIES:Familie & Kinder
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/time-for-slime/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261028T143000Z
 DTEND:20261028T160000Z
 SUMMARY:Time for Slime: Halloween Spezial
@@ -2014,7 +2016,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/lesen-verleiht-fluegel/202
  6-10-29-16-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261029T150000Z
 DTEND:20261029T160000Z
 SUMMARY:Lesen verleiht Flügel
@@ -2032,7 +2034,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/pontos-eine-musikalische-u
  nd-kulturelle-bildungsreise-zum-schwarzen-meer/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261030T190000Z
 DTEND:20261030T200000Z
 SUMMARY:Pontos. Eine musikalische und kulturelle Bildungsreise zum Schwarze
@@ -2051,7 +2053,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-leverkusen/2026-1
  0-31/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART;VALUE=DATE:20261031
 DTEND;VALUE=DATE:20261101
 SUMMARY:Bayer 04 Leverkusen vs. VfB Stuttgart
@@ -2068,7 +2070,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/tus-1882-opladen-vs-tv-gel
  nhausen/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261031T170000Z
 DTEND:20261031T180000Z
 SUMMARY:TuS 1882 Opladen vs. TV Gelnhausen
@@ -2084,27 +2086,9 @@ URL:https://lust-auf-leverkusen.de/veranstaltung/tus-1882-opladen-vs-tv-gel
 CATEGORIES:Spitzensport
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/cicalas-tango/2026-11-01-1
- 8-00/
-DTSTAMP:20260908T042958Z
-DTSTART:20261101T170000Z
-DTEND:20261101T175000Z
-SUMMARY:Cicala’s Tango
-DESCRIPTION:Erleben Sie eine poetische und absurde Physik-Comedy-Performanc
- e\, in der zwei Wesen in einem Mantel um die Kraft der Musik und des Spiel
- s kämpfen.\n\nKategorie: Familie & Kinder\n\nhttps://lust-auf-leverkusen.
- de/veranstaltung/cicalas-tango/2026-11-01-18-00/
-LOCATION:Forum Leverkusen - r_2a0a126e\, Am Büchelter Hof 9\, 51373\, Leve
- rkusen
-GEO:51.034695;6.989814
-URL:https://lust-auf-leverkusen.de/veranstaltung/cicalas-tango/2026-11-01-1
- 8-00/
-CATEGORIES:Familie & Kinder
-END:VEVENT
-BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-11-05
  -17-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261105T160000Z
 DTEND:20261105T210000Z
 SUMMARY:Afterwork-Party am Flugplatz
@@ -2120,7 +2104,7 @@ CATEGORIES:Partys & Nachtleben
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/naehcafe/2026-11-06-15-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261106T140000Z
 DTEND:20261106T170000Z
 SUMMARY:Nadel & Faden. Nähcafé
@@ -2137,7 +2121,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/tus-1882-opladen-vs-hg-saa
  rlouis/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261106T180000Z
 DTEND:20261106T190000Z
 SUMMARY:TuS 1882 Opladen vs. HG Saarlouis
@@ -2154,7 +2138,7 @@ CATEGORIES:Spitzensport
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/stonn-op-un-danz/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261106T184500Z
 DTEND:20261106T194500Z
 SUMMARY:Stonn op un Danz
@@ -2169,7 +2153,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/schlebuscher-martinsmarkt-
  mit-verkaufsoffenem-sonntag/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART;VALUE=DATE:20261107
 DTEND;VALUE=DATE:20261108
 SUMMARY:Schlebuscher Martinsmarkt mit verkaufsoffenem Sonntag
@@ -2186,7 +2170,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/leverkusener-literaturcafe
  -4/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261107T130000Z
 DTEND:20261107T150000Z
 SUMMARY:Leverkusener Literaturcafé
@@ -2204,7 +2188,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/chempark-tour/2026-11-07-1
  4-15/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261107T131500Z
 DTEND:20261107T141500Z
 SUMMARY:Chempark Tour
@@ -2220,26 +2204,9 @@ URL:https://lust-auf-leverkusen.de/veranstaltung/chempark-tour/2026-11-07-1
 CATEGORIES:Führungen & Touren
 END:VEVENT
 BEGIN:VEVENT
-UID:https://lust-auf-leverkusen.de/veranstaltung/wings-leverkusen/2026-11-0
- 7-18-00/
-DTSTAMP:20260908T042958Z
-DTSTART:20261107T170000Z
-DTEND:20261107T180000Z
-SUMMARY:WINGS Leverkusen vs. TUS Lichterfelde Berlin
-DESCRIPTION:Erlebe packenden Frauenbasketball live und tauche ein in die mi
- treißende Atmosphäre der WINGS Leverkusen!\n\nKategorie: Spitzensport\n\
- nhttps://lust-auf-leverkusen.de/veranstaltung/wings-leverkusen/2026-11-07-
- 18-00/
-LOCATION:NBSO (Neue Bahnstadt Opladen) Sporthalle\, Werkstättenstraße 30\
- , 51379\, Leverkusen
-URL:https://lust-auf-leverkusen.de/veranstaltung/wings-leverkusen/2026-11-0
- 7-18-00/
-CATEGORIES:Spitzensport
-END:VEVENT
-BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-giants/2026-11-07-18
  -00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261107T170000Z
 DTEND:20261107T180000Z
 SUMMARY:Bayer Giants vs. Porsche BBA Ludwigsburg
@@ -2254,9 +2221,26 @@ URL:https://lust-auf-leverkusen.de/veranstaltung/bayer-giants/2026-11-07-18
 CATEGORIES:Spitzensport
 END:VEVENT
 BEGIN:VEVENT
+UID:https://lust-auf-leverkusen.de/veranstaltung/wings-leverkusen/2026-11-0
+ 7-18-00/
+DTSTAMP:20260909T042916Z
+DTSTART:20261107T170000Z
+DTEND:20261107T180000Z
+SUMMARY:WINGS Leverkusen vs. TUS Lichterfelde Berlin
+DESCRIPTION:Erlebe packenden Frauenbasketball live und tauche ein in die mi
+ treißende Atmosphäre der WINGS Leverkusen!\n\nKategorie: Spitzensport\n\
+ nhttps://lust-auf-leverkusen.de/veranstaltung/wings-leverkusen/2026-11-07-
+ 18-00/
+LOCATION:NBSO (Neue Bahnstadt Opladen) Sporthalle\, Werkstättenstraße 30\
+ , 51379\, Leverkusen
+URL:https://lust-auf-leverkusen.de/veranstaltung/wings-leverkusen/2026-11-0
+ 7-18-00/
+CATEGORIES:Spitzensport
+END:VEVENT
+BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-frauen/2026-11-08
  /
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART;VALUE=DATE:20261108
 DTEND;VALUE=DATE:20261109
 SUMMARY:Bayer 04 Frauen vs. Hamburger SV
@@ -2274,7 +2258,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/tsv-bayer-04-leverkusen/20
  26-11-08-16-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261108T150000Z
 DTEND:20261108T160000Z
 SUMMARY:TSV Bayer 04 Leverkusen vs. VfL Waiblingen
@@ -2291,7 +2275,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/sessionseroeffnung-2026-20
  27-vorstellung-von-prinz-stefan-i/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261111T100000Z
 DTEND:20261111T110000Z
 SUMMARY:Sessionseröffnung 2026/2027. Vorstellung von Prinz Stefan I.
@@ -2308,7 +2292,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/historische-fuehrung-schlo
  ss-morsbroich-2/2026-11-15-15-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261115T140000Z
 DTEND:20261115T150000Z
 SUMMARY:Historische Führung. Schloss Morsbroich.
@@ -2327,7 +2311,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/fest-der-solidaritaet-frau
  enwelten-2026-in-wiesdorf/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261115T170000Z
 DTEND:20261115T200000Z
 SUMMARY:Fest der Solidarität. FrauenWelten 2026 in Wiesdorf.
@@ -2345,7 +2329,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-11-19
  -17-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261119T160000Z
 DTEND:20261119T210000Z
 SUMMARY:Afterwork-Party am Flugplatz
@@ -2362,7 +2346,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party-fuer-fraue
  n/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261119T170000Z
 DTEND:20261119T210000Z
 SUMMARY:Afterwork-Party für Frauen
@@ -2379,7 +2363,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/cafe-gewollt/2026-11-20-16
  -00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261120T150000Z
 DTEND:20261120T170000Z
 SUMMARY:Café Gewollt
@@ -2397,7 +2381,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/tsv-bayer-04-leverkusen/20
  26-11-20-19-30/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261120T183000Z
 DTEND:20261120T193000Z
 SUMMARY:TSV Bayer 04 Leverkusen vs. Bergischer HC
@@ -2414,7 +2398,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-04-leverkusen/2026-1
  1-21/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART;VALUE=DATE:20261121
 DTEND;VALUE=DATE:20261122
 SUMMARY:Bayer 04 Leverkusen vs. SC Paderborn 07
@@ -2431,7 +2415,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/tus-1882-opladen-vs-hlz-fr
  iesenheim-hochdorf-ii/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261121T170000Z
 DTEND:20261121T180000Z
 SUMMARY:TuS 1882 Opladen vs. HLZ Friesenheim-Hochdorf II
@@ -2449,7 +2433,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/prinzenproklamation-sessio
  n-2026-2027-prinz-stefan-i/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261121T180000Z
 DTEND:20261121T190000Z
 SUMMARY:Prinzenproklamation Session 2026/2027. Prinz Stefan I.
@@ -2467,7 +2451,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-volleys/2026-11-21-1
  9-30/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261121T183000Z
 DTEND:20261121T193000Z
 SUMMARY:Bayer Volleys vs. TV Waldgirmes
@@ -2483,7 +2467,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/bayer-giants/2026-11-22-16
  -00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261122T150000Z
 DTEND:20261122T160000Z
 SUMMARY:Bayer Giants vs. BG Hessing Leitershofen
@@ -2499,7 +2483,7 @@ CATEGORIES:Spitzensport
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/mamagehttanzen/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261128T190000Z
 DTEND:20261128T220000Z
 SUMMARY:MAMAGEHTTANZEN
@@ -2515,7 +2499,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/schattentanz-dj-dalecooper
  /2026-11-28-21-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261128T200000Z
 DTEND:20261128T210000Z
 SUMMARY:Schattentanz. DJ Dalecooper.
@@ -2532,7 +2516,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/famlev-familienmesse-fuer-
  leverkusen/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261129T090000Z
 DTEND:20261129T150000Z
 SUMMARY:FamLEV. Familienmesse für Leverkusen.
@@ -2548,7 +2532,7 @@ CATEGORIES:Märkte & Messen
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/winterzauber-erzaehlcafe/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261202T123000Z
 DTEND:20261202T140000Z
 SUMMARY:Winterzauber. Erzählcafé.
@@ -2565,7 +2549,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-12-03
  -17-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261203T160000Z
 DTEND:20261203T210000Z
 SUMMARY:Afterwork-Party am Flugplatz
@@ -2582,7 +2566,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/chempark-tour/2026-12-05-1
  4-15/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261205T131500Z
 DTEND:20261205T141500Z
 SUMMARY:Chempark Tour
@@ -2599,7 +2583,7 @@ CATEGORIES:Führungen & Touren
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/naehcafe/2026-12-11-15-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261211T140000Z
 DTEND:20261211T170000Z
 SUMMARY:Nadel & Faden. Nähcafé
@@ -2616,7 +2600,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/frauentanzfest-frauenwelte
  n-2026-in-wiesdorf/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261211T180000Z
 DTEND:20261211T210000Z
 SUMMARY:Frauentanzfest. FrauenWelten 2026 in Wiesdorf.
@@ -2633,7 +2617,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/harfe-meets-literatur-lite
  ratur-meets-harfe-je-kaelter-die-nacht-desto-heller-die-sterne/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261211T180000Z
 DTEND:20261211T193000Z
 SUMMARY:Harfe meets Literatur – Literatur meets Harfe. Je kälter die Nac
@@ -2653,7 +2637,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/leverkusener-literaturcafe
  -5/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261212T130000Z
 DTEND:20261212T150000Z
 SUMMARY:Leverkusener Literaturcafé
@@ -2670,7 +2654,7 @@ CATEGORIES:Lesungen & Literatur
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/st-elisabeth-opladen/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261212T133000Z
 DTEND:20261212T163000Z
 SUMMARY:St. Elisabeth. Opladen.
@@ -2686,7 +2670,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/historische-fuehrung-schlo
  ss-morsbroich-3/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261213T140000Z
 DTEND:20261213T160000Z
 SUMMARY:„Mein theurer Fritz\,…“. Schloss Morsbroich.
@@ -2704,7 +2688,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/time-out-silent-reading-un
  d-mehr-2/2026-12-16-18-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261216T170000Z
 DTEND:20261216T200000Z
 SUMMARY:Time-out – Silent Reading und mehr
@@ -2722,7 +2706,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-12-17
  -17-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261217T160000Z
 DTEND:20261217T210000Z
 SUMMARY:Afterwork-Party am Flugplatz
@@ -2739,7 +2723,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/cafe-gewollt/2026-12-18-16
  -00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261218T150000Z
 DTEND:20261218T170000Z
 SUMMARY:Café Gewollt
@@ -2757,7 +2741,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2026-12-31
  -17-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261231T160000Z
 DTEND:20261231T210000Z
 SUMMARY:Afterwork-Party am Flugplatz
@@ -2773,7 +2757,7 @@ CATEGORIES:Partys & Nachtleben
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/lih-silvesterparty/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20261231T190000Z
 DTEND:20261231T200000Z
 SUMMARY:LiH Silvesterparty
@@ -2789,7 +2773,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2027-01-14
  -17-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20270114T160000Z
 DTEND:20270114T210000Z
 SUMMARY:Afterwork-Party am Flugplatz
@@ -2806,7 +2790,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/afterwork-party/2027-01-28
  -17-00/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20270128T160000Z
 DTEND:20270128T210000Z
 SUMMARY:Afterwork-Party am Flugplatz
@@ -2822,7 +2806,7 @@ CATEGORIES:Partys & Nachtleben
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/leverkusen-singt/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20270129T181100Z
 DTEND:20270129T191100Z
 SUMMARY:Leverkusen singt 2027!
@@ -2838,7 +2822,7 @@ CATEGORIES:Karneval
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/karnevalszug-hitdorf/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20270205T133300Z
 DTEND:20270205T163300Z
 SUMMARY:Karnevalszug Hitdorf 2027
@@ -2853,7 +2837,7 @@ CATEGORIES:Karneval
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/karnevalszug-schlebusch/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20270206T123300Z
 DTEND:20270206T153300Z
 SUMMARY:Karnevalszug Schlebusch 2027
@@ -2868,7 +2852,7 @@ CATEGORIES:Karneval
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/karnevalszug-wiesdorf/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20270207T123300Z
 DTEND:20270207T153300Z
 SUMMARY:Karnevalszug Wiesdorf 2027
@@ -2884,7 +2868,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/karnevalszug-luetzenkirche
  n/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20270207T131100Z
 DTEND:20270207T151100Z
 SUMMARY:Karnevalszug Lützenkirchen 2027
@@ -2900,7 +2884,7 @@ CATEGORIES:Karneval
 END:VEVENT
 BEGIN:VEVENT
 UID:https://lust-auf-leverkusen.de/veranstaltung/karnevalszug-opladen/
-DTSTAMP:20260908T042958Z
+DTSTAMP:20260909T042916Z
 DTSTART:20270208T131100Z
 DTEND:20270208T161100Z
 SUMMARY:Karnevalszug Opladen 2027
